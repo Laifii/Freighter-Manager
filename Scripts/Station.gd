@@ -85,6 +85,7 @@ func set_station_stats():
 	stationTax = 500 * (stationSize + 1)
 	$StationColourInner.self_modulate = companyColours[companyList[stationOwner]]["inner"]
 	$StationColourInner/StationColourOuter.self_modulate = companyColours[companyList[stationOwner]]["outer"]
+	$StationColourInner.scale = Vector2(stationSize + 1, stationSize + 1)
 
 func _on_area_2d_mouse_entered():
 	if not Settings.stationNamesAlwaysVisible: nameplate.visible = true

@@ -21,7 +21,6 @@ visible = false
 texture = ExtResource("2_our83")
 
 [node name="Player" parent="GB" instance=ExtResource("4_m6di8")]
-position = Vector2(-110, 23)
 
 [node name="Stations" type="Node2D" parent="."]
 
