@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbndd8umjeoiq"]
+[gd_scene load_steps=10 format=3 uid="uid://dbndd8umjeoiq"]
 
 [ext_resource type="Script" uid="uid://bcyvbwsej2e2f" path="res://Objects/Camera.gd" id="1_xdxat"]
 [ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/dogicabold.ttf" id="2_rv08e"]
@@ -20,7 +20,20 @@ font = ExtResource("2_rv08e")
 font_size = 8
 font_color = Color(0.560955, 0.560955, 0.560955, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_fpu2u"]
+font = ExtResource("2_rv08e")
+font_color = Color(0.560784, 0.560784, 0.560784, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m7k43"]
+font = ExtResource("2_rv08e")
+font_color = Color(0.266667, 0.266667, 0.266667, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4h5oc"]
+font = ExtResource("2_rv08e")
+font_color = Color(0, 0, 0, 1)
+
 [node name="Camera" type="Camera2D"]
+position = Vector2(30, 7)
 script = ExtResource("1_xdxat")
 
 [node name="UI" type="Control" parent="."]
@@ -66,7 +79,7 @@ offset_left = 2.0
 offset_top = 14.0
 offset_right = 118.0
 offset_bottom = 30.0
-text = "Stations: 5 Trains: 12"
+text = "Stations: 1 Trains: 1"
 label_settings = SubResource("LabelSettings_lqjr5")
 vertical_alignment = 1
 autowrap_trim_flags = 0
@@ -145,3 +158,122 @@ label_settings = SubResource("LabelSettings_y7oh5")
 horizontal_alignment = 1
 autowrap_trim_flags = 0
 uppercase = true
+
+[node name="ColorRect" type="ColorRect" parent="UI/Calender"]
+layout_mode = 0
+offset_left = 857.0
+offset_top = 429.0
+offset_right = 905.0
+offset_bottom = 481.0
+scale = Vector2(2, 2)
+
+[node name="ColorRect" type="ColorRect" parent="UI/Calender/ColorRect"]
+z_index = -1
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 49.0
+offset_bottom = 53.0
+color = Color(0.442911, 0.442911, 0.442911, 1)
+
+[node name="SpeedButton1" type="Label" parent="UI/Calender/ColorRect"]
+z_index = 10
+layout_mode = 0
+offset_left = 17.0
+offset_top = 2.0
+offset_right = 33.0
+offset_bottom = 16.0
+text = ">"
+label_settings = SubResource("LabelSettings_fpu2u")
+
+[node name="ColorRect" type="ColorRect" parent="UI/Calender/ColorRect/SpeedButton1"]
+z_index = -1
+layout_mode = 0
+offset_left = -15.0
+offset_right = 29.0
+offset_bottom = 14.0
+
+[node name="ColorRect" type="ColorRect" parent="UI/Calender/ColorRect/SpeedButton1/ColorRect"]
+z_index = -1
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 45.0
+offset_bottom = 15.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="SpeedButton1" type="TextureButton" parent="UI/Calender/ColorRect/SpeedButton1"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -1.0
+offset_right = 30.0
+offset_bottom = 15.0
+
+[node name="SpeedButton2" type="Label" parent="UI/Calender/ColorRect"]
+z_index = 10
+layout_mode = 0
+offset_left = 8.0
+offset_top = 19.0
+offset_right = 40.0
+offset_bottom = 33.0
+text = ">>"
+label_settings = SubResource("LabelSettings_m7k43")
+
+[node name="ColorRect" type="ColorRect" parent="UI/Calender/ColorRect/SpeedButton2"]
+z_index = -1
+layout_mode = 0
+offset_left = -6.0
+offset_right = 38.0
+offset_bottom = 14.0
+
+[node name="ColorRect" type="ColorRect" parent="UI/Calender/ColorRect/SpeedButton2/ColorRect"]
+z_index = -1
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 45.0
+offset_bottom = 15.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="SpeedButton2" type="TextureButton" parent="UI/Calender/ColorRect/SpeedButton2"]
+layout_mode = 0
+offset_left = -7.0
+offset_top = -1.0
+offset_right = 39.0
+offset_bottom = 15.0
+
+[node name="SpeedButton3" type="Label" parent="UI/Calender/ColorRect"]
+z_index = 10
+layout_mode = 0
+offset_top = 36.0
+offset_right = 32.0
+offset_bottom = 50.0
+text = ">>>"
+label_settings = SubResource("LabelSettings_4h5oc")
+
+[node name="ColorRect" type="ColorRect" parent="UI/Calender/ColorRect/SpeedButton3"]
+z_index = -1
+layout_mode = 0
+offset_left = 2.0
+offset_right = 46.0
+offset_bottom = 14.0
+
+[node name="ColorRect" type="ColorRect" parent="UI/Calender/ColorRect/SpeedButton3/ColorRect"]
+z_index = -1
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 45.0
+offset_bottom = 15.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="SpeedButton3" type="TextureButton" parent="UI/Calender/ColorRect/SpeedButton3"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 47.0
+offset_bottom = 15.0
+
+[connection signal="pressed" from="UI/Calender/ColorRect/SpeedButton1/SpeedButton1" to="UI/Calender" method="_on_speed_button_1_pressed"]
+[connection signal="pressed" from="UI/Calender/ColorRect/SpeedButton2/SpeedButton2" to="UI/Calender" method="_on_speed_button_2_pressed"]
+[connection signal="pressed" from="UI/Calender/ColorRect/SpeedButton3/SpeedButton3" to="UI/Calender" method="_on_speed_button_3_pressed"]

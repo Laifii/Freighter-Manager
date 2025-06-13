@@ -3,9 +3,9 @@ extends Control
 var time = {
 	minute = 0,
 	hour = 0,
-	day = 31,
-	month = 12,
-	year = 2025
+	day = 1,
+	month = 1,
+	year = 2025,
 }
 var displayNames = {
 	daySuffix = ["st", "nd", "rd", "th"],
@@ -13,6 +13,11 @@ var displayNames = {
 	activeMonth = "January",
 	activeDaySuffix = "st"
 }
+var minuteFiller = "0"
+var hourFiller = "0"
+var currentSpeed = 1
+var timeSpeed = [0, 60, 360, 1200]
+
 var daysInMonth = [31,28,31,30,31,30,31,31,30,31,30,31]
 var floatMinutes = 0
 var savedTime
@@ -23,9 +28,7 @@ func _ready():
 	display_date()
 
 func _physics_process(delta):
-	print(time)
-	floatMinutes += delta * 20
-	if Input.is_action_pressed("Fast Forward"): floatMinutes += delta * 100
+	floatMinutes += delta * timeSpeed[currentSpeed]
 	time.minute = floor(floatMinutes)
 	display_time()
 	if floatMinutes > 60:
@@ -51,12 +54,15 @@ func update_year():
 func update_payday():
 	if time.day == 1 or time.day == previousPayday + 7:
 		isPayday = true
+		previousPayday = time.day
 		for station in StationManager.stations:
 			station.generate_passive_income()
-	previousPayday = time.day
+	
 
 func display_time():
-	$DateStats/Time.text = str(time.hour, ":", int(time.minute))
+	minuteFiller = "0" if time.minute < 10 else ""
+	hourFiller = "0" if time.hour < 10 else ""
+	$DateStats/Time.text = str(hourFiller, time.hour, ":", minuteFiller, int(time.minute))
 
 func display_date():
 	if time.day == 1 or time.day == 21 or time.day == 31: displayNames.activeDaySuffix = displayNames.daySuffix[0]
@@ -64,5 +70,16 @@ func display_date():
 	elif time.day == 3 or time.day == 23: displayNames.activeDaySuffix = displayNames.daySuffix[2]
 	else: displayNames.activeDaySuffix = displayNames.daySuffix[3]
 	displayNames.activeMonth = displayNames.monthNames[time.month - 1]
-	print(str(time.day, displayNames.activeDaySuffix, " of ", displayNames.activeMonth, " ", time.year))
 	$DateStats/Date.text = str(time.day, displayNames.activeDaySuffix, " of ", displayNames.activeMonth, " ", time.year)
+
+
+func _on_speed_button_1_pressed():
+	currentSpeed = 1
+
+
+func _on_speed_button_2_pressed():
+	currentSpeed = 2
+
+
+func _on_speed_button_3_pressed():
+	currentSpeed = 3
