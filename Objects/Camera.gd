@@ -1,16 +1,22 @@
 extends Camera2D
 
 var camZoom = {
-	states = [Vector2(1, 1), Vector2(2, 2), Vector2(4, 4), Vector2(6, 6), Vector2(7, 7)],
+	states = [Vector2(1, 1), Vector2(2, 2), Vector2(3, 3), Vector2(4, 4), Vector2(6, 6)],
+	currentState = 0,
+	dragSpeedMultipliers = [1, 2, 3, 4, 5],
 	target = Vector2(1, 1)
 }
-var dragScreen = false
+var isDragging = false
+var lastMousePosition = Vector2.ZERO
+var dragSpeed = 0.85
 
 func _input(event):
 	if event is not InputEventMouseButton: return
 	match event.button_index:
 		3:
-			dragScreen = true if event.is_pressed() else false
+			isDragging = event.pressed
+			if event.pressed:
+				lastMousePosition = get_global_mouse_position()
 	if not event.is_pressed(): return
 	match event.button_index:
 		4:
@@ -18,12 +24,19 @@ func _input(event):
 		5:
 			change_zoom(false)
 
+func _unhandled_input(event):
+	if event is not InputEventMouseMotion or not isDragging: return
+	var mousePosition = get_global_mouse_position()
+	var positionDifference = lastMousePosition - mousePosition
+	offset += positionDifference * dragSpeed
+	lastMousePosition = mousePosition
+
 func change_zoom(zoomIn):
+	if isDragging: return
 	var stateChange = 1 if zoomIn else -1
-	var newZoomState = camZoom.states.find(camZoom.target) + stateChange
-	if newZoomState >= camZoom.states.size() or newZoomState < 0: return
-	print(newZoomState)
-	camZoom.target = camZoom.states[newZoomState]
+	camZoom.currentState = camZoom.states.find(camZoom.target) + stateChange
+	if camZoom.currentState >= camZoom.states.size() or camZoom.currentState < 0: return
+	camZoom.target = camZoom.states[camZoom.currentState]
 
 func _physics_process(delta):
 	if zoom != camZoom.target: 

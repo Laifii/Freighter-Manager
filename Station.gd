@@ -13,7 +13,7 @@ var holdingItem = false
 var contract = {
 	available = false,
 	active = false,
-	current = {},
+	current = null,
 	
 	
 }
