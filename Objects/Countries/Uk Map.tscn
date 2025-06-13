@@ -55,7 +55,7 @@ connections = [NodePath("../Dundee")]
 [node name="Edinburgh" parent="Stations" instance=ExtResource("4_wnami")]
 position = Vector2(-32, -119)
 stationName = "Edinburgh"
-stationSize = 2
+stationSize = 4
 stationOwner = 3
 connections = [NodePath("../Kirkcaldy"), NodePath("../Newcastle"), NodePath("../Glasgow"), NodePath("../Carlisle")]
 

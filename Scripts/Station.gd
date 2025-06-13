@@ -18,6 +18,7 @@ var seethroughText = false
 var hoveringOverStation = false
 
 var sizeList = ["Local", "Connector", "Large", "Hub", "Capital"]
+var stationTax 
 var ownerList = ["You", "Unowned", "Scottish\nRail", "United\nRail", "Birmingham\nExpress", "London\nFreighters"]
 
 var contract = {
@@ -73,6 +74,7 @@ func set_station_stats():
 		$StationUI/OwnedStation/UpgradeRect/Price.text = "Maximum Size"
 		return
 	$StationUI/OwnedStation/UpgradeRect/Price.text = str(priceToUpgrade[stationSize])
+	stationTax = 500 * (stationSize + 1)
 
 func _on_area_2d_mouse_entered():
 	if not Settings.stationNamesAlwaysVisible: nameplate.visible = true

@@ -95,7 +95,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Duration Buttons" type="Control" parent="Toolbar"]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -169,6 +168,7 @@ offset_right = 197.0
 offset_bottom = 42.0
 
 [node name="Train en Route" type="ColorRect" parent="Toolbar"]
+visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 205.0

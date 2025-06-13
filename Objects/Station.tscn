@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://co0y23pb2rril"]
+[gd_scene load_steps=10 format=3 uid="uid://co0y23pb2rril"]
 
 [ext_resource type="Script" uid="uid://bm0d4yv4cl8q3" path="res://Scripts/Station.gd" id="1_hsegu"]
 [ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/dogicabold.ttf" id="2_mn7t0"]
+[ext_resource type="Texture2D" uid="uid://bc77d2m88ie7k" path="res://Assets/StationInner.png" id="3_qutln"]
+[ext_resource type="Texture2D" uid="uid://b6oyym4d7t74r" path="res://Assets/StationOuter.png" id="4_xawpj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hsegu"]
 font = ExtResource("2_mn7t0")
@@ -41,20 +43,13 @@ vertical_alignment = 1
 autowrap_trim_flags = 0
 uppercase = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -1.0
-offset_top = -1.0
-offset_right = 1.0
-offset_bottom = 1.0
+[node name="StationColourInner" type="Sprite2D" parent="."]
+texture = ExtResource("3_qutln")
 
-[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+[node name="StationColourOuter" type="Sprite2D" parent="StationColourInner"]
+self_modulate = Color(0.552941, 1, 1, 1)
 z_index = -1
-layout_mode = 0
-offset_left = -1.0
-offset_top = -1.0
-offset_right = 3.0
-offset_bottom = 3.0
-color = Color(0.576471, 1, 1, 1)
+texture = ExtResource("4_xawpj")
 
 [node name="Area2D" type="Area2D" parent="."]
 
