@@ -11,7 +11,14 @@ var lastMousePosition = Vector2.ZERO
 var dragSpeed = 0.85
 
 func _input(event):
-	if event is not InputEventMouseButton: return
+	if event is not InputEventMouse: return
+	if event is InputEventMouseMotion:
+		if not isDragging: return
+		var mousePosition = get_global_mouse_position()
+		var positionDifference = lastMousePosition - mousePosition
+		offset += positionDifference * dragSpeed
+		lastMousePosition = mousePosition
+		return
 	match event.button_index:
 		3:
 			isDragging = event.pressed
@@ -23,13 +30,6 @@ func _input(event):
 			change_zoom(true)
 		5:
 			change_zoom(false)
-
-func _unhandled_input(event):
-	if event is not InputEventMouseMotion or not isDragging: return
-	var mousePosition = get_global_mouse_position()
-	var positionDifference = lastMousePosition - mousePosition
-	offset += positionDifference * dragSpeed
-	lastMousePosition = mousePosition
 
 func change_zoom(zoomIn):
 	if isDragging: return

@@ -28,35 +28,39 @@ texture = ExtResource("2_our83")
 position = Vector2(-21, -177)
 stationName = "Dundee"
 stationSize = 0
-stationOwner = 1
 connections = [NodePath("../Arbroath"), NodePath("../Perth"), NodePath("../Aberdeen")]
 
 [node name="Arbroath" parent="Stations" instance=ExtResource("4_wnami")]
 position = Vector2(-1, -188)
 stationName = "Arbroath"
 stationSize = 0
+stationOwner = 1
 connections = [NodePath("../Dundee")]
 
 [node name="Aberdeen" parent="Stations" instance=ExtResource("4_wnami")]
 position = Vector2(22, -245)
 stationName = "Aberdeen"
 stationSize = 0
+stationOwner = 1
 connections = [NodePath("../Dundee")]
 
 [node name="Perth" parent="Stations" instance=ExtResource("4_wnami")]
 position = Vector2(-48, -169)
 stationName = "Perth"
 stationSize = 0
+stationOwner = 2
 connections = [NodePath("../Dundee")]
 
 [node name="Edinburgh" parent="Stations" instance=ExtResource("4_wnami")]
 position = Vector2(-32, -119)
 stationName = "Edinburgh"
 stationSize = 2
+stationOwner = 5
 connections = [NodePath("../Kirkcaldy")]
 
 [node name="Kirkcaldy" parent="Stations" instance=ExtResource("4_wnami")]
 position = Vector2(-31, -142)
 stationName = "Kirkcaldy"
 stationSize = 0
+stationOwner = 1
 connections = [NodePath("../Edinburgh"), NodePath("../Dundee")]
