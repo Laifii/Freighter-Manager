@@ -52,13 +52,6 @@ stationSize = 0
 stationOwner = 2
 connections = [NodePath("../Dundee")]
 
-[node name="Edinburgh" parent="Stations" instance=ExtResource("4_wnami")]
-position = Vector2(-32, -119)
-stationName = "Edinburgh"
-stationSize = 4
-stationOwner = 3
-connections = [NodePath("../Kirkcaldy"), NodePath("../Newcastle"), NodePath("../Glasgow"), NodePath("../Carlisle")]
-
 [node name="Kirkcaldy" parent="Stations" instance=ExtResource("4_wnami")]
 position = Vector2(-31, -142)
 stationName = "Kirkcaldy"
@@ -121,3 +114,10 @@ stationName = "Oban"
 stationSize = 0
 stationOwner = 2
 connections = [NodePath("../Glasgow")]
+
+[node name="Edinburgh" parent="Stations" instance=ExtResource("4_wnami")]
+position = Vector2(-32, -119)
+stationName = "Edinburgh"
+stationSize = 4
+stationOwner = 3
+connections = [NodePath("../Kirkcaldy"), NodePath("../Newcastle"), NodePath("../Carlisle"), NodePath("../Glasgow")]

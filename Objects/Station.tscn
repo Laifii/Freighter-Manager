@@ -47,7 +47,6 @@ uppercase = true
 texture = ExtResource("3_qutln")
 
 [node name="StationColourOuter" type="Sprite2D" parent="StationColourInner"]
-self_modulate = Color(0.552941, 1, 1, 1)
 z_index = -1
 texture = ExtResource("4_xawpj")
 

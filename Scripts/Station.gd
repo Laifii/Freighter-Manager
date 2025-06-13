@@ -16,10 +16,19 @@ var notInContract = true
 var holdingItem = false
 var seethroughText = false
 var hoveringOverStation = false
+var companyColours = {
+	Player = {inner = Color(0.83, 0.001, 0.83), outer = Color(1, 1, 1)},
+	None = {inner = Color(0.8, 0.8, 0.8), outer = Color(0.355, 0.355, 0.355)},
+	ScottishRail = {inner = Color(1, 1, 1), outer = Color(0.0, 0.369, 0.722)},
+	UnitedRail = {inner = Color(0.784, 0.063, 0.18), outer = Color(0.004, 0.129, 0.412)},
+	BirminghamExpress = {inner = Color(1.0, 0.898, 0.0), outer = Color(0.863, 0.141, 0.122)},
+	LondonFreighters = {inner = Color(1, 0, 0), outer = Color(1, 1, 1)}
+}
 
 var sizeList = ["Local", "Connector", "Large", "Hub", "Capital"]
 var stationTax 
-var ownerList = ["You", "Unowned", "Scottish\nRail", "United\nRail", "Birmingham\nExpress", "London\nFreighters"]
+var companyList = ["Player", "None", "ScottishRail", "UnitedRail", "BirminghamExpress", "LondonFreighters"]
+var visualOwnerList = ["You", "Unowned", "Scottish\nRail", "United\nRail", "Birmingham\nExpress", "London\nFreighters"]
 
 var contract = {
 	available = false,
@@ -63,7 +72,7 @@ func set_station_stats():
 	nameplate.text = stationName
 	$StationUI/Nameplate.text = stationName
 	$StationUI/Size.text = sizeList[stationSize]
-	$StationUI/Owner.text = ownerList[stationOwner]
+	$StationUI/Owner.text = visualOwnerList[stationOwner]
 	stationValue = 500000 * (connections.size() / 2) * stationOwner
 	if connections.size() / 2 == 0: stationValue = 250000 * stationOwner
 	weeklyIncome = 10000 * connections.size() * (stationSize + 1)
@@ -72,9 +81,10 @@ func set_station_stats():
 	if stationSize == 4: 
 		$StationUI/OwnedStation/UpgradeRect/Price/TextureButton.visible = false
 		$StationUI/OwnedStation/UpgradeRect/Price.text = "Maximum Size"
-		return
-	$StationUI/OwnedStation/UpgradeRect/Price.text = str(priceToUpgrade[stationSize])
+	else: $StationUI/OwnedStation/UpgradeRect/Price.text = str(priceToUpgrade[stationSize])
 	stationTax = 500 * (stationSize + 1)
+	$StationColourInner.self_modulate = companyColours[companyList[stationOwner]]["inner"]
+	$StationColourInner/StationColourOuter.self_modulate = companyColours[companyList[stationOwner]]["outer"]
 
 func _on_area_2d_mouse_entered():
 	if not Settings.stationNamesAlwaysVisible: nameplate.visible = true
