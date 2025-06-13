@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://co0y23pb2rril"]
+
+[ext_resource type="Script" uid="uid://bm0d4yv4cl8q3" path="res://Station.gd" id="1_hsegu"]
+
+[node name="Station" type="Node2D"]
+script = ExtResource("1_hsegu")
+stationOwner = 0
+
+[node name="Node2D" type="Node2D" parent="."]

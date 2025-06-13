@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7khh6d63a542"]
+
+[ext_resource type="Texture2D" uid="uid://r6yrk180md2o" path="res://Assets/GB map grey.png" id="1_6vnro"]
+[ext_resource type="Texture2D" uid="uid://dvms60x5yvr3f" path="res://Assets/UK Map names.png" id="2_our83"]
+[ext_resource type="PackedScene" uid="uid://dbndd8umjeoiq" path="res://Objects/Camera.tscn" id="3_our83"]
+
+[node name="Country Map" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6vnro")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+visible = false
+texture = ExtResource("2_our83")
+
+[node name="Camera" parent="." instance=ExtResource("3_our83")]
