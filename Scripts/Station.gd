@@ -7,6 +7,7 @@ extends Node2D
 @export var connections: Array
 @onready var nameplate = $Sprite2D/Nameplate
 @onready var stationUI = $StationUI
+@onready var player = get_tree().get_first_node_in_group("Player")
 
 var stationValue # value = 500000 * (connections.size() / 2) * company multiplier
 var notInContract = true
@@ -25,12 +26,7 @@ var contract = {
 func _ready():
 	if Settings.stationNamesAlwaysVisible: nameplate.visible = true
 	StationManager.stations.append(self)
-	nameplate.text = stationName
-	$StationUI/Nameplate.text = stationName
-	$StationUI/Owner.text = ownerList[stationOwner]
-	stationValue = 500000 * (connections.size() / 2) * stationOwner
-	if connections.size() / 2 == 0: stationValue = 250000 * stationOwner
-	$StationUI/UnownedStation/ValueRect/Value.text = str(stationValue)
+	set_station_stats()
 	for station in connections:
 		var targetStation = get_node(station)
 		var connectorTrack = Line2D.new()
@@ -41,6 +37,14 @@ func _ready():
 		connectorTrack.add_point(position)
 		connectorTrack.add_point(targetStation.position)
 		connectorTrack.z_index = -100
+
+func set_station_stats():
+	nameplate.text = stationName
+	$StationUI/Nameplate.text = stationName
+	$StationUI/Owner.text = ownerList[stationOwner]
+	stationValue = 500000 * (connections.size() / 2) * stationOwner
+	if connections.size() / 2 == 0: stationValue = 250000 * stationOwner
+	$StationUI/UnownedStation/ValueRect/Value.text = str("£", stationValue)
 
 func _on_area_2d_mouse_entered():
 	if not Settings.stationNamesAlwaysVisible: nameplate.visible = true
@@ -72,3 +76,10 @@ func _on_station_button_mouse_entered():
 
 func _on_station_button_mouse_exited():
 	hoveringOverStation = false
+
+
+func _on_purchase_button_pressed():
+	if player.wealth > stationValue:
+		player.wealth -= stationValue
+		stationOwner = 0
+		set_station_stats()

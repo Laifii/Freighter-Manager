@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-StationManager="*res://StationManager.gd"
-Settings="*res://GameSettings.gd"
+StationManager="*res://Scripts/StationManager.gd"
+Settings="*res://Scripts/GameSettings.gd"
 
 [display]
 

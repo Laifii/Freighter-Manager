@@ -1,6 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbndd8umjeoiq"]
+[gd_scene load_steps=4 format=3 uid="uid://dbndd8umjeoiq"]
 
 [ext_resource type="Script" uid="uid://bcyvbwsej2e2f" path="res://Objects/Camera.gd" id="1_xdxat"]
+[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/dogicabold.ttf" id="2_rv08e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mywko"]
+font = ExtResource("2_rv08e")
+font_color = Color(1, 1, 0.180392, 1)
 
 [node name="Camera" type="Camera2D"]
 script = ExtResource("1_xdxat")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Wealth" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = -948.0
+offset_top = -529.0
+offset_right = -596.0
+offset_bottom = -439.0
+text = "Wealth: £1000000"
+label_settings = SubResource("LabelSettings_mywko")
