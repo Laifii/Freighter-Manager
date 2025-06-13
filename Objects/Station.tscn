@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://co0y23pb2rril"]
+[gd_scene load_steps=7 format=3 uid="uid://co0y23pb2rril"]
 
 [ext_resource type="Script" uid="uid://bm0d4yv4cl8q3" path="res://Station.gd" id="1_hsegu"]
+[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://dogicabold.ttf" id="2_mn7t0"]
 
 [sub_resource type="Gradient" id="Gradient_hsegu"]
 colors = PackedColorArray(1, 1, 1, 1, 0.331534, 0.724469, 0.942315, 1)
@@ -12,9 +13,40 @@ height = 4
 fill = 2
 fill_from = Vector2(0.5, 0.495495)
 
+[sub_resource type="LabelSettings" id="LabelSettings_hsegu"]
+font = ExtResource("2_mn7t0")
+font_size = 8
+font_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hsegu"]
+radius = 44.0114
+
 [node name="Station" type="Node2D"]
 script = ExtResource("1_hsegu")
 stationOwner = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_mn7t0")
+
+[node name="Nameplate" type="Label" parent="Sprite2D"]
+z_index = 100
+offset_left = -58.0
+offset_top = -14.0
+offset_right = 58.0
+offset_bottom = 2.0
+text = "test test test"
+label_settings = SubResource("LabelSettings_hsegu")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 0
+uppercase = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource("CircleShape2D_hsegu")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
