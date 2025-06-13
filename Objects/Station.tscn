@@ -69,6 +69,7 @@ position = Vector2(5, 5)
 shape = SubResource("CircleShape2D_mn7t0")
 
 [node name="StationUI" type="ColorRect" parent="."]
+visible = false
 z_index = 1000
 offset_left = -61.0
 offset_top = -96.0

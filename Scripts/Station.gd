@@ -10,6 +10,7 @@ extends Node2D
 @onready var player = get_tree().get_first_node_in_group("Player")
 
 var stationValue # value = 500000 * (connections.size() / 2) * company multiplier
+var weeklyIncome
 var notInContract = true
 var holdingItem = false
 var seethroughText = false
@@ -62,6 +63,8 @@ func set_station_stats():
 	$StationUI/Owner.text = ownerList[stationOwner]
 	stationValue = 500000 * (connections.size() / 2) * stationOwner
 	if connections.size() / 2 == 0: stationValue = 250000 * stationOwner
+	weeklyIncome = 10000 * connections.size() * (stationSize + 1)
+	$StationUI/Income.text = str("Income:\n", weeklyIncome, " / Week")
 	$StationUI/UnownedStation/ValueRect/Value.text = str("£", stationValue)
 
 func _on_area_2d_mouse_entered():
@@ -102,3 +105,8 @@ func _on_purchase_button_pressed():
 		set_station_stats()
 		$StationUI/UnownedStation.visible = false
 		$StationUI/OwnedStation.visible = true
+
+func generate_passive_income():
+	if not stationOwner == 0: return
+	if player.camera.calender.isPayday:
+		player.wealth += weeklyIncome

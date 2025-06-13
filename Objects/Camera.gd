@@ -9,9 +9,11 @@ var camZoom = {
 	uiTarget = Vector2(1, 1)
 }
 @onready var ui = $UI
+@onready var calender = $UI/Calender
 var isDragging = false
 var lastMousePosition = Vector2.ZERO
 var dragSpeed = 0.85
+
 
 func _input(event):
 	if event is not InputEventMouse: return
