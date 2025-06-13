@@ -141,7 +141,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ValueRect" type="ColorRect" parent="StationUI/OwnedStation"]
+[node name="UpgradeRect" type="ColorRect" parent="StationUI/OwnedStation"]
 z_index = 1
 layout_mode = 0
 offset_left = 1.0
@@ -150,7 +150,7 @@ offset_right = 121.0
 offset_bottom = 84.0
 color = Color(0.442911, 0.442911, 0.442911, 1)
 
-[node name="Upgrade" type="Label" parent="StationUI/OwnedStation/ValueRect"]
+[node name="Upgrade" type="Label" parent="StationUI/OwnedStation/UpgradeRect"]
 z_index = 100
 layout_mode = 0
 offset_left = 4.0
@@ -164,7 +164,7 @@ vertical_alignment = 1
 autowrap_trim_flags = 0
 uppercase = true
 
-[node name="Value" type="Label" parent="StationUI/OwnedStation/ValueRect"]
+[node name="Price" type="Label" parent="StationUI/OwnedStation/UpgradeRect"]
 z_index = 100
 layout_mode = 0
 offset_left = 2.0
@@ -178,7 +178,7 @@ vertical_alignment = 1
 autowrap_trim_flags = 0
 uppercase = true
 
-[node name="TextureButton" type="TextureButton" parent="StationUI/OwnedStation/ValueRect/Value"]
+[node name="TextureButton" type="TextureButton" parent="StationUI/OwnedStation/UpgradeRect/Price"]
 layout_mode = 0
 offset_left = -2.0
 offset_top = 2.0
@@ -245,3 +245,4 @@ uppercase = true
 [connection signal="mouse_entered" from="Area2D2" to="." method="_on_station_button_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D2" to="." method="_on_station_button_mouse_exited"]
 [connection signal="pressed" from="StationUI/UnownedStation/ValueRect/Value/TextureButton" to="." method="_on_purchase_button_pressed"]
+[connection signal="pressed" from="StationUI/OwnedStation/UpgradeRect/Price/TextureButton" to="." method="_on_upgrade_button_pressed"]

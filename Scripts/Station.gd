@@ -2,21 +2,22 @@ extends Node2D
 
 @export var id: int
 @export var stationName: String
-@export_enum("Local", "Connector", "Large", "Hub") var stationSize
+@export_enum("Local", "Connector", "Large", "Hub", "Capital") var stationSize
 @export_enum("Player", "None", "ScottishRail", "UnitedRail", "BirminghamExpress", "LondonFreighters") var stationOwner
 @export var connections: Array
 @onready var nameplate = $Sprite2D/Nameplate
 @onready var stationUI = $StationUI
 @onready var player = get_tree().get_first_node_in_group("Player")
 
-var stationValue # value = 500000 * (connections.size() / 2) * company multiplier
+var priceToUpgrade = [250000, 500000, 1000000, 2500000]
+var stationValue 
 var weeklyIncome
 var notInContract = true
 var holdingItem = false
 var seethroughText = false
 var hoveringOverStation = false
 
-var sizeList = ["Local", "Connector", "Large", "Hub"]
+var sizeList = ["Local", "Connector", "Large", "Hub", "Capital"]
 var ownerList = ["You", "Unowned", "Scottish\nRail", "United\nRail", "Birmingham\nExpress", "London\nFreighters"]
 
 var contract = {
@@ -66,6 +67,11 @@ func set_station_stats():
 	weeklyIncome = 10000 * connections.size() * (stationSize + 1)
 	$StationUI/Income.text = str("Income:\n", weeklyIncome, " / Week")
 	$StationUI/UnownedStation/ValueRect/Value.text = str("£", stationValue)
+	if stationSize == 4: 
+		$StationUI/OwnedStation/UpgradeRect/Price/TextureButton.visible = false
+		$StationUI/OwnedStation/UpgradeRect/Price.text = "Maximum Size"
+		return
+	$StationUI/OwnedStation/UpgradeRect/Price.text = str(priceToUpgrade[stationSize])
 
 func _on_area_2d_mouse_entered():
 	if not Settings.stationNamesAlwaysVisible: nameplate.visible = true
@@ -106,7 +112,17 @@ func _on_purchase_button_pressed():
 		$StationUI/UnownedStation.visible = false
 		$StationUI/OwnedStation.visible = true
 
+func upgrade_station():
+	if player.wealth < priceToUpgrade[stationSize]: return
+	stationSize += 1
+	player.camera.calender.display_weekly_income()
+	set_station_stats()
+
 func generate_passive_income():
 	if not stationOwner == 0: return
 	if player.camera.calender.isPayday:
 		player.wealth += weeklyIncome
+
+
+func _on_upgrade_button_pressed():
+	upgrade_station()
