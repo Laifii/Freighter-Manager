@@ -76,7 +76,7 @@ func display_weekly_income():
 	var totalWeeklyIncome = 0
 	for station in StationManager.stations:
 		if station.stationOwner == 0: totalWeeklyIncome += station.weeklyIncome
-	$DateStats/WeeklyIncome.text = str("Weekly Income: ", totalWeeklyIncome)
+	$DateStats/WeeklyIncome.text = str("Weekly Income: £", totalWeeklyIncome)
 
 func _on_speed_button_1_pressed():
 	currentSpeed = 1

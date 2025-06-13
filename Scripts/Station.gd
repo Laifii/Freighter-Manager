@@ -5,7 +5,7 @@ extends Node2D
 @export_enum("Local", "Connector", "Large", "Hub", "Capital") var stationSize
 @export_enum("Player", "None", "ScottishRail", "UnitedRail", "BirminghamExpress", "LondonFreighters") var stationOwner
 @export var connections: Array
-@onready var nameplate = $Sprite2D/Nameplate
+@onready var nameplate = $Nameplate
 @onready var stationUI = $StationUI
 @onready var player = get_tree().get_first_node_in_group("Player")
 
@@ -34,6 +34,7 @@ func _ready():
 	if stationOwner == 0: 
 		$StationUI/UnownedStation.visible = false
 		$StationUI/OwnedStation.visible = true
+	player.camera.calender.display_weekly_income()
 
 func initialise_tracks():
 	for station in connections:
@@ -115,8 +116,8 @@ func _on_purchase_button_pressed():
 func upgrade_station():
 	if player.wealth < priceToUpgrade[stationSize]: return
 	stationSize += 1
-	player.camera.calender.display_weekly_income()
 	set_station_stats()
+	player.camera.calender.display_weekly_income()
 
 func generate_passive_income():
 	if not stationOwner == 0: return

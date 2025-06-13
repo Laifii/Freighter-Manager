@@ -1,17 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://co0y23pb2rril"]
+[gd_scene load_steps=8 format=3 uid="uid://co0y23pb2rril"]
 
 [ext_resource type="Script" uid="uid://bm0d4yv4cl8q3" path="res://Scripts/Station.gd" id="1_hsegu"]
 [ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/dogicabold.ttf" id="2_mn7t0"]
-
-[sub_resource type="Gradient" id="Gradient_hsegu"]
-colors = PackedColorArray(1, 1, 1, 1, 0.331534, 0.724469, 0.942315, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_mn7t0"]
-gradient = SubResource("Gradient_hsegu")
-width = 4
-height = 4
-fill = 2
-fill_from = Vector2(0.5, 0.495495)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hsegu"]
 font = ExtResource("2_mn7t0")
@@ -39,10 +29,7 @@ font_color = Color(0.560955, 0.560955, 0.560955, 1)
 script = ExtResource("1_hsegu")
 stationOwner = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_mn7t0")
-
-[node name="Nameplate" type="Label" parent="Sprite2D"]
+[node name="Nameplate" type="Label" parent="."]
 z_index = 100
 offset_left = -58.0
 offset_top = -14.0
@@ -53,6 +40,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_trim_flags = 0
 uppercase = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+z_index = -1
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 3.0
+offset_bottom = 3.0
+color = Color(0.576471, 1, 1, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
 

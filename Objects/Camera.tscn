@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dbndd8umjeoiq"]
+[gd_scene load_steps=11 format=3 uid="uid://dbndd8umjeoiq"]
 
 [ext_resource type="Script" uid="uid://bcyvbwsej2e2f" path="res://Objects/Camera.gd" id="1_xdxat"]
 [ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/dogicabold.ttf" id="2_rv08e"]
 [ext_resource type="Script" uid="uid://bj5acwg1xsr8q" path="res://Scripts/Calender.gd" id="3_mywko"]
+[ext_resource type="PackedScene" uid="uid://dv5u1u046276g" path="res://Objects/Toolbar.tscn" id="4_lqjr5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mywko"]
 font = ExtResource("2_rv08e")
@@ -34,6 +35,10 @@ font_color = Color(0, 0, 0, 1)
 
 [node name="Camera" type="Camera2D"]
 position = Vector2(30, 7)
+limit_left = -2000
+limit_top = -1000
+limit_right = 2000
+limit_bottom = 1000
 script = ExtResource("1_xdxat")
 
 [node name="UI" type="Control" parent="."]
@@ -273,6 +278,9 @@ offset_left = 1.0
 offset_top = -1.0
 offset_right = 47.0
 offset_bottom = 15.0
+
+[node name="Toolbar" parent="UI" instance=ExtResource("4_lqjr5")]
+layout_mode = 0
 
 [connection signal="pressed" from="UI/Calender/ColorRect/SpeedButton1/SpeedButton1" to="UI/Calender" method="_on_speed_button_1_pressed"]
 [connection signal="pressed" from="UI/Calender/ColorRect/SpeedButton2/SpeedButton2" to="UI/Calender" method="_on_speed_button_2_pressed"]

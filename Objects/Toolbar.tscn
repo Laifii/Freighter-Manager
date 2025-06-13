@@ -1,0 +1,240 @@
+[gd_scene load_steps=4 format=3 uid="uid://dv5u1u046276g"]
+
+[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/dogicabold.ttf" id="1_iqy15"]
+[ext_resource type="Script" uid="uid://ddud6ts7hxa43" path="res://Objects/Toolbar.gd" id="1_ll5fu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ll5fu"]
+font = ExtResource("1_iqy15")
+font_size = 8
+font_color = Color(0, 0, 0, 1)
+
+[node name="Toolbar" type="Control"]
+z_index = 3000
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+script = ExtResource("1_ll5fu")
+
+[node name="Toolbar" type="ColorRect" parent="."]
+z_index = 1000
+layout_mode = 0
+offset_left = -411.0
+offset_top = 439.0
+offset_right = 413.0
+offset_bottom = 530.0
+
+[node name="Outline" type="ColorRect" parent="Toolbar"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 826.0
+offset_bottom = 93.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="Contracts" type="ColorRect" parent="Toolbar"]
+z_index = 1000
+layout_mode = 0
+offset_left = 535.0
+offset_top = 4.0
+offset_right = 610.0
+offset_bottom = 87.0
+
+[node name="Outline" type="ColorRect" parent="Toolbar/Contracts"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 77.0
+offset_bottom = 85.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="ContractButton" type="TextureButton" parent="Toolbar/Contracts"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 78.0
+offset_bottom = 86.0
+action_mode = 0
+
+[node name="Label" type="Label" parent="Toolbar/Contracts"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 25.0
+offset_right = 43.0
+offset_bottom = 48.0
+text = "Contracts"
+label_settings = SubResource("LabelSettings_ll5fu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StationManagement" type="ColorRect" parent="Toolbar"]
+z_index = 1000
+layout_mode = 0
+offset_left = 373.0
+offset_top = 4.0
+offset_right = 448.0
+offset_bottom = 87.0
+
+[node name="Outline" type="ColorRect" parent="Toolbar/StationManagement"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 77.0
+offset_bottom = 85.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="StationManagementButton" type="TextureButton" parent="Toolbar/StationManagement"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 78.0
+offset_bottom = 86.0
+
+[node name="Label" type="Label" parent="Toolbar/StationManagement"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 27.0
+offset_right = 46.0
+offset_bottom = 50.0
+text = "Manage
+Your
+Stations"
+label_settings = SubResource("LabelSettings_ll5fu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Trains" type="ColorRect" parent="Toolbar"]
+z_index = 1000
+layout_mode = 0
+offset_left = 454.0
+offset_top = 4.0
+offset_right = 529.0
+offset_bottom = 87.0
+
+[node name="Outline" type="ColorRect" parent="Toolbar/Trains"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 77.0
+offset_bottom = 85.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="TrainsButton" type="TextureButton" parent="Toolbar/Trains"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 78.0
+offset_bottom = 86.0
+
+[node name="Label" type="Label" parent="Toolbar/Trains"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 28.0
+offset_right = 53.0
+offset_bottom = 51.0
+text = "Manage
+Your
+Trains"
+label_settings = SubResource("LabelSettings_ll5fu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AuctionHouse" type="ColorRect" parent="Toolbar"]
+z_index = 1000
+layout_mode = 0
+offset_left = 211.0
+offset_top = 4.0
+offset_right = 286.0
+offset_bottom = 87.0
+
+[node name="Outline" type="ColorRect" parent="Toolbar/AuctionHouse"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 77.0
+offset_bottom = 85.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="AuctionHouseButton" type="TextureButton" parent="Toolbar/AuctionHouse"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 78.0
+offset_bottom = 86.0
+
+[node name="Label" type="Label" parent="Toolbar/AuctionHouse"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 28.0
+offset_right = 48.0
+offset_bottom = 51.0
+text = "Auction
+House"
+label_settings = SubResource("LabelSettings_ll5fu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Companies" type="ColorRect" parent="Toolbar"]
+z_index = 1000
+layout_mode = 0
+offset_left = 292.0
+offset_top = 4.0
+offset_right = 367.0
+offset_bottom = 87.0
+
+[node name="Outline" type="ColorRect" parent="Toolbar/Companies"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 77.0
+offset_bottom = 85.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="CompaniesButton" type="TextureButton" parent="Toolbar/Companies"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 78.0
+offset_bottom = 86.0
+
+[node name="Label" type="Label" parent="Toolbar/Companies"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 28.0
+offset_right = 48.0
+offset_bottom = 51.0
+text = "Company
+List"
+label_settings = SubResource("LabelSettings_ll5fu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContractsScreen" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Toolbar" type="ColorRect" parent="ContractsScreen"]
+z_index = 1000
+layout_mode = 0
+offset_left = -412.0
+offset_top = -372.0
+offset_right = 412.0
+offset_bottom = 329.0
+
+[node name="Outline" type="ColorRect" parent="ContractsScreen/Toolbar"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 826.0
+offset_bottom = 703.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[connection signal="pressed" from="Toolbar/Contracts/ContractButton" to="." method="_on_contract_button_pressed"]
