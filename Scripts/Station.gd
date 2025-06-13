@@ -15,6 +15,7 @@ var holdingItem = false
 var seethroughText = false
 var hoveringOverStation = false
 
+var sizeList = ["Local", "Connector", "Large", "Hub"]
 var ownerList = ["You", "Unowned", "Scottish\nRail", "United\nRail", "Birmingham\nExpress", "London\nFreighters"]
 
 var contract = {
@@ -27,6 +28,12 @@ func _ready():
 	if Settings.stationNamesAlwaysVisible: nameplate.visible = true
 	StationManager.stations.append(self)
 	set_station_stats()
+	initialise_tracks()
+	if stationOwner == 0: 
+		$StationUI/UnownedStation.visible = false
+		$StationUI/OwnedStation.visible = true
+
+func initialise_tracks():
 	for station in connections:
 		var targetStation = get_node(station)
 		var connectorTrack = Line2D.new()
@@ -38,9 +45,20 @@ func _ready():
 		connectorTrack.add_point(targetStation.position)
 		connectorTrack.z_index = -100
 
+func initialise_new_track(targetStation):
+	var connectorTrack = Line2D.new()
+	add_child(connectorTrack)
+	connectorTrack.width = 2
+	connectorTrack.default_color = Color(0.589, 0.589, 0.589)
+	connectorTrack.global_position = Vector2.ZERO
+	connectorTrack.add_point(position)
+	connectorTrack.add_point(targetStation.position)
+	connectorTrack.z_index = -100
+
 func set_station_stats():
 	nameplate.text = stationName
 	$StationUI/Nameplate.text = stationName
+	$StationUI/Size.text = sizeList[stationSize]
 	$StationUI/Owner.text = ownerList[stationOwner]
 	stationValue = 500000 * (connections.size() / 2) * stationOwner
 	if connections.size() / 2 == 0: stationValue = 250000 * stationOwner
@@ -77,9 +95,10 @@ func _on_station_button_mouse_entered():
 func _on_station_button_mouse_exited():
 	hoveringOverStation = false
 
-
 func _on_purchase_button_pressed():
 	if player.wealth > stationValue:
 		player.wealth -= stationValue
 		stationOwner = 0
 		set_station_stats()
+		$StationUI/UnownedStation.visible = false
+		$StationUI/OwnedStation.visible = true

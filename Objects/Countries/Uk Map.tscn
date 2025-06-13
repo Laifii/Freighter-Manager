@@ -20,6 +20,9 @@ texture = ExtResource("1_6vnro")
 visible = false
 texture = ExtResource("2_our83")
 
+[node name="Player" parent="GB" instance=ExtResource("4_m6di8")]
+position = Vector2(-110, 23)
+
 [node name="Stations" type="Node2D" parent="."]
 
 [node name="Dundee" parent="Stations" instance=ExtResource("4_wnami")]
@@ -39,7 +42,7 @@ connections = [NodePath("../Dundee")]
 position = Vector2(22, -245)
 stationName = "Aberdeen"
 stationSize = 0
-stationOwner = 1
+stationOwner = 2
 connections = [NodePath("../Dundee")]
 
 [node name="Perth" parent="Stations" instance=ExtResource("4_wnami")]
@@ -53,8 +56,8 @@ connections = [NodePath("../Dundee")]
 position = Vector2(-32, -119)
 stationName = "Edinburgh"
 stationSize = 2
-stationOwner = 5
-connections = [NodePath("../Kirkcaldy")]
+stationOwner = 3
+connections = [NodePath("../Kirkcaldy"), NodePath("../Newcastle"), NodePath("../Glasgow"), NodePath("../Carlisle")]
 
 [node name="Kirkcaldy" parent="Stations" instance=ExtResource("4_wnami")]
 position = Vector2(-31, -142)
@@ -63,4 +66,58 @@ stationSize = 0
 stationOwner = 1
 connections = [NodePath("../Edinburgh"), NodePath("../Dundee")]
 
-[node name="Player" parent="." instance=ExtResource("4_m6di8")]
+[node name="Glasgow" parent="Stations" instance=ExtResource("4_wnami")]
+position = Vector2(-94, -113)
+stationName = "Glasgow"
+stationSize = 3
+stationOwner = 2
+connections = [NodePath("../Edinburgh"), NodePath("../Perth"), NodePath("../Dumfries"), NodePath("../Irvine")]
+
+[node name="Iverness" parent="Stations" instance=ExtResource("4_wnami")]
+position = Vector2(-92, -273)
+stationName = "Iverness"
+stationSize = 0
+stationOwner = 1
+connections = [NodePath("../Glasgow"), NodePath("../Thurso")]
+
+[node name="Thurso" parent="Stations" instance=ExtResource("4_wnami")]
+position = Vector2(-55, -387)
+stationName = "Thurso"
+stationSize = 0
+stationOwner = 1
+connections = [NodePath("../Iverness")]
+
+[node name="Dumfries" parent="Stations" instance=ExtResource("4_wnami")]
+position = Vector2(-58, -30)
+stationName = "Dumfries"
+stationSize = 1
+stationOwner = 1
+connections = [NodePath("../Glasgow"), NodePath("../Carlisle")]
+
+[node name="Newcastle" parent="Stations" instance=ExtResource("4_wnami")]
+position = Vector2(59, -24)
+stationName = "Newcastle"
+stationSize = 1
+stationOwner = 1
+connections = [NodePath("../Edinburgh")]
+
+[node name="Carlisle" parent="Stations" instance=ExtResource("4_wnami")]
+position = Vector2(-14, -15)
+stationName = "Carlisle"
+stationSize = 0
+stationOwner = 1
+connections = [NodePath("../Dumfries"), NodePath("../Edinburgh")]
+
+[node name="Irvine" parent="Stations" instance=ExtResource("4_wnami")]
+position = Vector2(-115, -85)
+stationName = "Irvine"
+stationSize = 0
+stationOwner = 2
+connections = [NodePath("../Glasgow")]
+
+[node name="Oban" parent="Stations" instance=ExtResource("4_wnami")]
+position = Vector2(-164, -157)
+stationName = "Oban"
+stationSize = 0
+stationOwner = 2
+connections = [NodePath("../Glasgow")]
