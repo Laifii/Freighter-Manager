@@ -10,10 +10,12 @@
 [node name="Camera" parent="." instance=ExtResource("3_our83")]
 
 [node name="Background" type="Polygon2D" parent="."]
+z_index = -4000
 color = Color(0.2924, 0.50558, 0.68, 1)
 polygon = PackedVector2Array(-2280, -2155, 2507, -2094, 2685, 2104, -2574, 2110)
 
 [node name="GB" type="Sprite2D" parent="."]
+z_index = -1000
 texture = ExtResource("1_6vnro")
 
 [node name="Names" type="Sprite2D" parent="GB"]

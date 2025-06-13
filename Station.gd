@@ -22,6 +22,16 @@ func _ready():
 	if Settings.stationNamesAlwaysVisible: nameplate.visible = true
 	StationManager.stations.append(self)
 	nameplate.text = stationName
+	for station in connections:
+		var targetStation = get_node(station)
+		var connectorTrack = Line2D.new()
+		add_child(connectorTrack)
+		connectorTrack.width = 2
+		connectorTrack.default_color = Color(0.212, 0.212, 0.212)
+		connectorTrack.global_position = Vector2.ZERO
+		connectorTrack.add_point(position)
+		connectorTrack.add_point(targetStation.position)
+		connectorTrack.z_index = -100
 
 func _on_area_2d_mouse_entered():
 	if not Settings.stationNamesAlwaysVisible: nameplate.visible = true
