@@ -9,6 +9,8 @@ extends Node2D
 @onready var stationUI = $StationUI
 @onready var player = get_tree().get_first_node_in_group("Player")
 
+var distanceInPathfinding: int
+
 var priceToUpgrade = [500000, 1000000, 3000000, 6000000]
 var stationValue 
 var weeklyIncome
@@ -38,6 +40,9 @@ var contract = {
 }
 
 func _ready():
+	initialise_station()
+
+func initialise_station():
 	if Settings.stationNamesAlwaysVisible: nameplate.visible = true
 	StationManager.stations.append(self)
 	set_station_stats()
@@ -65,7 +70,7 @@ func set_station_stats():
 	$StationUI/Size.text = sizeList[stationSize]
 	$StationUI/Owner.text = visualOwnerList[stationOwner]
 	stationValue = int(500000 * (float(connections.size()) / 4) * (float(stationOwner) + 1.0 / 2.0) * (float(stationSize) + 1.0 / 4.0))
-	weeklyIncome = 10000 * connections.size() * (stationSize + 1)
+	weeklyIncome = 10000 * connections.size() * int((float(stationSize + 1) * 1.5))
 	$StationUI/Income.text = str("Income:\n", weeklyIncome, " / Week")
 	$StationUI/UnownedStation/ValueRect/Value.text = str("£", stationValue)
 	if stationSize == 4: 
@@ -76,6 +81,14 @@ func set_station_stats():
 	$StationColourInner.self_modulate = companyColours[companyList[stationOwner]]["inner"]
 	$StationColourInner/StationColourOuter.self_modulate = companyColours[companyList[stationOwner]]["outer"]
 	$StationColourInner.scale = Vector2(stationSize + 1, stationSize + 1)
+	await get_tree().process_frame
+	if stationName == "London":
+		var dundeeStation
+		var liverpoolStation
+		for station in StationManager.stations: 
+			if station.stationName == "Dundee": dundeeStation = station
+			if station.stationName == "Liverpool": liverpoolStation = station
+		Dijkstra.find_fastest_route(self, dundeeStation, liverpoolStation)
 
 func _on_area_2d_mouse_entered():
 	if not Settings.stationNamesAlwaysVisible: nameplate.visible = true
@@ -112,9 +125,9 @@ func _on_purchase_button_pressed():
 	if player.wealth > stationValue:
 		player.wealth -= stationValue
 		stationOwner = 0
-		set_station_stats()
 		$StationUI/UnownedStation.visible = false
 		$StationUI/OwnedStation.visible = true
+	set_station_stats()
 
 func upgrade_station():
 	if player.wealth < priceToUpgrade[stationSize]: return

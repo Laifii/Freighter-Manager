@@ -177,12 +177,6 @@ stationSize = 3
 stationOwner = 3
 connections = [NodePath("../Liverpool"), NodePath("../Leeds"), NodePath("../Stroke")]
 
-[node name="Template" parent="Stations" instance=ExtResource("4_wnami")]
-position = Vector2(-159, 88)
-stationName = "Template"
-stationSize = 0
-stationOwner = 1
-
 [node name="Stroke" parent="Stations" instance=ExtResource("4_wnami")]
 position = Vector2(29, 172)
 stationName = "Stroke"
