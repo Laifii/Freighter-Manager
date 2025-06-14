@@ -3,13 +3,13 @@ extends Node2D
 @export var id: int
 @export var stationName: String
 @export_enum("Local", "Connector", "Large", "Hub", "Capital") var stationSize
-@export_enum("Player", "None", "ScottishRail", "UnitedRail", "BirminghamExpress", "LondonFreighters") var stationOwner
+@export_enum("Player", "None", "ScottishRail", "UnitedRail", "CelticCargo", "BirminghamExpress", "LondonFreighters") var stationOwner
 @export var connections: Array
 @onready var nameplate = $Nameplate
 @onready var stationUI = $StationUI
 @onready var player = get_tree().get_first_node_in_group("Player")
 
-var priceToUpgrade = [250000, 500000, 1000000, 2500000]
+var priceToUpgrade = [500000, 1000000, 3000000, 600000]
 var stationValue 
 var weeklyIncome
 var notInContract = true
@@ -20,15 +20,16 @@ var companyColours = {
 	Player = {inner = Color(0.83, 0.001, 0.83), outer = Color(1, 1, 1)},
 	None = {inner = Color(0.8, 0.8, 0.8), outer = Color(0.355, 0.355, 0.355)},
 	ScottishRail = {inner = Color(1, 1, 1), outer = Color(0.0, 0.369, 0.722)},
+	CelticCargo = {inner = Color(1.0, 0.898, 0.0), outer = Color(0.0, 0.694, 0.251)},
 	UnitedRail = {inner = Color(0.784, 0.063, 0.18), outer = Color(0.004, 0.129, 0.412)},
-	BirminghamExpress = {inner = Color(1.0, 0.898, 0.0), outer = Color(0.863, 0.141, 0.122)},
+	BirminghamExpress = {inner = Color(1.0, 0.898, 0.0), outer = Color(0.863, 0.1, 0.05)},
 	LondonFreighters = {inner = Color(1, 0, 0), outer = Color(1, 1, 1)}
 }
 
 var sizeList = ["Local", "Connector", "Large", "Hub", "Capital"]
 var stationTax 
-var companyList = ["Player", "None", "ScottishRail", "UnitedRail", "BirminghamExpress", "LondonFreighters"]
-var visualOwnerList = ["You", "Unowned", "Scottish\nRail", "United\nRail", "Birmingham\nExpress", "London\nFreighters"]
+var companyList = ["Player", "None", "ScottishRail", "UnitedRail", "CelticCargo", "BirminghamExpress", "LondonFreighters"]
+var visualOwnerList = ["You", "Unowned", "Scottish\nRail", "Celtic\nCargo", "United\nRail", "Birmingham\nExpress", "London\nFreighters"]
 
 var contract = {
 	available = false,
@@ -58,23 +59,12 @@ func initialise_tracks():
 		connectorTrack.add_point(targetStation.position)
 		connectorTrack.z_index = -100
 
-func initialise_new_track(targetStation):
-	var connectorTrack = Line2D.new()
-	add_child(connectorTrack)
-	connectorTrack.width = 2
-	connectorTrack.default_color = Color(0.589, 0.589, 0.589)
-	connectorTrack.global_position = Vector2.ZERO
-	connectorTrack.add_point(position)
-	connectorTrack.add_point(targetStation.position)
-	connectorTrack.z_index = -100
-
 func set_station_stats():
 	nameplate.text = stationName
 	$StationUI/Nameplate.text = stationName
 	$StationUI/Size.text = sizeList[stationSize]
 	$StationUI/Owner.text = visualOwnerList[stationOwner]
-	stationValue = 500000 * (connections.size() / 2) * stationOwner
-	if connections.size() / 2 == 0: stationValue = 250000 * stationOwner
+	stationValue = int(500000 * (float(connections.size()) / 4) * (float(stationOwner) + 1.0 / 2.0) * (float(stationSize) + 1.0 / 4.0))
 	weeklyIncome = 10000 * connections.size() * (stationSize + 1)
 	$StationUI/Income.text = str("Income:\n", weeklyIncome, " / Week")
 	$StationUI/UnownedStation/ValueRect/Value.text = str("£", stationValue)
@@ -82,7 +72,7 @@ func set_station_stats():
 		$StationUI/OwnedStation/UpgradeRect/Price/TextureButton.visible = false
 		$StationUI/OwnedStation/UpgradeRect/Price.text = "Maximum Size"
 	else: $StationUI/OwnedStation/UpgradeRect/Price.text = str(priceToUpgrade[stationSize])
-	stationTax = 500 * (stationSize + 1)
+	stationTax = 500 * (float(stationSize + 1) * 2)
 	$StationColourInner.self_modulate = companyColours[companyList[stationOwner]]["inner"]
 	$StationColourInner/StationColourOuter.self_modulate = companyColours[companyList[stationOwner]]["outer"]
 	$StationColourInner.scale = Vector2(stationSize + 1, stationSize + 1)
@@ -96,10 +86,10 @@ func _on_area_2d_mouse_exited():
 	seethroughText = false
 
 func _physics_process(delta):
-	if seethroughText and nameplate.modulate[3] > 0.35:
-		nameplate.modulate[3] = lerp(nameplate.modulate[3], 0.3, 0.2)
-	elif not seethroughText and nameplate.modulate[3] < 1:
-		nameplate.modulate[3] = lerp(nameplate.modulate[3], 1.0, 0.2)
+	if seethroughText and nameplate.modulate[3] > 0.27:
+		nameplate.modulate[3] = lerp(nameplate.modulate[3], 0.25, 0.2)
+	elif not seethroughText and nameplate.modulate[3] < 85:
+		nameplate.modulate[3] = lerp(nameplate.modulate[3], 0.85, 0.2)
 	if Input.is_action_just_pressed("Escape"): if $StationUI.visible: $StationUI.visible = false
 
 func _unhandled_input(event):
