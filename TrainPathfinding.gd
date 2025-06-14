@@ -12,3 +12,5 @@ func get_connections(currentNode):
 		var distanceToConnection = int(floor(currentNode.global_position.distance_to(currentConnection.global_position)))
 		print(currentConnection)
 		print(distanceToConnection)
+
+# Idea for insentivising: less money the longer it takes

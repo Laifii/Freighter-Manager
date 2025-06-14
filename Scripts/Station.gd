@@ -31,7 +31,7 @@ var companyColours = {
 var sizeList = ["Local", "Connector", "Large", "Hub", "Capital"]
 var stationTax 
 var companyList = ["Player", "None", "ScottishRail", "UnitedRail", "CelticCargo", "BirminghamExpress", "LondonFreighters"]
-var visualOwnerList = ["You", "Unowned", "Scottish\nRail", "Celtic\nCargo", "United\nRail", "Birmingham\nExpress", "London\nFreighters"]
+var visualOwnerList = ["You", "Unowned", "Scottish\nRail", "United\nRail", "Celtic\nCargo", "Birmingham\nExpress", "London\nFreighters"]
 
 var contract = {
 	available = false,

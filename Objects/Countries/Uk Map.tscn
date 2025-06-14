@@ -63,7 +63,7 @@ position = Vector2(-94, -113)
 stationName = "Glasgow"
 stationSize = 3
 stationOwner = 2
-connections = [NodePath("../Edinburgh"), NodePath("../Perth"), NodePath("../Dumfries"), NodePath("../Irvine")]
+connections = [NodePath("../Edinburgh"), NodePath("../Perth"), NodePath("../Dumfries"), NodePath("../Irvine"), NodePath("../Oban")]
 
 [node name="Iverness" parent="Stations" instance=ExtResource("4_wnami")]
 position = Vector2(-92, -273)
