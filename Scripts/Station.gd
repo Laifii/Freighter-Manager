@@ -9,8 +9,6 @@ extends Node2D
 @onready var stationUI = $StationUI
 @onready var player = get_tree().get_first_node_in_group("Player")
 
-var distanceInPathfinding: int
-
 var priceToUpgrade = [500000, 1000000, 3000000, 6000000]
 var stationValue 
 var weeklyIncome
@@ -77,32 +75,56 @@ func set_station_stats():
 		$StationUI/OwnedStation/UpgradeRect/Price/TextureButton.visible = false
 		$StationUI/OwnedStation/UpgradeRect/Price.text = "Maximum Size"
 	else: $StationUI/OwnedStation/UpgradeRect/Price.text = str(priceToUpgrade[stationSize])
-	stationTax = 500 * (float(stationSize + 1) * 2)
+	stationTax = 100 * int((float(stationSize) * 3) * stationOwner) if stationSize > 0 else 250 * (stationOwner / 2)
 	$StationColourInner.self_modulate = companyColours[companyList[stationOwner]]["inner"]
 	$StationColourInner/StationColourOuter.self_modulate = companyColours[companyList[stationOwner]]["outer"]
 	$StationColourInner.scale = Vector2(stationSize + 1, stationSize + 1)
 	await get_tree().process_frame
-	if stationName == "London":
+	if stationName == "Dundee":
 		var dundeeStation
 		var liverpoolStation
 		for station in StationManager.stations: 
-			if station.stationName == "Dundee": dundeeStation = station
-			if station.stationName == "Liverpool": liverpoolStation = station
-		Dijkstra.find_fastest_route(self, dundeeStation, liverpoolStation)
+			if station.stationName == "Dumfries": dundeeStation = station
+			if station.stationName == "Thurso": liverpoolStation = station
+		var fastestRoute = Dijkstra.find_route("Fastest", self, dundeeStation, liverpoolStation)
+		var cheapestRoute = Dijkstra.find_route("Cheapest", self, dundeeStation, liverpoolStation)
+		var fastestDistance = 0
+		var fastestPrice = 0
+		var cheapestDistance = 0
+		var cheapestPrice = 0
+		for station in fastestRoute.size():
+			if station == fastestRoute.size() - 1: 
+				fastestPrice += fastestRoute[station].stationTax
+				print("Fastest Distance: ", fastestDistance, "\nAmount Spent: ", fastestPrice)
+				print(fastestRoute)
+				break
+			fastestDistance += fastestRoute[station].global_position.distance_to(fastestRoute[station + 1].global_position)
+			fastestPrice += fastestRoute[station].stationTax
+		for station in cheapestRoute.size():
+			if station == cheapestRoute.size() - 1: 
+				cheapestPrice += cheapestRoute[station].stationTax
+				print("Cheapest Distance: ", cheapestDistance, "\nAmount Spent: ", cheapestPrice)
+				print(cheapestRoute)
+				break
+			cheapestDistance += cheapestRoute[station].global_position.distance_to(cheapestRoute[station + 1].global_position)
+			cheapestPrice += cheapestRoute[station].stationTax
+			
 
 func _on_area_2d_mouse_entered():
-	if not Settings.stationNamesAlwaysVisible: nameplate.visible = true
+	if not Settings.stationNamesAlwaysVisible: 
+		nameplate.visible = true
 	seethroughText = true
 
 func _on_area_2d_mouse_exited():
-	if not Settings.stationNamesAlwaysVisible: nameplate.visible = false
+	if not Settings.stationNamesAlwaysVisible: 
+		nameplate.visible = false
 	seethroughText = false
 
 func _physics_process(delta):
-	if seethroughText and nameplate.modulate[3] > 0.27:
-		nameplate.modulate[3] = lerp(nameplate.modulate[3], 0.25, 0.2)
-	elif not seethroughText and nameplate.modulate[3] < 85:
-		nameplate.modulate[3] = lerp(nameplate.modulate[3], 0.85, 0.2)
+	if seethroughText and nameplate.modulate[3] > 0.35:
+		nameplate.modulate[3] = lerp(nameplate.modulate[3], 0.35, 0.2)
+	elif not seethroughText and nameplate.modulate[3] < 95:
+		nameplate.modulate[3] = lerp(nameplate.modulate[3], 0.95, 0.2)
 	if Input.is_action_just_pressed("Escape"): if $StationUI.visible: $StationUI.visible = false
 
 func _unhandled_input(event):
@@ -122,11 +144,14 @@ func _on_station_button_mouse_exited():
 	hoveringOverStation = false
 
 func _on_purchase_button_pressed():
-	if player.wealth > stationValue:
-		player.wealth -= stationValue
-		stationOwner = 0
-		$StationUI/UnownedStation.visible = false
-		$StationUI/OwnedStation.visible = true
+	purchase_station()
+
+func purchase_station():
+	if player.wealth < stationValue: return
+	player.wealth -= stationValue
+	stationOwner = 0
+	$StationUI/UnownedStation.visible = false
+	$StationUI/OwnedStation.visible = true
 	set_station_stats()
 
 func upgrade_station():
@@ -139,7 +164,6 @@ func generate_passive_income():
 	if not stationOwner == 0: return
 	if player.camera.calender.isPayday:
 		player.wealth += weeklyIncome
-
 
 func _on_upgrade_button_pressed():
 	upgrade_station()

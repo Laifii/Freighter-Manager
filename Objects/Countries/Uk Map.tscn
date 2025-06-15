@@ -49,7 +49,7 @@ position = Vector2(-48, -169)
 stationName = "Perth"
 stationSize = 0
 stationOwner = 2
-connections = [NodePath("../Dundee")]
+connections = [NodePath("../Dundee"), NodePath("../Glasgow")]
 
 [node name="Kirkcaldy" parent="Stations" instance=ExtResource("4_wnami")]
 position = Vector2(-31, -142)
@@ -63,7 +63,7 @@ position = Vector2(-94, -113)
 stationName = "Glasgow"
 stationSize = 3
 stationOwner = 2
-connections = [NodePath("../Edinburgh"), NodePath("../Perth"), NodePath("../Dumfries"), NodePath("../Irvine"), NodePath("../Oban")]
+connections = [NodePath("../Edinburgh"), NodePath("../Perth"), NodePath("../Dumfries"), NodePath("../Irvine"), NodePath("../Oban"), NodePath("../Iverness")]
 
 [node name="Iverness" parent="Stations" instance=ExtResource("4_wnami")]
 position = Vector2(-92, -273)
@@ -124,7 +124,7 @@ connections = [NodePath("../Kirkcaldy"), NodePath("../Newcastle"), NodePath("../
 [node name="Middlesbrough" parent="Stations" instance=ExtResource("4_wnami")]
 position = Vector2(82, 16)
 stationName = "Middlesbrough"
-stationSize = 1
+stationSize = 0
 stationOwner = 3
 connections = [NodePath("../Newcastle"), NodePath("../Carlisle"), NodePath("../York")]
 
@@ -143,16 +143,16 @@ stationOwner = 3
 connections = [NodePath("../Blackpool")]
 
 [node name="Bradford" parent="Stations" instance=ExtResource("4_wnami")]
-position = Vector2(49, 96)
+position = Vector2(48, 97)
 stationName = "Bradford"
-stationSize = 1
+stationSize = 0
 stationOwner = 3
 connections = [NodePath("../Blackpool"), NodePath("../Leeds")]
 
 [node name="Leeds" parent="Stations" instance=ExtResource("4_wnami")]
 position = Vector2(68, 88)
 stationName = "Leeds"
-stationSize = 2
+stationSize = 3
 stationOwner = 3
 connections = [NodePath("../York"), NodePath("../Carlisle"), NodePath("../Bradford"), NodePath("../Nottingham")]
 
@@ -180,14 +180,14 @@ connections = [NodePath("../Liverpool"), NodePath("../Leeds"), NodePath("../Stro
 [node name="Stroke" parent="Stations" instance=ExtResource("4_wnami")]
 position = Vector2(29, 172)
 stationName = "Stroke"
-stationSize = 1
+stationSize = 2
 stationOwner = 5
 connections = [NodePath("../Manchester"), NodePath("../Birmingham"), NodePath("../Derby")]
 
 [node name="Derby" parent="Stations" instance=ExtResource("4_wnami")]
 position = Vector2(77, 183)
 stationName = "Derby"
-stationSize = 0
+stationSize = 1
 stationOwner = 5
 connections = [NodePath("../Stroke"), NodePath("../Nottingham")]
 
@@ -248,22 +248,22 @@ stationOwner = 6
 connections = [NodePath("../Gloucester"), NodePath("../Newport"), NodePath("../Taunton"), NodePath("../Swindon")]
 
 [node name="Swansea" parent="Stations" instance=ExtResource("4_wnami")]
-position = Vector2(-74, 314)
+position = Vector2(-73, 311)
 stationName = "Swansea"
 stationSize = 1
 stationOwner = 4
-connections = [NodePath("../Cardiff"), NodePath("../Aberystwyth")]
+connections = [NodePath("../Cardiff"), NodePath("../Haverfordwest")]
 
 [node name="Aberystwyth" parent="Stations" instance=ExtResource("4_wnami")]
-position = Vector2(-79, 236)
+position = Vector2(-74, 236)
 stationName = "Aberystwyth"
 stationSize = 0
 stationOwner = 4
-connections = [NodePath("../Swansea"), NodePath("../Bangor")]
+connections = [NodePath("../Haverfordwest"), NodePath("../Holyhead")]
 
-[node name="Bangor" parent="Stations" instance=ExtResource("4_wnami")]
-position = Vector2(-80, 156)
-stationName = "Bangor"
+[node name="Holyhead" parent="Stations" instance=ExtResource("4_wnami")]
+position = Vector2(-103, 149)
+stationName = "Holyhead"
 stationSize = 0
 stationOwner = 4
 connections = [NodePath("../Aberystwyth"), NodePath("../Liverpool")]
@@ -428,3 +428,10 @@ stationName = "Penzance"
 stationSize = 0
 stationOwner = 4
 connections = [NodePath("../Plymouth")]
+
+[node name="Haverfordwest" parent="Stations" instance=ExtResource("4_wnami")]
+position = Vector2(-140, 300)
+stationName = "Haverfordwest"
+stationSize = 0
+stationOwner = 4
+connections = [NodePath("../Swansea"), NodePath("../Aberystwyth")]
