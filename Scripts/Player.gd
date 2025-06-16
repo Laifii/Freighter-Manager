@@ -7,6 +7,7 @@ var ownedStations = []
 
 func _ready():
 	add_to_group("Player")
+	
 
 func _physics_process(delta):
 	$Camera/UI/PlayerStats/Wealth.text = str("Wealth: £", wealth)

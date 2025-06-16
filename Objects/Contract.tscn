@@ -61,6 +61,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1513.0
+offset_bottom = -984.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3u0pn")
@@ -68,10 +70,10 @@ script = ExtResource("1_3u0pn")
 [node name="Toolbar" type="ColorRect" parent="."]
 z_index = 1000
 layout_mode = 0
-offset_left = -202.0
-offset_top = -46.0
-offset_right = 201.0
-offset_bottom = 46.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 405.0
+offset_bottom = 94.0
 
 [node name="Outline" type="ColorRect" parent="Toolbar"]
 z_index = -1

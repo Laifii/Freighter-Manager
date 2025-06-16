@@ -90,7 +90,7 @@ func set_station_stats():
 			if station.stationName == "Penzance": liverpoolStation = station
 		var fastestRoute = Dijkstra.find_route("Fastest", self, dundeeStation, liverpoolStation)
 		var cheapestRoute = Dijkstra.find_route("Cheapest", self, dundeeStation, liverpoolStation)
-		spawn_train(cheapestRoute)
+		spawn_train(fastestRoute)
 		var fastestDistance = 0
 		var fastestPrice = 0
 		var cheapestDistance = 0
@@ -116,7 +116,7 @@ func set_station_stats():
 var trainNode = preload("res://Objects/MapTrain.tscn")
 func spawn_train(path): # Temp for train testing, delete later
 	var train = trainNode.instantiate()
-	train.global_position = global_position - Vector2(10, 10)
+	train.global_position = global_position
 	train.set_train_path(path)
 	get_tree().get_first_node_in_group("TrainManager").add_child(train)
 	train.sprite.self_modulate = $StationColourInner.self_modulate
@@ -161,6 +161,7 @@ func purchase_station():
 	if player.wealth < stationValue: return
 	player.wealth -= stationValue
 	stationOwner = 0
+	player.ownedStations.append(self)
 	$StationUI/UnownedStation.visible = false
 	$StationUI/OwnedStation.visible = true
 	set_station_stats()

@@ -432,3 +432,4 @@ stationOwner = 4
 connections = [NodePath("../Swansea"), NodePath("../Aberystwyth")]
 
 [node name="Trains" type="Node2D" parent="." groups=["TrainManager"]]
+z_index = -10

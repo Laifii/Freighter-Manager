@@ -21,7 +21,7 @@ func find_next_node_in_path():
 	if nextNodeInPath != null: global_position = nextNodeInPath.global_position
 	nextNodeInPath = trainPath[0]
 	trainPath.erase(trainPath[0])
-	print(nextNodeInPath.stationName, ": ", nextNodeInPath.stationTax)
+	look_at(nextNodeInPath.global_position)
 
 func set_train_path(path):
 	trainPath = path

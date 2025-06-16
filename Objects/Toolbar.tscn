@@ -1,7 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dv5u1u046276g"]
+[gd_scene load_steps=10 format=3 uid="uid://dv5u1u046276g"]
 
 [ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="1_iqy15"]
 [ext_resource type="Script" uid="uid://ddud6ts7hxa43" path="res://Objects/Toolbar.gd" id="1_ll5fu"]
+[ext_resource type="Texture2D" uid="uid://cmp32tme8xayw" path="res://Assets/UI/Clipboard Small.png" id="2_qp3ci"]
+[ext_resource type="Texture2D" uid="uid://c2bs6v3wcvwc7" path="res://Assets/UI/Trains Icon.png" id="4_ifqh4"]
+[ext_resource type="Texture2D" uid="uid://df6401r5s32f1" path="res://Assets/UI/Train Station Icon.png" id="4_sbth0"]
+[ext_resource type="Texture2D" uid="uid://h0v8gh6hlole" path="res://Assets/UI/AuctionHouseGavelPuck.png" id="6_asbxa"]
+[ext_resource type="Texture2D" uid="uid://b84ufh5cqxt0q" path="res://Assets/UI/Graph Icon.png" id="6_jktc8"]
+[ext_resource type="Texture2D" uid="uid://b1t1df8lh74s0" path="res://Assets/UI/Auction House Gavel.png" id="7_e157d"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ll5fu"]
 font = ExtResource("1_iqy15")
@@ -19,26 +25,26 @@ script = ExtResource("1_ll5fu")
 [node name="Toolbar" type="ColorRect" parent="."]
 z_index = 1000
 layout_mode = 0
-offset_left = -411.0
-offset_top = 439.0
-offset_right = 413.0
-offset_bottom = 530.0
+offset_left = -204.0
+offset_top = 437.0
+offset_right = 203.0
+offset_bottom = 528.0
 
 [node name="Outline" type="ColorRect" parent="Toolbar"]
 z_index = -1
 layout_mode = 0
 offset_left = -2.0
 offset_top = -2.0
-offset_right = 826.0
+offset_right = 409.0
 offset_bottom = 93.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
 [node name="Contracts" type="ColorRect" parent="Toolbar"]
 z_index = 1000
 layout_mode = 0
-offset_left = 535.0
+offset_left = 328.0
 offset_top = 4.0
-offset_right = 610.0
+offset_right = 403.0
 offset_bottom = 87.0
 
 [node name="Outline" type="ColorRect" parent="Toolbar/Contracts"]
@@ -50,6 +56,25 @@ offset_right = 77.0
 offset_bottom = 85.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
+[node name="Sprite2D" type="TextureRect" parent="Toolbar/Contracts"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 17.0
+offset_right = 12.0
+offset_bottom = 17.0
+scale = Vector2(3, 3)
+texture = ExtResource("2_qp3ci")
+
+[node name="Label" type="Label" parent="Toolbar/Contracts"]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 42.0
+offset_bottom = 23.0
+text = "Contracts"
+label_settings = SubResource("LabelSettings_ll5fu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ContractButton" type="TextureButton" parent="Toolbar/Contracts"]
 layout_mode = 0
 offset_left = -3.0
@@ -58,23 +83,12 @@ offset_right = 78.0
 offset_bottom = 86.0
 action_mode = 0
 
-[node name="Label" type="Label" parent="Toolbar/Contracts"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 25.0
-offset_right = 43.0
-offset_bottom = 48.0
-text = "Contracts"
-label_settings = SubResource("LabelSettings_ll5fu")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="StationManagement" type="ColorRect" parent="Toolbar"]
 z_index = 1000
 layout_mode = 0
-offset_left = 373.0
+offset_left = 166.0
 offset_top = 4.0
-offset_right = 448.0
+offset_right = 241.0
 offset_bottom = 87.0
 
 [node name="Outline" type="ColorRect" parent="Toolbar/StationManagement"]
@@ -96,22 +110,30 @@ offset_bottom = 86.0
 [node name="Label" type="Label" parent="Toolbar/StationManagement"]
 layout_mode = 0
 offset_left = 6.0
-offset_top = 27.0
+offset_top = 2.0
 offset_right = 46.0
-offset_bottom = 50.0
-text = "Manage
-Your
+offset_bottom = 25.0
+text = "Your
 Stations"
 label_settings = SubResource("LabelSettings_ll5fu")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Sprite2D" type="TextureRect" parent="Toolbar/StationManagement"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 15.0
+offset_right = 6.0
+offset_bottom = 15.0
+scale = Vector2(4, 4)
+texture = ExtResource("4_sbth0")
+
 [node name="Trains" type="ColorRect" parent="Toolbar"]
 z_index = 1000
 layout_mode = 0
-offset_left = 454.0
+offset_left = 247.0
 offset_top = 4.0
-offset_right = 529.0
+offset_right = 322.0
 offset_bottom = 87.0
 
 [node name="Outline" type="ColorRect" parent="Toolbar/Trains"]
@@ -133,22 +155,30 @@ offset_bottom = 86.0
 [node name="Label" type="Label" parent="Toolbar/Trains"]
 layout_mode = 0
 offset_left = 13.0
-offset_top = 28.0
+offset_top = 2.0
 offset_right = 53.0
-offset_bottom = 51.0
-text = "Manage
-Your
+offset_bottom = 25.0
+text = "Your
 Trains"
 label_settings = SubResource("LabelSettings_ll5fu")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Sprite2D" type="TextureRect" parent="Toolbar/Trains"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 11.0
+offset_right = 4.0
+offset_bottom = 11.0
+scale = Vector2(4, 4)
+texture = ExtResource("4_ifqh4")
+
 [node name="AuctionHouse" type="ColorRect" parent="Toolbar"]
 z_index = 1000
 layout_mode = 0
-offset_left = 211.0
+offset_left = 4.0
 offset_top = 4.0
-offset_right = 286.0
+offset_right = 79.0
 offset_bottom = 87.0
 
 [node name="Outline" type="ColorRect" parent="Toolbar/AuctionHouse"]
@@ -170,21 +200,39 @@ offset_bottom = 86.0
 [node name="Label" type="Label" parent="Toolbar/AuctionHouse"]
 layout_mode = 0
 offset_left = 8.0
-offset_top = 28.0
+offset_top = 1.0
 offset_right = 48.0
-offset_bottom = 51.0
+offset_bottom = 24.0
 text = "Auction
 House"
 label_settings = SubResource("LabelSettings_ll5fu")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Sprite2D" type="TextureRect" parent="Toolbar/AuctionHouse"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 63.0
+offset_right = 8.0
+offset_bottom = 63.0
+scale = Vector2(4, 4)
+texture = ExtResource("6_asbxa")
+
+[node name="Sprite2D" type="TextureRect" parent="Toolbar/AuctionHouse/Sprite2D"]
+layout_mode = 0
+offset_left = 3.75
+offset_top = -7.0
+offset_right = 3.75
+offset_bottom = -7.0
+rotation = 0.244346
+texture = ExtResource("7_e157d")
+
 [node name="Companies" type="ColorRect" parent="Toolbar"]
 z_index = 1000
 layout_mode = 0
-offset_left = 292.0
+offset_left = 85.0
 offset_top = 4.0
-offset_right = 367.0
+offset_right = 160.0
 offset_bottom = 87.0
 
 [node name="Outline" type="ColorRect" parent="Toolbar/Companies"]
@@ -206,14 +254,23 @@ offset_bottom = 86.0
 [node name="Label" type="Label" parent="Toolbar/Companies"]
 layout_mode = 0
 offset_left = 8.0
-offset_top = 28.0
+offset_top = 1.0
 offset_right = 48.0
-offset_bottom = 51.0
+offset_bottom = 24.0
 text = "Company
 List"
 label_settings = SubResource("LabelSettings_ll5fu")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Sprite2D" type="TextureRect" parent="Toolbar/Companies"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 8.0
+offset_right = 6.0
+offset_bottom = 8.0
+scale = Vector2(4, 4)
+texture = ExtResource("6_jktc8")
 
 [node name="ContractsScreen" type="Control" parent="."]
 visible = false
