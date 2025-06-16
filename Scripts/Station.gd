@@ -81,45 +81,24 @@ func set_station_stats():
 	$StationColourInner.self_modulate = companyColours[companyList[stationOwner]]["inner"]
 	$StationColourInner/StationColourOuter.self_modulate = companyColours[companyList[stationOwner]]["outer"]
 	$StationColourInner.scale = Vector2(stationSize + 1, stationSize + 1)
+	player.camera.calender.display_weekly_income() 
+	if stationOwner > 1:
+		Companies.companies[companyList[stationOwner]].stations.append(self)
 	await get_tree().process_frame
-	if stationName == "Bristol":
-		var dundeeStation
-		var liverpoolStation
-		for station in StationManager.stations: 
-			if station.stationName == "Dundee": dundeeStation = station
-			if station.stationName == "Penzance": liverpoolStation = station
-		var fastestRoute = Dijkstra.find_route("Fastest", self, dundeeStation, liverpoolStation)
-		var cheapestRoute = Dijkstra.find_route("Cheapest", self, dundeeStation, liverpoolStation)
-		spawn_train(fastestRoute)
-		var fastestDistance = 0
-		var fastestPrice = 0
-		var cheapestDistance = 0
-		var cheapestPrice = 0
-		for station in fastestRoute.size():
-			if station == fastestRoute.size() - 1: 
-				fastestPrice += fastestRoute[station].stationTax
-				#print("Fastest Distance: ", fastestDistance, "\nAmount Spent: ", fastestPrice)
-				#print(fastestRoute)
-				break
-			fastestDistance += fastestRoute[station].global_position.distance_to(fastestRoute[station + 1].global_position)
-			fastestPrice += fastestRoute[station].stationTax
-		for station in cheapestRoute.size():
-			if station == cheapestRoute.size() - 1: 
-				cheapestPrice += cheapestRoute[station].stationTax
-				#print("Cheapest Distance: ", cheapestDistance, "\nAmount Spent: ", cheapestPrice)
-				#print(cheapestRoute)
-				break
-			cheapestDistance += cheapestRoute[station].global_position.distance_to(cheapestRoute[station + 1].global_position)
-			cheapestPrice += cheapestRoute[station].stationTax
-			
+	MapTrainManager.spawn_trains()
 
 var trainNode = preload("res://Objects/MapTrain.tscn")
-func spawn_train(path): # Temp for train testing, delete later
+func spawn_train(path, trainType): # Temp for train testing, delete later
 	var train = trainNode.instantiate()
 	train.global_position = global_position
 	train.set_train_path(path)
 	get_tree().get_first_node_in_group("TrainManager").add_child(train)
+	train.set_ui_stats(stationName, visualOwnerList[stationOwner])
 	train.sprite.self_modulate = $StationColourInner.self_modulate
+	train.speed = train.speeds[trainType]
+	train.trainCompany = companyList[stationOwner]
+	train.trainType.text = trainType
+	Companies.companies[companyList[stationOwner]].activeTrains.append(train)
 
 func _on_area_2d_mouse_entered():
 	if not Settings.stationNamesAlwaysVisible: 

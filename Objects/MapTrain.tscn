@@ -1,10 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://cuqys1kvob1l6"]
+[gd_scene load_steps=9 format=3 uid="uid://cuqys1kvob1l6"]
 
 [ext_resource type="Script" uid="uid://cvlseb7ojjt7n" path="res://MapTrain.gd" id="1_tj7g5"]
 [ext_resource type="Texture2D" uid="uid://bc77d2m88ie7k" path="res://Assets/Map Assets/StationInner.png" id="2_shcl4"]
+[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="3_juvff"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_shcl4"]
 radius = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_juvff"]
+radius = 2.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_7mcj8"]
+font = ExtResource("3_juvff")
+font_size = 8
+font_color = Color(0, 0, 0, 1)
+outline_size = 2
+outline_color = Color(0.548963, 0.548963, 0.548962, 1)
+shadow_size = 0
+stacked_outline_count = 1
+stacked_outline_0/color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gnmuu"]
+font = ExtResource("3_juvff")
+font_size = 8
+font_color = Color(0.266575, 0.266575, 0.266575, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ua55n"]
+font = ExtResource("3_juvff")
+font_size = 8
+font_color = Color(0.560955, 0.560955, 0.560955, 1)
 
 [node name="MapTrain" type="CharacterBody2D" groups=["Trains"]]
 collision_layer = 4
@@ -17,3 +41,69 @@ texture = ExtResource("2_shcl4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_shcl4")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_juvff")
+
+[node name="TrainUI" type="ColorRect" parent="."]
+visible = false
+z_index = 1000
+offset_left = -61.0
+offset_top = -55.0
+offset_right = 61.0
+offset_bottom = -11.0
+
+[node name="ColorRect" type="ColorRect" parent="TrainUI"]
+z_index = -1
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 123.0
+offset_bottom = 45.0
+color = Color(0.442911, 0.442911, 0.442911, 1)
+
+[node name="Nameplate" type="Label" parent="TrainUI"]
+z_index = 1
+layout_mode = 0
+offset_left = 3.0
+offset_top = -2.0
+offset_right = 119.0
+offset_bottom = 14.0
+text = "Trainsource"
+label_settings = SubResource("LabelSettings_7mcj8")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 0
+uppercase = true
+
+[node name="Size" type="Label" parent="TrainUI"]
+z_index = 1
+layout_mode = 0
+offset_left = 3.0
+offset_top = 12.0
+offset_right = 119.0
+offset_bottom = 34.0
+text = "Type"
+label_settings = SubResource("LabelSettings_gnmuu")
+horizontal_alignment = 1
+autowrap_trim_flags = 0
+uppercase = true
+
+[node name="Owner" type="Label" parent="TrainUI"]
+z_index = 1
+layout_mode = 0
+offset_left = 3.0
+offset_top = 20.0
+offset_right = 119.0
+offset_bottom = 42.0
+text = "Owner"
+label_settings = SubResource("LabelSettings_ua55n")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 0
+uppercase = true
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

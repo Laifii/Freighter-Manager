@@ -20,6 +20,8 @@ config/icon="res://icon.svg"
 StationManager="*res://Scripts/StationManager.gd"
 Settings="*res://Scripts/UI/GameSettings.gd"
 Dijkstra="*res://Scripts/TrainPathfinding.gd"
+MapTrainManager="*res://TrainManager.gd"
+Companies="*res://CompanyStats.gd"
 
 [display]
 

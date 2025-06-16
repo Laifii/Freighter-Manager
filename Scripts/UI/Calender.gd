@@ -39,6 +39,7 @@ func update_day():
 	update_payday()
 	time.day += 1
 	time.hour = 0
+	MapTrainManager.spawn_trains()
 	display_date()
 	if time.day > daysInMonth[time.month - 1] - 1: update_month()
 func update_month():

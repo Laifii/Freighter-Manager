@@ -20,6 +20,7 @@ func _find_target(origin: Node, target: Node, method: String):
 			return _find_path(target)
 			
 		unvisitedNodes.erase(currentNode)
+		
 		if method == "Fastest": _update_neighbours_distance(currentNode) 
 		else: _update_neighbours_cost(currentNode)
 
