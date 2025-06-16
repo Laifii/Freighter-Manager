@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://co0y23pb2rril"]
 
 [ext_resource type="Script" uid="uid://bm0d4yv4cl8q3" path="res://Scripts/Station.gd" id="1_hsegu"]
-[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/dogicabold.ttf" id="2_mn7t0"]
-[ext_resource type="Texture2D" uid="uid://bc77d2m88ie7k" path="res://Assets/StationInner.png" id="3_qutln"]
-[ext_resource type="Texture2D" uid="uid://b6oyym4d7t74r" path="res://Assets/StationOuter.png" id="4_xawpj"]
+[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="2_mn7t0"]
+[ext_resource type="Texture2D" uid="uid://bc77d2m88ie7k" path="res://Assets/Map Assets/StationInner.png" id="3_qutln"]
+[ext_resource type="Texture2D" uid="uid://b6oyym4d7t74r" path="res://Assets/Map Assets/StationOuter.png" id="4_xawpj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hsegu"]
 font = ExtResource("2_mn7t0")

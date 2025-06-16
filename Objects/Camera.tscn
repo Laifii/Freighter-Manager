@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://dbndd8umjeoiq"]
 
 [ext_resource type="Script" uid="uid://bcyvbwsej2e2f" path="res://Objects/Camera.gd" id="1_xdxat"]
-[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/dogicabold.ttf" id="2_rv08e"]
-[ext_resource type="Script" uid="uid://bj5acwg1xsr8q" path="res://Scripts/Calender.gd" id="3_mywko"]
+[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="2_rv08e"]
+[ext_resource type="Script" uid="uid://bj5acwg1xsr8q" path="res://Scripts/UI/Calender.gd" id="3_mywko"]
 [ext_resource type="PackedScene" uid="uid://dv5u1u046276g" path="res://Objects/Toolbar.tscn" id="4_lqjr5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mywko"]

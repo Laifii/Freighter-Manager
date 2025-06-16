@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dv5u1u046276g"]
 
-[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/dogicabold.ttf" id="1_iqy15"]
+[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="1_iqy15"]
 [ext_resource type="Script" uid="uid://ddud6ts7hxa43" path="res://Objects/Toolbar.gd" id="1_ll5fu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ll5fu"]

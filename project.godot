@@ -18,8 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 StationManager="*res://Scripts/StationManager.gd"
-Settings="*res://Scripts/GameSettings.gd"
-Dijkstra="*res://TrainPathfinding.gd"
+Settings="*res://Scripts/UI/GameSettings.gd"
+Dijkstra="*res://Scripts/TrainPathfinding.gd"
 
 [display]
 

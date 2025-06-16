@@ -1,12 +1,60 @@
-[gd_scene load_steps=4 format=3 uid="uid://buyep3ncgfqxp"]
+[gd_scene load_steps=10 format=3 uid="uid://buyep3ncgfqxp"]
 
-[ext_resource type="Script" uid="uid://voiwnou7b78g" path="res://Contract.gd" id="1_3u0pn"]
-[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/dogicabold.ttf" id="2_1gfxo"]
+[ext_resource type="Script" uid="uid://voiwnou7b78g" path="res://Scripts/UI/Contract.gd" id="1_3u0pn"]
+[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="2_1gfxo"]
+[ext_resource type="Texture2D" uid="uid://bsgqg2ns3ttuw" path="res://Assets/Trains/Early Bullet Train.png" id="3_0ct1d"]
+[ext_resource type="Texture2D" uid="uid://13g231nt2co3" path="res://Assets/Trains/Early Electric Train.png" id="4_tabfd"]
+[ext_resource type="Texture2D" uid="uid://ck14j38spyajc" path="res://Assets/Trains/Late Bullet Train.png" id="5_fbbta"]
+[ext_resource type="Texture2D" uid="uid://b6d53etdd34xx" path="res://Assets/Trains/SteamEngineSilhouette.png" id="6_ssb7b"]
+[ext_resource type="Texture2D" uid="uid://dradec3mofs6g" path="res://Assets/Trains/Late Electric Train.png" id="6_tabfd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_j5vk8"]
 font = ExtResource("2_1gfxo")
 font_size = 8
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8t45f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0ct1d")
+}],
+"loop": true,
+"name": &"EarlyBullet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_tabfd")
+}],
+"loop": true,
+"name": &"Electric",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_fbbta")
+}],
+"loop": true,
+"name": &"LateBullet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_tabfd")
+}],
+"loop": true,
+"name": &"LateElectric",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ssb7b")
+}],
+"loop": true,
+"name": &"Steam",
+"speed": 5.0
+}]
 
 [node name="Contract" type="Control"]
 layout_mode = 3
@@ -55,9 +103,7 @@ color = Color(0.443137, 0.443137, 0.443137, 1)
 layout_mode = 0
 offset_right = 94.0
 offset_bottom = 84.0
-text = "Trainyard
--
-Target
+text = "Target
 -
 Requester"
 label_settings = SubResource("LabelSettings_j5vk8")
@@ -90,6 +136,39 @@ text = "Total
 
 Upfront
 £20000"
+label_settings = SubResource("LabelSettings_j5vk8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChooseTrain" type="ColorRect" parent="Toolbar"]
+z_index = 1
+layout_mode = 0
+offset_left = 205.0
+offset_top = 4.0
+offset_right = 399.0
+offset_bottom = 88.0
+
+[node name="Outline" type="ColorRect" parent="Toolbar/ChooseTrain"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 196.0
+offset_bottom = 86.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="ChooseTrainButton" type="TextureButton" parent="Toolbar/ChooseTrain"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 197.0
+offset_bottom = 87.0
+
+[node name="TrainLabel" type="Label" parent="Toolbar/ChooseTrain"]
+layout_mode = 0
+offset_right = 194.0
+offset_bottom = 84.0
+text = "Select Train"
 label_settings = SubResource("LabelSettings_j5vk8")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -168,7 +247,7 @@ offset_top = -3.0
 offset_right = 197.0
 offset_bottom = 42.0
 
-[node name="Train en Route" type="ColorRect" parent="Toolbar"]
+[node name="TrainEnRoute" type="ColorRect" parent="Toolbar"]
 z_index = 1
 layout_mode = 0
 offset_left = 205.0
@@ -176,7 +255,7 @@ offset_top = 4.0
 offset_right = 399.0
 offset_bottom = 88.0
 
-[node name="Outline" type="ColorRect" parent="Toolbar/Train en Route"]
+[node name="Outline" type="ColorRect" parent="Toolbar/TrainEnRoute"]
 z_index = -1
 layout_mode = 0
 offset_left = -2.0
@@ -185,7 +264,7 @@ offset_right = 196.0
 offset_bottom = 86.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
-[node name="TimeLeft" type="Label" parent="Toolbar/Train en Route"]
+[node name="TimeLeft" type="Label" parent="Toolbar/TrainEnRoute"]
 layout_mode = 0
 offset_top = 75.0
 offset_right = 194.0
@@ -196,21 +275,18 @@ label_settings = SubResource("LabelSettings_j5vk8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TrainLabel" type="Label" parent="Toolbar/Train en Route"]
+[node name="TrainLabel" type="Label" parent="Toolbar/TrainEnRoute"]
 layout_mode = 0
 offset_top = 2.0
 offset_right = 194.0
 offset_bottom = 18.0
 text = "Assigned Train:
-Model-Model Number"
+Model-Station"
 label_settings = SubResource("LabelSettings_j5vk8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TrainSprite" type="ColorRect" parent="Toolbar/Train en Route"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 23.0
-offset_right = 182.0
-offset_bottom = 71.0
-color = Color(0, 0, 0, 1)
+[node name="TrainSprite" type="AnimatedSprite2D" parent="Toolbar/TrainEnRoute"]
+position = Vector2(97, 46)
+sprite_frames = SubResource("SpriteFrames_8t45f")
+animation = &"LateElectric"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6oyym4d7t74r"
-path="res://.godot/imported/StationOuter.png-ac38c609b3809250adfa7e5bc2186267.ctex"
+uid="uid://b6d53etdd34xx"
+path="res://.godot/imported/SteamEngineSilhouette.png-0ecfe72e9e8ca2dd77b768f074085508.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/StationOuter.png"
-dest_files=["res://.godot/imported/StationOuter.png-ac38c609b3809250adfa7e5bc2186267.ctex"]
+source_file="res://Assets/Trains/SteamEngineSilhouette.png"
+dest_files=["res://.godot/imported/SteamEngineSilhouette.png-0ecfe72e9e8ca2dd77b768f074085508.ctex"]
 
 [params]
 

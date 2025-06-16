@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvms60x5yvr3f"
-path="res://.godot/imported/UK Map names.png-90436d19676e907a72e304b2698699df.ctex"
+uid="uid://b6oyym4d7t74r"
+path="res://.godot/imported/StationOuter.png-2e39578c63a77be2a3c2b8f063cea90a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UK Map names.png"
-dest_files=["res://.godot/imported/UK Map names.png-90436d19676e907a72e304b2698699df.ctex"]
+source_file="res://Assets/Map Assets/StationOuter.png"
+dest_files=["res://.godot/imported/StationOuter.png-2e39578c63a77be2a3c2b8f063cea90a.ctex"]
 
 [params]
 

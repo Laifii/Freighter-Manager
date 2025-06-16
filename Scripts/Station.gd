@@ -9,6 +9,7 @@ extends Node2D
 @onready var stationUI = $StationUI
 @onready var player = get_tree().get_first_node_in_group("Player")
 
+var stationedTrain
 var priceToUpgrade = [500000, 1000000, 3000000, 6000000]
 var stationValue 
 var weeklyIncome
