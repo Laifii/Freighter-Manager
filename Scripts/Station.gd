@@ -21,7 +21,7 @@ var companyColours = {
 	Player = {inner = Color(0.83, 0.001, 0.83), outer = Color(1, 1, 1)},
 	None = {inner = Color(0.8, 0.8, 0.8), outer = Color(0.355, 0.355, 0.355)},
 	ScottishRail = {inner = Color(1, 1, 1), outer = Color(0.0, 0.369, 0.722)},
-	CelticCargo = {inner = Color(1.0, 0.898, 0.0), outer = Color(0.0, 0.694, 0.251)},
+	CelticCargo = {inner = Color(0.0, 0.694, 0.251), outer = Color(1.0, 0.898, 0.0)},
 	UnitedRail = {inner = Color(0.784, 0.063, 0.18), outer = Color(0.004, 0.129, 0.412)},
 	BirminghamExpress = {inner = Color(1.0, 0.898, 0.0), outer = Color(0.863, 0.1, 0.05)},
 	LondonFreighters = {inner = Color(1, 0, 0), outer = Color(1, 1, 1)}
@@ -70,25 +70,27 @@ func set_station_stats():
 	$StationUI/Owner.text = visualOwnerList[stationOwner]
 	stationValue = int(500000 * (float(connections.size()) / 4) * (float(stationOwner) + 1.0 / 2.0) * (float(stationSize) + 1.0 / 4.0))
 	weeklyIncome = 10000 * connections.size() * int((float(stationSize + 1) * 1.5))
+	stationTax = 100 * int((float(stationSize) * 3) * stationOwner) if stationSize > 0 else 250 * (stationOwner / 2)
 	$StationUI/Income.text = str("Income:\n", weeklyIncome, " / Week")
 	$StationUI/UnownedStation/ValueRect/Value.text = str("£", stationValue)
 	if stationSize == 4: 
 		$StationUI/OwnedStation/UpgradeRect/Price/TextureButton.visible = false
 		$StationUI/OwnedStation/UpgradeRect/Price.text = "Maximum Size"
+		stationTax = 100 * int((float(stationSize) * 4) * stationOwner)
 	else: $StationUI/OwnedStation/UpgradeRect/Price.text = str(priceToUpgrade[stationSize])
-	stationTax = 100 * int((float(stationSize) * 3) * stationOwner) if stationSize > 0 else 250 * (stationOwner / 2)
 	$StationColourInner.self_modulate = companyColours[companyList[stationOwner]]["inner"]
 	$StationColourInner/StationColourOuter.self_modulate = companyColours[companyList[stationOwner]]["outer"]
 	$StationColourInner.scale = Vector2(stationSize + 1, stationSize + 1)
 	await get_tree().process_frame
-	if stationName == "Dundee":
+	if stationName == "Bristol":
 		var dundeeStation
 		var liverpoolStation
 		for station in StationManager.stations: 
-			if station.stationName == "Dumfries": dundeeStation = station
-			if station.stationName == "Thurso": liverpoolStation = station
+			if station.stationName == "Dundee": dundeeStation = station
+			if station.stationName == "Penzance": liverpoolStation = station
 		var fastestRoute = Dijkstra.find_route("Fastest", self, dundeeStation, liverpoolStation)
 		var cheapestRoute = Dijkstra.find_route("Cheapest", self, dundeeStation, liverpoolStation)
+		spawn_train(cheapestRoute)
 		var fastestDistance = 0
 		var fastestPrice = 0
 		var cheapestDistance = 0
@@ -96,20 +98,28 @@ func set_station_stats():
 		for station in fastestRoute.size():
 			if station == fastestRoute.size() - 1: 
 				fastestPrice += fastestRoute[station].stationTax
-				print("Fastest Distance: ", fastestDistance, "\nAmount Spent: ", fastestPrice)
-				print(fastestRoute)
+				#print("Fastest Distance: ", fastestDistance, "\nAmount Spent: ", fastestPrice)
+				#print(fastestRoute)
 				break
 			fastestDistance += fastestRoute[station].global_position.distance_to(fastestRoute[station + 1].global_position)
 			fastestPrice += fastestRoute[station].stationTax
 		for station in cheapestRoute.size():
 			if station == cheapestRoute.size() - 1: 
 				cheapestPrice += cheapestRoute[station].stationTax
-				print("Cheapest Distance: ", cheapestDistance, "\nAmount Spent: ", cheapestPrice)
-				print(cheapestRoute)
+				#print("Cheapest Distance: ", cheapestDistance, "\nAmount Spent: ", cheapestPrice)
+				#print(cheapestRoute)
 				break
 			cheapestDistance += cheapestRoute[station].global_position.distance_to(cheapestRoute[station + 1].global_position)
 			cheapestPrice += cheapestRoute[station].stationTax
 			
+
+var trainNode = preload("res://Objects/MapTrain.tscn")
+func spawn_train(path): # Temp for train testing, delete later
+	var train = trainNode.instantiate()
+	train.global_position = global_position - Vector2(10, 10)
+	train.set_train_path(path)
+	get_tree().get_first_node_in_group("TrainManager").add_child(train)
+	train.sprite.self_modulate = $StationColourInner.self_modulate
 
 func _on_area_2d_mouse_entered():
 	if not Settings.stationNamesAlwaysVisible: 
@@ -168,3 +178,7 @@ func generate_passive_income():
 
 func _on_upgrade_button_pressed():
 	upgrade_station()
+
+
+func _on_train_identifier_body_entered(body):
+	body.find_next_node_in_path()

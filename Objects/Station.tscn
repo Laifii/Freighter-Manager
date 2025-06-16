@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://co0y23pb2rril"]
+[gd_scene load_steps=11 format=3 uid="uid://co0y23pb2rril"]
 
 [ext_resource type="Script" uid="uid://bm0d4yv4cl8q3" path="res://Scripts/Station.gd" id="1_hsegu"]
 [ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="2_mn7t0"]
@@ -20,6 +20,9 @@ radius = 73.0274
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mn7t0"]
 radius = 11.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qutln"]
+radius = 1.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_4cu8d"]
 font = ExtResource("2_mn7t0")
@@ -69,6 +72,13 @@ shape = SubResource("CircleShape2D_hsegu")
 visible = false
 position = Vector2(5, 5)
 shape = SubResource("CircleShape2D_mn7t0")
+
+[node name="TrainIdentifier" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TrainIdentifier"]
+shape = SubResource("CircleShape2D_qutln")
 
 [node name="StationUI" type="ColorRect" parent="."]
 visible = false
@@ -246,5 +256,6 @@ uppercase = true
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
 [connection signal="mouse_entered" from="Area2D2" to="." method="_on_station_button_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D2" to="." method="_on_station_button_mouse_exited"]
+[connection signal="body_entered" from="TrainIdentifier" to="." method="_on_train_identifier_body_entered"]
 [connection signal="pressed" from="StationUI/UnownedStation/ValueRect/Value/TextureButton" to="." method="_on_purchase_button_pressed"]
 [connection signal="pressed" from="StationUI/OwnedStation/UpgradeRect/Price/TextureButton" to="." method="_on_upgrade_button_pressed"]

@@ -23,7 +23,7 @@ texture = ExtResource("1_6vnro")
 position = Vector2(-21, -177)
 stationName = "Dundee"
 stationSize = 0
-connections = [NodePath("../Arbroath"), NodePath("../Perth"), NodePath("../Aberdeen")]
+connections = [NodePath("../Arbroath"), NodePath("../Perth"), NodePath("../Aberdeen"), NodePath("../Kirkcaldy")]
 
 [node name="Arbroath" parent="Stations" instance=ExtResource("4_wnami")]
 position = Vector2(-1, -188)
@@ -93,7 +93,7 @@ position = Vector2(-14, -15)
 stationName = "Carlisle"
 stationSize = 0
 stationOwner = 3
-connections = [NodePath("../Dumfries")]
+connections = [NodePath("../Dumfries"), NodePath("../Middlesbrough"), NodePath("../Leeds")]
 
 [node name="Irvine" parent="Stations" instance=ExtResource("4_wnami")]
 position = Vector2(-115, -85)
@@ -135,7 +135,7 @@ position = Vector2(-15, 135)
 stationName = "Liverpool"
 stationSize = 2
 stationOwner = 3
-connections = [NodePath("../Blackpool")]
+connections = [NodePath("../Blackpool"), NodePath("../Holyhead")]
 
 [node name="Bradford" parent="Stations" instance=ExtResource("4_wnami")]
 position = Vector2(48, 97)
@@ -430,3 +430,5 @@ stationName = "Haverfordwest"
 stationSize = 0
 stationOwner = 4
 connections = [NodePath("../Swansea"), NodePath("../Aberystwyth")]
+
+[node name="Trains" type="Node2D" parent="." groups=["TrainManager"]]

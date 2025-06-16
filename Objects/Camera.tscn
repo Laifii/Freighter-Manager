@@ -102,7 +102,7 @@ label_settings = SubResource("LabelSettings_y7oh5")
 autowrap_trim_flags = 0
 uppercase = true
 
-[node name="Calender" type="Control" parent="UI"]
+[node name="Calender" type="Control" parent="UI" groups=["Calender"]]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

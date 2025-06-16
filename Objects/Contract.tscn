@@ -289,4 +289,4 @@ vertical_alignment = 1
 [node name="TrainSprite" type="AnimatedSprite2D" parent="Toolbar/TrainEnRoute"]
 position = Vector2(97, 46)
 sprite_frames = SubResource("SpriteFrames_8t45f")
-animation = &"LateElectric"
+animation = &"Steam"
