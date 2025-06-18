@@ -42,6 +42,9 @@ func _ready():
 	initialise_station()
 
 func initialise_station():
+	companyColours.Player.inner = Settings.playerPrimaryColour
+	companyColours.Player.outer = Settings.playerSecondaryColour
+	visualOwnerList[0] = Settings.playerCompanyName
 	if Settings.stationNamesAlwaysVisible: nameplate.visible = true
 	StationManager.stations.append(self)
 	set_station_stats()
@@ -87,7 +90,7 @@ func set_station_stats():
 	await get_tree().process_frame
 	MapTrainManager.spawn_trains()
 
-var trainNode = preload("res://Objects/MapTrain.tscn")
+var trainNode = preload("res://Objects/UI/MapTrain.tscn")
 func spawn_train(path, trainType): # Temp for train testing, delete later
 	var train = trainNode.instantiate()
 	train.global_position = global_position

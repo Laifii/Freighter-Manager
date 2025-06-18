@@ -14,6 +14,7 @@ var isDragging = false
 var lastMousePosition = Vector2.ZERO
 var dragSpeed = 0.85
 
+func _ready(): $UI/PlayerStats/Owner.text = Settings.playerCompanyName
 
 func _input(event):
 	if event is not InputEventMouse: return

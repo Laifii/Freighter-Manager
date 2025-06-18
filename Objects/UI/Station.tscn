@@ -228,14 +228,13 @@ uppercase = true
 [node name="Owner" type="Label" parent="StationUI"]
 z_index = 100
 layout_mode = 0
-offset_left = 3.0
+offset_left = 60.0
 offset_top = 21.0
-offset_right = 119.0
+offset_right = 62.0
 offset_bottom = 43.0
-text = "Owner"
 label_settings = SubResource("LabelSettings_mn7t0")
 horizontal_alignment = 1
-autowrap_trim_flags = 0
+autowrap_mode = 2
 uppercase = true
 
 [node name="Income" type="Label" parent="StationUI"]

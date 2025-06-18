@@ -1,9 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://b3v4q36vfj11y"]
 
-[ext_resource type="PackedScene" uid="uid://dbndd8umjeoiq" path="res://Objects/Camera.tscn" id="1_8r7yd"]
+[ext_resource type="PackedScene" uid="uid://dbndd8umjeoiq" path="res://Objects/Player/Camera.tscn" id="1_8r7yd"]
 [ext_resource type="Script" uid="uid://qoatarj8ylmm" path="res://Scripts/Player.gd" id="1_n6db0"]
 
 [node name="Player" type="Node2D" groups=["Player"]]
 script = ExtResource("1_n6db0")
 
 [node name="Camera" parent="." instance=ExtResource("1_8r7yd")]
+
+[node name="Trains" type="Node2D" parent="."]

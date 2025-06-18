@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://dbndd8umjeoiq"]
 
-[ext_resource type="Script" uid="uid://bcyvbwsej2e2f" path="res://Objects/Camera.gd" id="1_xdxat"]
+[ext_resource type="Script" uid="uid://bcyvbwsej2e2f" path="res://Scripts/Camera.gd" id="1_xdxat"]
 [ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="2_rv08e"]
 [ext_resource type="Script" uid="uid://bj5acwg1xsr8q" path="res://Scripts/UI/Calender.gd" id="3_mywko"]
-[ext_resource type="PackedScene" uid="uid://dv5u1u046276g" path="res://Objects/Toolbar.tscn" id="4_lqjr5"]
+[ext_resource type="PackedScene" uid="uid://dv5u1u046276g" path="res://Objects/UI/Toolbar.tscn" id="4_lqjr5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mywko"]
 font = ExtResource("2_rv08e")
@@ -281,6 +281,10 @@ offset_bottom = 15.0
 
 [node name="Toolbar" parent="UI" instance=ExtResource("4_lqjr5")]
 layout_mode = 0
+offset_left = -30.0
+offset_top = 2.0
+offset_right = -30.0
+offset_bottom = 2.0
 
 [connection signal="pressed" from="UI/Calender/ColorRect/SpeedButton1/SpeedButton1" to="UI/Calender" method="_on_speed_button_1_pressed"]
 [connection signal="pressed" from="UI/Calender/ColorRect/SpeedButton2/SpeedButton2" to="UI/Calender" method="_on_speed_button_2_pressed"]

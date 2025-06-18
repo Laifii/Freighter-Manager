@@ -1,0 +1,442 @@
+[gd_scene load_steps=20 format=3 uid="uid://cf0x0dhn772y3"]
+
+[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="1_57egv"]
+[ext_resource type="Script" uid="uid://uhf46lwdh734" path="res://Objects/Scenes/MainMenu.gd" id="1_x5ra7"]
+[ext_resource type="Script" uid="uid://c0frvuw5vekvv" path="res://Objects/Scenes/NewGameScreen.gd" id="2_0cncr"]
+
+[sub_resource type="Gradient" id="Gradient_57egv"]
+offsets = PackedFloat32Array(0.972222)
+colors = PackedColorArray(0.462745, 0.462745, 0.462745, 0.647059)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0cncr"]
+gradient = SubResource("Gradient_57egv")
+width = 238
+height = 54
+
+[sub_resource type="LabelSettings" id="LabelSettings_0cncr"]
+font = ExtResource("1_57egv")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_0cncr"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.462745, 0.462745, 0.462745, 0.647059)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x5ra7"]
+gradient = SubResource("Gradient_0cncr")
+width = 238
+height = 54
+
+[sub_resource type="Gradient" id="Gradient_x5ra7"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.674815, 0.674815, 0.674815, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_541sx"]
+gradient = SubResource("Gradient_x5ra7")
+width = 44
+height = 44
+
+[sub_resource type="Gradient" id="Gradient_f2itx"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.277528, 0.277528, 0.277528, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ttsg8"]
+gradient = SubResource("Gradient_f2itx")
+width = 44
+height = 44
+
+[sub_resource type="Gradient" id="Gradient_4wfwt"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.501407, 0.501406, 0.501406, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tstma"]
+gradient = SubResource("Gradient_4wfwt")
+width = 44
+height = 44
+
+[sub_resource type="LabelSettings" id="LabelSettings_x5ra7"]
+font = ExtResource("1_57egv")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_0cncr"]
+default_font = ExtResource("1_57egv")
+
+[sub_resource type="LabelSettings" id="LabelSettings_541sx"]
+font = ExtResource("1_57egv")
+font_color = Color(0.556953, 0.556953, 0.556953, 1)
+
+[sub_resource type="Gradient" id="Gradient_541sx"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.77084, 0.770839, 0.770839, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f2itx"]
+gradient = SubResource("Gradient_541sx")
+width = 22
+height = 22
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x5ra7")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(4, 1)
+
+[node name="MainButtons" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 6.0
+offset_top = 125.0
+offset_right = 46.0
+offset_bottom = 165.0
+
+[node name="ColorRect" type="ColorRect" parent="MainButtons"]
+layout_mode = 0
+offset_left = -129.0
+offset_top = -246.0
+offset_right = 117.0
+offset_bottom = -4.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="ColorRect" type="ColorRect" parent="MainButtons/ColorRect"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 244.0
+offset_bottom = 240.0
+
+[node name="NewGame" type="ColorRect" parent="MainButtons"]
+layout_mode = 0
+offset_left = -125.0
+offset_top = -182.0
+offset_right = 113.0
+offset_bottom = -128.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="ColorRect" type="ColorRect" parent="MainButtons/NewGame"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 236.0
+offset_bottom = 51.0
+
+[node name="NewGameButton" type="TextureButton" parent="MainButtons/NewGame"]
+layout_mode = 0
+offset_right = 238.0
+offset_bottom = 54.0
+action_mode = 0
+texture_hover = SubResource("GradientTexture2D_0cncr")
+texture_disabled = SubResource("GradientTexture2D_0cncr")
+
+[node name="Text" type="Label" parent="MainButtons/NewGame/NewGameButton"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 236.0
+offset_bottom = 51.0
+text = "New Game"
+label_settings = SubResource("LabelSettings_0cncr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Continue" type="ColorRect" parent="MainButtons"]
+layout_mode = 0
+offset_left = -125.0
+offset_top = -242.0
+offset_right = 113.0
+offset_bottom = -188.0
+pivot_offset = Vector2(114, 46)
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="ColorRect" type="ColorRect" parent="MainButtons/Continue"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 236.0
+offset_bottom = 51.0
+
+[node name="ContinueButton" type="TextureButton" parent="MainButtons/Continue"]
+layout_mode = 0
+offset_right = 238.0
+offset_bottom = 54.0
+texture_hover = SubResource("GradientTexture2D_x5ra7")
+texture_disabled = SubResource("GradientTexture2D_x5ra7")
+
+[node name="Text" type="Label" parent="MainButtons/Continue/ContinueButton"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 236.0
+offset_bottom = 51.0
+text = "Continue"
+label_settings = SubResource("LabelSettings_0cncr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="ColorRect" parent="MainButtons"]
+layout_mode = 0
+offset_left = -125.0
+offset_top = -122.0
+offset_right = 113.0
+offset_bottom = -68.0
+pivot_offset = Vector2(114, 46)
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="ColorRect" type="ColorRect" parent="MainButtons/Settings"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 236.0
+offset_bottom = 51.0
+
+[node name="SettingsButton" type="TextureButton" parent="MainButtons/Settings"]
+layout_mode = 0
+offset_right = 238.0
+offset_bottom = 54.0
+texture_hover = SubResource("GradientTexture2D_0cncr")
+
+[node name="Text" type="Label" parent="MainButtons/Settings/SettingsButton"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 236.0
+offset_bottom = 51.0
+text = "Settings"
+label_settings = SubResource("LabelSettings_0cncr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exit" type="ColorRect" parent="MainButtons"]
+layout_mode = 0
+offset_left = -125.0
+offset_top = -62.0
+offset_right = 113.0
+offset_bottom = -8.0
+pivot_offset = Vector2(114, 46)
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="ColorRect" type="ColorRect" parent="MainButtons/Exit"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 236.0
+offset_bottom = 51.0
+
+[node name="ExitButton" type="TextureButton" parent="MainButtons/Exit"]
+layout_mode = 0
+offset_right = 238.0
+offset_bottom = 54.0
+texture_hover = SubResource("GradientTexture2D_0cncr")
+
+[node name="Text" type="Label" parent="MainButtons/Exit/ExitButton"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 236.0
+offset_bottom = 51.0
+text = "Exit"
+label_settings = SubResource("LabelSettings_0cncr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NewGameScreen" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_0cncr")
+
+[node name="ColorRect" type="ColorRect" parent="NewGameScreen"]
+layout_mode = 0
+offset_left = -194.0
+offset_top = -168.0
+offset_right = 196.0
+offset_bottom = 156.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="ColorRect" type="ColorRect" parent="NewGameScreen/ColorRect"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 388.0
+offset_bottom = 322.0
+
+[node name="PlayerColour" type="Control" parent="NewGameScreen"]
+anchors_preset = 0
+offset_top = 111.0
+offset_right = 40.0
+offset_bottom = 151.0
+
+[node name="RedSlider" type="HSlider" parent="NewGameScreen/PlayerColour"]
+layout_mode = 0
+offset_left = -128.0
+offset_top = -107.0
+offset_right = 128.0
+offset_bottom = -91.0
+max_value = 255.0
+rounded = true
+
+[node name="GreenSlider" type="HSlider" parent="NewGameScreen/PlayerColour"]
+layout_mode = 0
+offset_left = -128.0
+offset_top = -90.0
+offset_right = 128.0
+offset_bottom = -74.0
+max_value = 255.0
+rounded = true
+
+[node name="BlueSlider" type="HSlider" parent="NewGameScreen/PlayerColour"]
+layout_mode = 0
+offset_left = -128.0
+offset_top = -71.0
+offset_right = 128.0
+offset_bottom = -55.0
+max_value = 255.0
+rounded = true
+tick_count = 1
+
+[node name="PrimaryColour" type="ColorRect" parent="NewGameScreen/PlayerColour"]
+z_index = 10
+layout_mode = 0
+offset_left = -90.0
+offset_top = -159.0
+offset_right = -50.0
+offset_bottom = -119.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextureButton" type="TextureButton" parent="NewGameScreen/PlayerColour/PrimaryColour"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 40.0
+offset_bottom = 40.0
+tooltip_text = "This will affect the look of your stations and trains"
+toggle_mode = true
+button_pressed = true
+action_mode = 0
+texture_normal = SubResource("GradientTexture2D_541sx")
+texture_pressed = SubResource("GradientTexture2D_ttsg8")
+texture_hover = SubResource("GradientTexture2D_tstma")
+
+[node name="Label" type="Label" parent="NewGameScreen/PlayerColour/PrimaryColour"]
+layout_mode = 0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = -17.0
+text = "Primary Colour"
+label_settings = SubResource("LabelSettings_x5ra7")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SecondaryColour" type="ColorRect" parent="NewGameScreen/PlayerColour"]
+z_index = 10
+layout_mode = 0
+offset_left = 50.0
+offset_top = -159.0
+offset_right = 90.0
+offset_bottom = -119.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextureButton" type="TextureButton" parent="NewGameScreen/PlayerColour/SecondaryColour"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 40.0
+offset_bottom = 40.0
+tooltip_text = "This will affect the look of your stations"
+toggle_mode = true
+action_mode = 0
+texture_normal = SubResource("GradientTexture2D_541sx")
+texture_pressed = SubResource("GradientTexture2D_ttsg8")
+texture_hover = SubResource("GradientTexture2D_tstma")
+
+[node name="Label" type="Label" parent="NewGameScreen/PlayerColour/SecondaryColour"]
+layout_mode = 0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = -17.0
+text = "Secondary Colour"
+label_settings = SubResource("LabelSettings_x5ra7")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="NewGameScreen"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = -186.0
+offset_top = -140.0
+offset_right = 186.0
+offset_bottom = -109.0
+theme = SubResource("Theme_0cncr")
+placeholder_text = "Your Company's Name"
+alignment = 1
+max_length = 20
+expand_to_text_length = true
+flat = true
+
+[node name="Confirm" type="ColorRect" parent="NewGameScreen"]
+layout_mode = 0
+offset_left = -119.0
+offset_top = 77.0
+offset_right = 119.0
+offset_bottom = 131.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="ColorRect" type="ColorRect" parent="NewGameScreen/Confirm"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 236.0
+offset_bottom = 52.0
+
+[node name="Label" type="Label" parent="NewGameScreen/Confirm"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 236.0
+offset_bottom = 54.0
+text = "Confirm"
+label_settings = SubResource("LabelSettings_x5ra7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="NewGameScreen/Confirm"]
+layout_mode = 0
+offset_right = 238.0
+offset_bottom = 54.0
+tooltip_text = "Enter a name before confirming"
+texture_hover = SubResource("GradientTexture2D_0cncr")
+
+[node name="Cancel" type="Label" parent="NewGameScreen"]
+z_index = 10
+layout_mode = 0
+offset_left = 173.0
+offset_top = -161.0
+offset_right = 189.0
+offset_bottom = -147.0
+text = "x"
+label_settings = SubResource("LabelSettings_541sx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CancelButton" type="TextureButton" parent="NewGameScreen/Cancel"]
+z_index = -1
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 19.0
+offset_bottom = 19.0
+texture_hover = SubResource("GradientTexture2D_f2itx")
+
+[connection signal="pressed" from="MainButtons/NewGame/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="MainButtons/Continue/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="MainButtons/Settings/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MainButtons/Exit/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="NewGameScreen/PlayerColour/PrimaryColour/TextureButton" to="NewGameScreen" method="_on_primary_colour_button_pressed"]
+[connection signal="pressed" from="NewGameScreen/PlayerColour/SecondaryColour/TextureButton" to="NewGameScreen" method="_on_secondary_colour_button_pressed"]
+[connection signal="pressed" from="NewGameScreen/Confirm/TextureButton" to="." method="_on_confirm_new_game_button_pressed"]
+[connection signal="pressed" from="NewGameScreen/Cancel/CancelButton" to="NewGameScreen" method="_on_cancel_button_pressed"]

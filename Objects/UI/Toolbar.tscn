@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dv5u1u046276g"]
 
 [ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="1_iqy15"]
-[ext_resource type="Script" uid="uid://ddud6ts7hxa43" path="res://Objects/Toolbar.gd" id="1_ll5fu"]
+[ext_resource type="Script" uid="uid://ddud6ts7hxa43" path="res://Scripts/Toolbar.gd" id="1_ll5fu"]
 [ext_resource type="Texture2D" uid="uid://cmp32tme8xayw" path="res://Assets/UI/Clipboard Small.png" id="2_qp3ci"]
 [ext_resource type="Texture2D" uid="uid://c2bs6v3wcvwc7" path="res://Assets/UI/Trains Icon.png" id="4_ifqh4"]
 [ext_resource type="Texture2D" uid="uid://df6401r5s32f1" path="res://Assets/UI/Train Station Icon.png" id="4_sbth0"]
