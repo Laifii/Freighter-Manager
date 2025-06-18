@@ -6,13 +6,14 @@ var trainTypeList = ["Steam", "Early Electric", "Electric", "Bullet"]
 
 func spawn_trains():
 	for company in Companies.companies:
+		if Companies.companies[company] == Companies.companies.Player: continue
 		var listOfTrainTypes = []
 		var listOfActiveTrainTypes = []
 		var availableTrainTypes = []
 		for train in Companies.companies[company].trains:
 			listOfTrainTypes.append(train.trainType)
 		for train in Companies.companies[company].activeTrains:
-			listOfActiveTrainTypes.append(train.trainType.text)
+			listOfActiveTrainTypes.append(train.trainTypeLabel.text)
 		if listOfActiveTrainTypes.size() == 0: availableTrainTypes = listOfTrainTypes
 		for trainType in listOfActiveTrainTypes: 
 			var erasedTrain = false

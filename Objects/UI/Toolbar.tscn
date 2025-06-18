@@ -1,16 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://dv5u1u046276g"]
+[gd_scene load_steps=11 format=3 uid="uid://dv5u1u046276g"]
 
-[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="1_iqy15"]
-[ext_resource type="Script" uid="uid://ddud6ts7hxa43" path="res://Scripts/Toolbar.gd" id="1_ll5fu"]
-[ext_resource type="Texture2D" uid="uid://cmp32tme8xayw" path="res://Assets/UI/Clipboard Small.png" id="2_qp3ci"]
-[ext_resource type="Texture2D" uid="uid://c2bs6v3wcvwc7" path="res://Assets/UI/Trains Icon.png" id="4_ifqh4"]
-[ext_resource type="Texture2D" uid="uid://df6401r5s32f1" path="res://Assets/UI/Train Station Icon.png" id="4_sbth0"]
-[ext_resource type="Texture2D" uid="uid://h0v8gh6hlole" path="res://Assets/UI/AuctionHouseGavelPuck.png" id="6_asbxa"]
-[ext_resource type="Texture2D" uid="uid://b84ufh5cqxt0q" path="res://Assets/UI/Graph Icon.png" id="6_jktc8"]
-[ext_resource type="Texture2D" uid="uid://b1t1df8lh74s0" path="res://Assets/UI/Auction House Gavel.png" id="7_e157d"]
+[ext_resource type="Script" uid="uid://ddud6ts7hxa43" path="res://Scripts/Toolbar.gd" id="1_cb3is"]
+[ext_resource type="Texture2D" uid="uid://cmp32tme8xayw" path="res://Assets/UI/Clipboard Small.png" id="2_0gaa0"]
+[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="3_mymyo"]
+[ext_resource type="Texture2D" uid="uid://df6401r5s32f1" path="res://Assets/UI/Train Station Icon.png" id="4_t74ta"]
+[ext_resource type="Texture2D" uid="uid://c2bs6v3wcvwc7" path="res://Assets/UI/Trains Icon.png" id="5_73vpv"]
+[ext_resource type="Texture2D" uid="uid://h0v8gh6hlole" path="res://Assets/UI/AuctionHouseGavelPuck.png" id="6_0h8um"]
+[ext_resource type="Texture2D" uid="uid://b1t1df8lh74s0" path="res://Assets/UI/Auction House Gavel.png" id="7_f0ocy"]
+[ext_resource type="Texture2D" uid="uid://b84ufh5cqxt0q" path="res://Assets/UI/Graph Icon.png" id="8_5liad"]
+[ext_resource type="PackedScene" uid="uid://buyep3ncgfqxp" path="res://Objects/UI/Contract.tscn" id="9_0gaa0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ll5fu"]
-font = ExtResource("1_iqy15")
+font = ExtResource("3_mymyo")
 font_size = 8
 font_color = Color(0, 0, 0, 1)
 
@@ -20,7 +21,7 @@ layout_mode = 3
 anchors_preset = 0
 size_flags_horizontal = 0
 size_flags_vertical = 4
-script = ExtResource("1_ll5fu")
+script = ExtResource("1_cb3is")
 
 [node name="Toolbar" type="ColorRect" parent="."]
 z_index = 1000
@@ -63,7 +64,7 @@ offset_top = 17.0
 offset_right = 12.0
 offset_bottom = 17.0
 scale = Vector2(3, 3)
-texture = ExtResource("2_qp3ci")
+texture = ExtResource("2_0gaa0")
 
 [node name="Label" type="Label" parent="Toolbar/Contracts"]
 layout_mode = 0
@@ -126,7 +127,7 @@ offset_top = 15.0
 offset_right = 6.0
 offset_bottom = 15.0
 scale = Vector2(4, 4)
-texture = ExtResource("4_sbth0")
+texture = ExtResource("4_t74ta")
 
 [node name="Trains" type="ColorRect" parent="Toolbar"]
 z_index = 1000
@@ -171,7 +172,7 @@ offset_top = 11.0
 offset_right = 4.0
 offset_bottom = 11.0
 scale = Vector2(4, 4)
-texture = ExtResource("4_ifqh4")
+texture = ExtResource("5_73vpv")
 
 [node name="AuctionHouse" type="ColorRect" parent="Toolbar"]
 z_index = 1000
@@ -216,7 +217,7 @@ offset_top = 63.0
 offset_right = 8.0
 offset_bottom = 63.0
 scale = Vector2(4, 4)
-texture = ExtResource("6_asbxa")
+texture = ExtResource("6_0h8um")
 
 [node name="Sprite2D" type="TextureRect" parent="Toolbar/AuctionHouse/Sprite2D"]
 layout_mode = 0
@@ -225,7 +226,7 @@ offset_top = -7.0
 offset_right = 3.75
 offset_bottom = -7.0
 rotation = 0.244346
-texture = ExtResource("7_e157d")
+texture = ExtResource("7_f0ocy")
 
 [node name="Companies" type="ColorRect" parent="Toolbar"]
 z_index = 1000
@@ -270,7 +271,7 @@ offset_top = 8.0
 offset_right = 6.0
 offset_bottom = 8.0
 scale = Vector2(4, 4)
-texture = ExtResource("6_jktc8")
+texture = ExtResource("8_5liad")
 
 [node name="ContractsScreen" type="Control" parent="."]
 visible = false
@@ -294,5 +295,12 @@ offset_top = -2.0
 offset_right = 826.0
 offset_bottom = 703.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="Contract" parent="ContractsScreen" instance=ExtResource("9_0gaa0")]
+layout_mode = 1
+offset_left = 522.5
+offset_top = 333.0
+offset_right = -990.5
+offset_bottom = -651.0
 
 [connection signal="pressed" from="Toolbar/Contracts/ContractButton" to="." method="_on_contract_button_pressed"]

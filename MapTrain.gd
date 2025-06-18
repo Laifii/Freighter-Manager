@@ -8,8 +8,10 @@ var speed = 12
 var trainColour: Color
 var hoveringOverTrain = false
 @onready var trainUI = $TrainUI
-@onready var trainType = $TrainUI/Size
+@onready var trainTypeLabel = $TrainUI/Size
+var trainType
 var trainCompany
+var linkedContract
 
 var speeds = {
 	Steam = 3,
@@ -26,6 +28,7 @@ func _physics_process(delta):
 	if trainPath == null: return
 	move_to_next_station(nextNodeInPath, delta)
 	if Input.is_action_just_pressed("Escape"): if trainUI.visible: trainUI.visible = false
+	calc_time_remaining()
 
 func find_next_node_in_path():
 	if trainPath.size() == 0: 
@@ -37,6 +40,20 @@ func find_next_node_in_path():
 	nextNodeInPath = trainPath[0]
 	trainPath.erase(trainPath[0])
 	$Sprite2D.look_at(nextNodeInPath.global_position)
+
+func calc_time_remaining():
+	if linkedContract == null: return
+	if trainPath == null or trainPath.size() == 0:
+		return "Journey Complete"
+		
+	var remainingDistance = 0.0
+	for i in range(trainPath.size() - 1):
+		remainingDistance += trainPath[i].global_position.distance_to(trainPath[i + 1].global_position)
+	#remainingDistance -= global_position.distance_to(trainPath[0].global_position)
+	var timeSpeed = calender.timeSpeed[calender.currentSpeed]
+	var secondsRemaining = (remainingDistance / (speeds[trainType] * speed)) * 60.0 / timeSpeed
+	linkedContract.format_time_remaining(secondsRemaining)
+
 
 func set_ui_stats(origin, trainOwner):
 	$TrainUI/Nameplate.text = origin

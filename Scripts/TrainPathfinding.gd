@@ -4,27 +4,27 @@ var unvisitedNodes := []
 var distances := {}
 var previousNodes := {}
 
-func find_route(method: String, origin: Node, target: Node, secondTarget: Node = null) -> Array:
-	var pathToFirstTarget = _find_target(origin, target, method)
-	var pathBack = _find_target(target, origin, method)
+func find_route(method: String, origin: Node, target: Node, secondTarget: Node = null, playerTrain = false) -> Array:
+	var pathToFirstTarget = _find_target(origin, target, method, playerTrain)
+	var pathBack = _find_target(target, origin, method, playerTrain)
 	if secondTarget != null: 
-		var pathToSecondTarget = _find_target(target, secondTarget, method)
-		pathBack = _find_target(secondTarget, origin, method)
+		var pathToSecondTarget = _find_target(target, secondTarget, method, playerTrain)
+		pathBack = _find_target(secondTarget, origin, method, playerTrain)
 		return pathToFirstTarget + pathToSecondTarget.slice(1) + pathBack.slice(1)
 	
 	return pathToFirstTarget + pathBack
 
-func _find_target(origin: Node, target: Node, method: String):
+func _find_target(origin: Node, target: Node, method: String, playerTrain):
 	_init_algorithm(origin)
 	while unvisitedNodes.size() > 0:
-		var currentNode = _get_closest_node() if method == "Fastest" else _get_cheapest_node()
+		var currentNode = _get_closest_node() if method == "Fastest" else _get_cheapest_node(playerTrain)
 		if currentNode == target:
 			return _find_path(target)
 			
 		unvisitedNodes.erase(currentNode)
 		
 		if method == "Fastest": _update_neighbours_distance(currentNode) 
-		else: _update_neighbours_cost(currentNode)
+		else: _update_neighbours_cost(currentNode, playerTrain)
 
 func _init_algorithm(startNode: Node):
 	unvisitedNodes.clear()
@@ -47,10 +47,11 @@ func _update_neighbours_distance(node: Node):
 			distances[neighborNode] = totalDistance
 			previousNodes[neighborNode] = node
 
-func _update_neighbours_cost(node: Node):
+func _update_neighbours_cost(node: Node, playerTrain):
 	for neighbor in node.connections:
 		var neighborNode = node.get_node(neighbor)
-		var cost = neighborNode.stationTax
+		var cost = neighborNode.stationTax 
+		if playerTrain: if neighborNode.stationOwner == 0: cost = 0
 		
 		var totalCost = distances[node] + cost
 		
@@ -58,7 +59,7 @@ func _update_neighbours_cost(node: Node):
 			distances[neighborNode] = totalCost
 			previousNodes[neighborNode] = node
 
-func _get_cheapest_node() -> Node:
+func _get_cheapest_node(playerTrain) -> Node:
 	var lowestCost = INF
 	var lowestNode = null
 	

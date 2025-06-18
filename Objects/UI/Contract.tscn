@@ -1,15 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://buyep3ncgfqxp"]
+[gd_scene load_steps=9 format=3 uid="uid://buyep3ncgfqxp"]
 
-[ext_resource type="Script" uid="uid://voiwnou7b78g" path="res://Scripts/UI/Contract.gd" id="1_3u0pn"]
-[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="2_1gfxo"]
-[ext_resource type="Texture2D" uid="uid://bsgqg2ns3ttuw" path="res://Assets/Trains/Early Bullet Train.png" id="3_0ct1d"]
-[ext_resource type="Texture2D" uid="uid://13g231nt2co3" path="res://Assets/Trains/Early Electric Train.png" id="4_tabfd"]
-[ext_resource type="Texture2D" uid="uid://ck14j38spyajc" path="res://Assets/Trains/Late Bullet Train.png" id="5_fbbta"]
-[ext_resource type="Texture2D" uid="uid://b6d53etdd34xx" path="res://Assets/Trains/SteamEngineSilhouette.png" id="6_ssb7b"]
-[ext_resource type="Texture2D" uid="uid://dradec3mofs6g" path="res://Assets/Trains/Late Electric Train.png" id="6_tabfd"]
+[ext_resource type="Script" uid="uid://voiwnou7b78g" path="res://Scripts/UI/Contract.gd" id="1_wwxq2"]
+[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="2_sgpkp"]
+[ext_resource type="Texture2D" uid="uid://bsgqg2ns3ttuw" path="res://Assets/Trains/Early Bullet Train.png" id="3_udgyp"]
+[ext_resource type="Texture2D" uid="uid://13g231nt2co3" path="res://Assets/Trains/Early Electric Train.png" id="4_ubjbv"]
+[ext_resource type="Texture2D" uid="uid://dradec3mofs6g" path="res://Assets/Trains/Late Electric Train.png" id="6_igsx7"]
+[ext_resource type="Texture2D" uid="uid://b6d53etdd34xx" path="res://Assets/Trains/SteamEngineSilhouette.png" id="7_vpo0o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_j5vk8"]
-font = ExtResource("2_1gfxo")
+font = ExtResource("2_sgpkp")
 font_size = 8
 font_color = Color(0, 0, 0, 1)
 
@@ -17,15 +16,23 @@ font_color = Color(0, 0, 0, 1)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_0ct1d")
+"texture": ExtResource("3_udgyp")
 }],
 "loop": true,
-"name": &"EarlyBullet",
+"name": &"Bullet",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_tabfd")
+"texture": ExtResource("4_ubjbv")
+}],
+"loop": true,
+"name": &"EarlyElectric",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_igsx7")
 }],
 "loop": true,
 "name": &"Electric",
@@ -33,23 +40,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_fbbta")
-}],
-"loop": true,
-"name": &"LateBullet",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_tabfd")
-}],
-"loop": true,
-"name": &"LateElectric",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_ssb7b")
+"texture": ExtResource("7_vpo0o")
 }],
 "loop": true,
 "name": &"Steam",
@@ -65,7 +56,7 @@ offset_right = -1513.0
 offset_bottom = -984.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3u0pn")
+script = ExtResource("1_wwxq2")
 
 [node name="Toolbar" type="ColorRect" parent="."]
 z_index = 1000
@@ -159,13 +150,6 @@ offset_right = 196.0
 offset_bottom = 86.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
-[node name="ChooseTrainButton" type="TextureButton" parent="Toolbar/ChooseTrain"]
-layout_mode = 0
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 197.0
-offset_bottom = 87.0
-
 [node name="TrainLabel" type="Label" parent="Toolbar/ChooseTrain"]
 layout_mode = 0
 offset_right = 194.0
@@ -175,13 +159,20 @@ label_settings = SubResource("LabelSettings_j5vk8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Duration Buttons" type="Control" parent="Toolbar"]
+[node name="ChooseTrainButton" type="TextureButton" parent="Toolbar/ChooseTrain"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 197.0
+offset_bottom = 87.0
+
+[node name="DurationButtons" type="Control" parent="Toolbar"]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="CheapestRoute" type="ColorRect" parent="Toolbar/Duration Buttons"]
+[node name="CheapestRoute" type="ColorRect" parent="Toolbar/DurationButtons"]
 z_index = 1000
 layout_mode = 0
 offset_left = 205.0
@@ -189,7 +180,7 @@ offset_top = 4.0
 offset_right = 399.0
 offset_bottom = 43.0
 
-[node name="Outline" type="ColorRect" parent="Toolbar/Duration Buttons/CheapestRoute"]
+[node name="Outline" type="ColorRect" parent="Toolbar/DurationButtons/CheapestRoute"]
 z_index = -1
 layout_mode = 0
 offset_left = -2.0
@@ -198,7 +189,7 @@ offset_right = 196.0
 offset_bottom = 41.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
-[node name="Label" type="Label" parent="Toolbar/Duration Buttons/CheapestRoute"]
+[node name="Label" type="Label" parent="Toolbar/DurationButtons/CheapestRoute"]
 layout_mode = 0
 offset_right = 194.0
 offset_bottom = 39.0
@@ -208,14 +199,14 @@ label_settings = SubResource("LabelSettings_j5vk8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CheapestRouteButton" type="TextureButton" parent="Toolbar/Duration Buttons/CheapestRoute"]
+[node name="CheapestRouteButton" type="TextureButton" parent="Toolbar/DurationButtons/CheapestRoute"]
 layout_mode = 0
 offset_left = -3.0
 offset_top = -3.0
 offset_right = 197.0
 offset_bottom = 42.0
 
-[node name="FastestRoute" type="ColorRect" parent="Toolbar/Duration Buttons"]
+[node name="FastestRoute" type="ColorRect" parent="Toolbar/DurationButtons"]
 z_index = 1000
 layout_mode = 0
 offset_left = 205.0
@@ -223,7 +214,7 @@ offset_top = 49.0
 offset_right = 399.0
 offset_bottom = 88.0
 
-[node name="Outline" type="ColorRect" parent="Toolbar/Duration Buttons/FastestRoute"]
+[node name="Outline" type="ColorRect" parent="Toolbar/DurationButtons/FastestRoute"]
 z_index = -1
 layout_mode = 0
 offset_left = -2.0
@@ -232,7 +223,7 @@ offset_right = 196.0
 offset_bottom = 41.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
-[node name="Label" type="Label" parent="Toolbar/Duration Buttons/FastestRoute"]
+[node name="Label" type="Label" parent="Toolbar/DurationButtons/FastestRoute"]
 layout_mode = 0
 offset_right = 194.0
 offset_bottom = 39.0
@@ -242,7 +233,7 @@ label_settings = SubResource("LabelSettings_j5vk8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FastestRouteButton" type="TextureButton" parent="Toolbar/Duration Buttons/FastestRoute"]
+[node name="FastestRouteButton" type="TextureButton" parent="Toolbar/DurationButtons/FastestRoute"]
 layout_mode = 0
 offset_left = -3.0
 offset_top = -3.0
@@ -250,6 +241,7 @@ offset_right = 197.0
 offset_bottom = 42.0
 
 [node name="TrainEnRoute" type="ColorRect" parent="Toolbar"]
+visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 205.0
@@ -291,4 +283,8 @@ vertical_alignment = 1
 [node name="TrainSprite" type="AnimatedSprite2D" parent="Toolbar/TrainEnRoute"]
 position = Vector2(97, 46)
 sprite_frames = SubResource("SpriteFrames_8t45f")
-animation = &"Steam"
+animation = &"Bullet"
+
+[connection signal="pressed" from="Toolbar/ChooseTrain/ChooseTrainButton" to="." method="_on_choose_train_button_pressed"]
+[connection signal="pressed" from="Toolbar/DurationButtons/CheapestRoute/CheapestRouteButton" to="." method="_on_cheapest_route_button_pressed"]
+[connection signal="pressed" from="Toolbar/DurationButtons/FastestRoute/FastestRouteButton" to="." method="_on_fastest_route_button_pressed"]

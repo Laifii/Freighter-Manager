@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7khh6d63a542"]
+[gd_scene load_steps=5 format=3 uid="uid://c7khh6d63a542"]
 
 [ext_resource type="Texture2D" uid="uid://r6yrk180md2o" path="res://Assets/Map Assets/GB map grey.png" id="1_yucnr"]
 [ext_resource type="PackedScene" uid="uid://b3v4q36vfj11y" path="res://Objects/Player/Player.tscn" id="2_4k0dw"]
 [ext_resource type="PackedScene" uid="uid://co0y23pb2rril" path="res://Objects/UI/Station.tscn" id="3_v66tr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yucnr"]
+radius = 221.903
 
 [node name="Country Map" type="Node2D"]
 
@@ -15,7 +18,7 @@ polygon = PackedVector2Array(-2280, -2155, 2507, -2094, 2685, 2104, -2574, 2110)
 z_index = -1000
 texture = ExtResource("1_yucnr")
 
-[node name="Player" parent="GB" instance=ExtResource("2_4k0dw")]
+[node name="Player" parent="." instance=ExtResource("2_4k0dw")]
 
 [node name="Stations" type="Node2D" parent="."]
 
@@ -433,3 +436,13 @@ connections = [NodePath("../Swansea"), NodePath("../Aberystwyth")]
 
 [node name="Trains" type="Node2D" parent="." groups=["TrainManager"]]
 z_index = -10
+
+[node name="ContractRange" type="Area2D" parent="." groups=["ContractRange"]]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContractRange"]
+position = Vector2(-21, -177)
+shape = SubResource("CircleShape2D_yucnr")
+
+[connection signal="area_shape_entered" from="ContractRange" to="Player" method="_on_contract_range_area_shape_entered"]

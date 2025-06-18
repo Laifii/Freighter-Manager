@@ -91,7 +91,7 @@ func set_station_stats():
 	MapTrainManager.spawn_trains()
 
 var trainNode = preload("res://Objects/UI/MapTrain.tscn")
-func spawn_train(path, trainType): # Temp for train testing, delete later
+func spawn_train(path, trainType, linkedContract = null): # Temp for train testing, delete later
 	var train = trainNode.instantiate()
 	train.global_position = global_position
 	train.set_train_path(path)
@@ -100,7 +100,9 @@ func spawn_train(path, trainType): # Temp for train testing, delete later
 	train.sprite.self_modulate = $StationColourInner.self_modulate
 	train.speed = train.speeds[trainType]
 	train.trainCompany = companyList[stationOwner]
-	train.trainType.text = trainType
+	train.trainTypeLabel.text = trainType
+	train.trainType = trainType
+	train.linkedContract = linkedContract
 	Companies.companies[companyList[stationOwner]].activeTrains.append(train)
 
 func _on_area_2d_mouse_entered():
