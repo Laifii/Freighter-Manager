@@ -167,3 +167,4 @@ func _on_upgrade_button_pressed():
 
 func _on_train_identifier_body_entered(body):
 	body.find_next_node_in_path()
+	body.charge_station_tax(stationTax)

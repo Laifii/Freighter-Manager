@@ -53,7 +53,7 @@ connections = [NodePath("../Dundee"), NodePath("../Glasgow")]
 position = Vector2(-31, -142)
 stationName = "Kirkcaldy"
 stationSize = 0
-stationOwner = 1
+stationOwner = 2
 connections = [NodePath("../Edinburgh"), NodePath("../Dundee")]
 
 [node name="Glasgow" parent="Stations" instance=ExtResource("3_v66tr")]
@@ -67,14 +67,14 @@ connections = [NodePath("../Edinburgh"), NodePath("../Perth"), NodePath("../Dumf
 position = Vector2(-92, -273)
 stationName = "Iverness"
 stationSize = 0
-stationOwner = 1
+stationOwner = 2
 connections = [NodePath("../Glasgow"), NodePath("../Thurso")]
 
 [node name="Thurso" parent="Stations" instance=ExtResource("3_v66tr")]
 position = Vector2(-55, -387)
 stationName = "Thurso"
 stationSize = 0
-stationOwner = 1
+stationOwner = 2
 connections = [NodePath("../Iverness")]
 
 [node name="Dumfries" parent="Stations" instance=ExtResource("3_v66tr")]
@@ -152,7 +152,7 @@ position = Vector2(68, 88)
 stationName = "Leeds"
 stationSize = 3
 stationOwner = 3
-connections = [NodePath("../York"), NodePath("../Carlisle"), NodePath("../Bradford"), NodePath("../Nottingham")]
+connections = [NodePath("../York"), NodePath("../Carlisle"), NodePath("../Bradford"), NodePath("../Nottingham"), NodePath("../Manchester")]
 
 [node name="York" parent="Stations" instance=ExtResource("3_v66tr")]
 position = Vector2(94, 74)
@@ -442,6 +442,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContractRange"]
+visible = false
 position = Vector2(-21, -177)
 shape = SubResource("CircleShape2D_yucnr")
 

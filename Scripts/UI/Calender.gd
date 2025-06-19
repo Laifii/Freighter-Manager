@@ -1,9 +1,9 @@
 extends Control
 
 var time = {
-	minute = 0,
-	hour = 0,
-	day = 1,
+	minute = 59,
+	hour = 23,
+	day = 0,
 	month = 1,
 	year = 2025,
 }
@@ -36,12 +36,12 @@ func _physics_process(delta):
 		floatMinutes = 0
 		if time.hour > 23: update_day()
 func update_day():
-	update_payday()
 	time.day += 1
 	time.hour = 0
 	MapTrainManager.spawn_trains()
 	display_date()
 	if time.day > daysInMonth[time.month - 1] - 1: update_month()
+	update_payday()
 func update_month():
 	time.month += 1
 	time.day = 1

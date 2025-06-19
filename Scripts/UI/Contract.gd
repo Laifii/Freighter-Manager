@@ -5,42 +5,47 @@ var assignedTrain: Train
 var targetOne
 var targetTwo
 @onready var calender = get_tree().get_first_node_in_group("Calender")
+@onready var player = get_tree().get_first_node_in_group("Player")
+var distanceLeft: int
+var timeLeft
+var reward
+var upfront
+var remainingTax
+var cheapestRoute
+var fastestRoute
+var cheapestCost
+var cheapestDistance
+var fastestCost
+var fastestDistance
 
 func _ready():
 	await get_tree().create_timer(0.3).timeout
 	StationManager.refresh_contract_ready_stations()
-	targetOne = StationManager.contractReadyStations[randi_range(0, StationManager.contractReadyStations.size())]
+	targetOne = StationManager.contractReadyStations[randi_range(0, StationManager.contractReadyStations.size() - 1)]
 	targetOne.notInContract = false
 	StationManager.refresh_contract_ready_stations()
-	targetTwo = StationManager.contractReadyStations[randi_range(0, StationManager.contractReadyStations.size())]
+	targetTwo = StationManager.contractReadyStations[randi_range(0, StationManager.contractReadyStations.size() - 1)]
 	targetTwo.notInContract = false
 	StationManager.refresh_contract_ready_stations()
 	$Toolbar/Locations/Label.text = str(targetOne.stationName, "\n-\n", targetTwo.stationName)
-
-func format_time_remaining(seconds: float):
-	if seconds <= 0:
-		arrived_at_destination()
-		return
-	var gameTimeSeconds = seconds * calender.timeSpeed[calender.currentSpeed]
-	
-	var minutes: int = floor(gameTimeSeconds / 60.0)
-	var hours: int = floor(minutes / 60.0)
-	var days: int = floor(hours / 24.0)
-	
-	var label = $Toolbar/TrainEnRoute/TimeLeft
-	if days > 0:
-		label.text = str(int(days), "d ", int(hours % 24), "h")
-	elif hours > 0:
-		label.text = str(int(hours), "h ", int(minutes % 60), "m")
-	else:
-		label.text = str(int(minutes), "m ", int(int(gameTimeSeconds) % 60), "s")
-
+	reward = randi_range(30000, 80000) * player.currentRangeMultiplier
+	upfront = float(reward) * randf_range(0.05, 0.4)
+	reward -= upfront
+	$Toolbar/Reward/Label.text = str("Total\n£", int(reward + upfront), "\nUpfront\n£", int(upfront))
 
 func _on_choose_train_button_pressed(): # TODO TODO NEEDS REWORK TO LIST AVAILABLE TRAINS
 	assignedTrain = Companies.companies.Player.trains[0]
 	assignedTrain.assignedToContract = true
 	$Toolbar/ChooseTrain.visible = false
 	$Toolbar/DurationButtons.visible = true
+	cheapestRoute = find_route("Cheapest")
+	fastestRoute = find_route("Fastest")
+	cheapestCost = find_route_stats(cheapestRoute)[0]
+	cheapestDistance = find_route_stats(cheapestRoute)[1]
+	fastestCost = find_route_stats(fastestRoute)[0]
+	fastestDistance = find_route_stats(fastestRoute)[1]
+	$Toolbar/DurationButtons/CheapestRoute/Label.text = str("Distance: ", cheapestDistance, "\nStation Tax: £", cheapestCost)
+	$Toolbar/DurationButtons/FastestRoute/Label.text = str("Distance: ", fastestDistance, "\nStation Tax: £", fastestCost)
 
 func arrived_at_destination():
 	print("arrived at destination")
@@ -48,17 +53,43 @@ func arrived_at_destination():
 	targetOne.notInContract = true
 	targetTwo.notInContract = true
 	StationManager.refresh_contract_ready_stations()
+	ContractManager.create_new_contract()
+	queue_free()
 
 
 func _on_cheapest_route_button_pressed():
-	assignedTrain.homeStationNode.spawn_train(Dijkstra.find_route("Cheapest", assignedTrain.homeStationNode, targetOne, targetTwo, true), assignedTrain.trainType, self)
+	assignedTrain.homeStationNode.spawn_train(cheapestRoute, assignedTrain.trainType, self)
+	remainingTax = cheapestCost
 	init_train_en_route_screen()
 
 func _on_fastest_route_button_pressed():
-	assignedTrain.homeStationNode.spawn_train(Dijkstra.find_route("Fastest", assignedTrain.homeStationNode, targetOne, targetTwo, true), assignedTrain.trainType, self)
+	assignedTrain.homeStationNode.spawn_train(fastestRoute, assignedTrain.trainType, self)
+	remainingTax = fastestCost
 	init_train_en_route_screen()
+
+func find_route(method):
+	return Dijkstra.find_route(method, assignedTrain.homeStationNode, targetOne, targetTwo, true)
+
+func find_route_stats(route):
+	var cost = 0
+	var distance = 0
+	for station in route.size():
+			if station == route.size() - 1: 
+				distance += route[station].global_position.distance_to(route[0].global_position)
+				if route[station].stationOwner == 0: break
+				cost += route[station].stationTax
+				break
+			distance += route[station].global_position.distance_to(route[station + 1].global_position)
+			if route[station].stationOwner > 0: cost += route[station].stationTax
+	return [int(cost), int(distance)]
 
 func init_train_en_route_screen():
 	$Toolbar/DurationButtons.visible = false
 	$Toolbar/TrainEnRoute.visible = true
+	$Toolbar/TrainEnRoute/TrainLabel.text = str(assignedTrain.trainType, " Train-", assignedTrain.homeStation)
 	$Toolbar/TrainEnRoute/TrainSprite.play(assignedTrain.trainType)
+
+func _physics_process(delta):
+	if not $Toolbar/TrainEnRoute.visible: return
+	$Toolbar/TrainEnRoute/TimeLeft.text = str("Distance Remaining: ", distanceLeft)
+	$Toolbar/TrainEnRoute/TaxLeft.text = str("Remaining Tax: £", remainingTax)

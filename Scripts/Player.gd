@@ -6,11 +6,14 @@ var ownedStations = []
 @onready var camera = $Camera
 var contractRangeSizes = [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(2.2, 2.2), Vector2(8, 8)]
 var currentContractRange = Vector2(1, 1)
+var currentRangeMultiplier = 1
 
 func _ready():
 	add_to_group("Player")
 	await get_process_delta_time()
 	check_total_station_count()
+	currentContractRange = contractRangeSizes[3]
+	change_contract_reach()
 
 func _physics_process(delta):
 	if StationManager.stations.size() > 0 and Companies.companies.Player.trains.size() == 0:
@@ -23,12 +26,15 @@ func check_total_station_count():
 	match ownedStations.size():
 		7:
 			currentContractRange = contractRangeSizes[1]
+			currentRangeMultiplier = 2.5
 			change_contract_reach()
 		12:
 			currentContractRange = contractRangeSizes[2]
+			currentRangeMultiplier = 4
 			change_contract_reach()
 		20:
 			currentContractRange = contractRangeSizes[3]
+			currentRangeMultiplier = 7
 			change_contract_reach()
 		
 

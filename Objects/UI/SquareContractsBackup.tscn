@@ -1,22 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://buyep3ncgfqxp"]
+[gd_scene load_steps=9 format=3 uid="uid://leryr8at0xnj"]
 
-[ext_resource type="Script" uid="uid://voiwnou7b78g" path="res://Scripts/UI/Contract.gd" id="1_wwxq2"]
-[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="2_sgpkp"]
-[ext_resource type="Texture2D" uid="uid://bsgqg2ns3ttuw" path="res://Assets/Trains/Early Bullet Train.png" id="3_udgyp"]
-[ext_resource type="Texture2D" uid="uid://13g231nt2co3" path="res://Assets/Trains/Early Electric Train.png" id="4_ubjbv"]
-[ext_resource type="Texture2D" uid="uid://dradec3mofs6g" path="res://Assets/Trains/Late Electric Train.png" id="6_igsx7"]
-[ext_resource type="Texture2D" uid="uid://b6d53etdd34xx" path="res://Assets/Trains/SteamEngineSilhouette.png" id="7_vpo0o"]
+[ext_resource type="Script" uid="uid://voiwnou7b78g" path="res://Scripts/UI/Contract.gd" id="1_6h27d"]
+[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="2_y6lpx"]
+[ext_resource type="Texture2D" uid="uid://bsgqg2ns3ttuw" path="res://Assets/Trains/Early Bullet Train.png" id="3_4pmtn"]
+[ext_resource type="Texture2D" uid="uid://13g231nt2co3" path="res://Assets/Trains/Early Electric Train.png" id="4_nf4ja"]
+[ext_resource type="Texture2D" uid="uid://dradec3mofs6g" path="res://Assets/Trains/Late Electric Train.png" id="5_d1pn2"]
+[ext_resource type="Texture2D" uid="uid://b6d53etdd34xx" path="res://Assets/Trains/SteamEngineSilhouette.png" id="6_utx76"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_j5vk8"]
-font = ExtResource("2_sgpkp")
+[sub_resource type="LabelSettings" id="LabelSettings_y48bj"]
+font = ExtResource("2_y6lpx")
 font_size = 8
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_8t45f"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_vvnmq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_udgyp")
+"texture": ExtResource("3_4pmtn")
 }],
 "loop": true,
 "name": &"Bullet",
@@ -24,7 +24,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_ubjbv")
+"texture": ExtResource("4_nf4ja")
 }],
 "loop": true,
 "name": &"EarlyElectric",
@@ -32,7 +32,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_igsx7")
+"texture": ExtResource("5_d1pn2")
 }],
 "loop": true,
 "name": &"Electric",
@@ -40,129 +40,120 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_vpo0o")
+"texture": ExtResource("6_utx76")
 }],
 "loop": true,
 "name": &"Steam",
 "speed": 5.0
 }]
 
-[node name="Contract" type="Control"]
+[node name="Square Contracts Backup" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1513.0
-offset_bottom = -984.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 2
-script = ExtResource("1_wwxq2")
-
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_right = 407.0
-offset_bottom = 96.0
+script = ExtResource("1_6h27d")
 
 [node name="Toolbar" type="ColorRect" parent="."]
 z_index = 1000
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
-offset_right = 405.0
-offset_bottom = 94.0
+offset_right = 208.0
+offset_bottom = 208.0
 
 [node name="Outline" type="ColorRect" parent="Toolbar"]
 z_index = -1
 layout_mode = 0
 offset_left = -2.0
 offset_top = -2.0
-offset_right = 405.0
-offset_bottom = 94.0
+offset_right = 208.0
+offset_bottom = 208.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
 [node name="Locations" type="ColorRect" parent="Toolbar"]
 z_index = 1000
 layout_mode = 0
-offset_left = 5.0
+offset_left = 4.0
 offset_top = 4.0
-offset_right = 99.0
-offset_bottom = 88.0
+offset_right = 100.0
+offset_bottom = 102.0
 
 [node name="Outline" type="ColorRect" parent="Toolbar/Locations"]
 z_index = -1
 layout_mode = 0
 offset_left = -2.0
 offset_top = -2.0
-offset_right = 96.0
-offset_bottom = 86.0
+offset_right = 98.0
+offset_bottom = 100.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
 [node name="Label" type="Label" parent="Toolbar/Locations"]
 layout_mode = 0
-offset_right = 94.0
-offset_bottom = 84.0
+offset_right = 96.0
+offset_bottom = 98.0
 text = "Target
 -
 Requester"
-label_settings = SubResource("LabelSettings_j5vk8")
+label_settings = SubResource("LabelSettings_y48bj")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Reward" type="ColorRect" parent="Toolbar"]
 z_index = 1000
 layout_mode = 0
-offset_left = 105.0
+offset_left = 106.0
 offset_top = 4.0
-offset_right = 199.0
-offset_bottom = 88.0
+offset_right = 202.0
+offset_bottom = 102.0
 
 [node name="Outline" type="ColorRect" parent="Toolbar/Reward"]
 z_index = -1
 layout_mode = 0
 offset_left = -2.0
 offset_top = -2.0
-offset_right = 96.0
-offset_bottom = 86.0
+offset_right = 98.0
+offset_bottom = 100.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
 [node name="Label" type="Label" parent="Toolbar/Reward"]
 layout_mode = 0
-offset_right = 94.0
-offset_bottom = 84.0
+offset_right = 96.0
+offset_bottom = 98.0
 text = "Total
 £100000
 
 Upfront
 £20000"
-label_settings = SubResource("LabelSettings_j5vk8")
+label_settings = SubResource("LabelSettings_y48bj")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ChooseTrain" type="ColorRect" parent="Toolbar"]
 z_index = 1
 layout_mode = 0
-offset_left = 205.0
-offset_top = 4.0
-offset_right = 399.0
-offset_bottom = 88.0
+offset_left = 4.0
+offset_top = 108.0
+offset_right = 202.0
+offset_bottom = 202.0
 
 [node name="Outline" type="ColorRect" parent="Toolbar/ChooseTrain"]
 z_index = -1
 layout_mode = 0
 offset_left = -2.0
 offset_top = -2.0
-offset_right = 196.0
-offset_bottom = 86.0
+offset_right = 200.0
+offset_bottom = 96.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
 [node name="TrainLabel" type="Label" parent="Toolbar/ChooseTrain"]
 layout_mode = 0
-offset_right = 194.0
-offset_bottom = 84.0
+offset_right = 198.0
+offset_bottom = 95.0
 text = "Select Train"
-label_settings = SubResource("LabelSettings_j5vk8")
+label_settings = SubResource("LabelSettings_y48bj")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -171,39 +162,41 @@ z_index = 1
 layout_mode = 0
 offset_left = -3.0
 offset_top = -3.0
-offset_right = 197.0
-offset_bottom = 87.0
+offset_right = 201.0
+offset_bottom = 98.0
 
 [node name="DurationButtons" type="Control" parent="Toolbar"]
 visible = false
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 2.0
+offset_top = 105.0
+offset_right = 42.0
+offset_bottom = 145.0
 
 [node name="CheapestRoute" type="ColorRect" parent="Toolbar/DurationButtons"]
 z_index = 1000
 layout_mode = 0
-offset_left = 205.0
-offset_top = 4.0
-offset_right = 399.0
-offset_bottom = 43.0
+offset_left = 2.0
+offset_top = 53.0
+offset_right = 200.0
+offset_bottom = 97.0
 
 [node name="Outline" type="ColorRect" parent="Toolbar/DurationButtons/CheapestRoute"]
 z_index = -1
 layout_mode = 0
 offset_left = -2.0
 offset_top = -2.0
-offset_right = 196.0
-offset_bottom = 41.0
+offset_right = 200.0
+offset_bottom = 46.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
 [node name="Label" type="Label" parent="Toolbar/DurationButtons/CheapestRoute"]
 layout_mode = 0
-offset_right = 194.0
-offset_bottom = 39.0
+offset_right = 198.0
+offset_bottom = 44.0
 text = "Duration: 9 days
 Station Fees: £15000"
-label_settings = SubResource("LabelSettings_j5vk8")
+label_settings = SubResource("LabelSettings_y48bj")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -211,33 +204,33 @@ vertical_alignment = 1
 layout_mode = 0
 offset_left = -3.0
 offset_top = -3.0
-offset_right = 197.0
-offset_bottom = 42.0
+offset_right = 201.0
+offset_bottom = 47.0
 
 [node name="FastestRoute" type="ColorRect" parent="Toolbar/DurationButtons"]
 z_index = 1000
 layout_mode = 0
-offset_left = 205.0
-offset_top = 49.0
-offset_right = 399.0
-offset_bottom = 88.0
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 200.0
+offset_bottom = 47.0
 
 [node name="Outline" type="ColorRect" parent="Toolbar/DurationButtons/FastestRoute"]
 z_index = -1
 layout_mode = 0
 offset_left = -2.0
 offset_top = -2.0
-offset_right = 196.0
-offset_bottom = 41.0
+offset_right = 200.0
+offset_bottom = 46.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
 [node name="Label" type="Label" parent="Toolbar/DurationButtons/FastestRoute"]
 layout_mode = 0
-offset_right = 194.0
-offset_bottom = 39.0
+offset_right = 198.0
+offset_bottom = 44.0
 text = "Duration: 7 days
 Station Fees: £25000"
-label_settings = SubResource("LabelSettings_j5vk8")
+label_settings = SubResource("LabelSettings_y48bj")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -245,62 +238,59 @@ vertical_alignment = 1
 layout_mode = 0
 offset_left = -3.0
 offset_top = -3.0
-offset_right = 197.0
-offset_bottom = 42.0
+offset_right = 201.0
+offset_bottom = 47.0
 
 [node name="TrainEnRoute" type="ColorRect" parent="Toolbar"]
 visible = false
 z_index = 1
 layout_mode = 0
-offset_left = 205.0
-offset_top = 4.0
-offset_right = 399.0
-offset_bottom = 88.0
+offset_left = 4.0
+offset_top = 108.0
+offset_right = 202.0
+offset_bottom = 202.0
 
 [node name="Outline" type="ColorRect" parent="Toolbar/TrainEnRoute"]
 z_index = -1
 layout_mode = 0
 offset_left = -2.0
 offset_top = -2.0
-offset_right = 196.0
-offset_bottom = 86.0
+offset_right = 200.0
+offset_bottom = 96.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
 [node name="TimeLeft" type="Label" parent="Toolbar/TrainEnRoute"]
 layout_mode = 0
-offset_top = 75.0
-offset_right = 194.0
-offset_bottom = 91.0
+offset_top = 71.0
+offset_right = 198.0
+offset_bottom = 87.0
 text = "Time Left: 6d 22h
 "
-label_settings = SubResource("LabelSettings_j5vk8")
+label_settings = SubResource("LabelSettings_y48bj")
+horizontal_alignment = 1
+
+[node name="TaxLeft" type="Label" parent="Toolbar/TrainEnRoute"]
+layout_mode = 0
+offset_top = 83.0
+offset_right = 198.0
+offset_bottom = 99.0
+text = "Remaining Tax: 10000
+"
+label_settings = SubResource("LabelSettings_y48bj")
 horizontal_alignment = 1
 
 [node name="TrainLabel" type="Label" parent="Toolbar/TrainEnRoute"]
 layout_mode = 0
-offset_top = -1.0
-offset_right = 194.0
-offset_bottom = 15.0
-text = "Model-Station"
-label_settings = SubResource("LabelSettings_j5vk8")
+offset_top = 2.0
+offset_right = 200.0
+offset_bottom = 19.0
+text = "Assigned Train:
+Model-Station"
+label_settings = SubResource("LabelSettings_y48bj")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TrainSprite" type="AnimatedSprite2D" parent="Toolbar/TrainEnRoute"]
-position = Vector2(97, 35)
-sprite_frames = SubResource("SpriteFrames_8t45f")
-animation = &"Electric"
-
-[node name="TaxLeft" type="Label" parent="Toolbar/TrainEnRoute"]
-layout_mode = 0
-offset_top = 62.0
-offset_right = 194.0
-offset_bottom = 78.0
-text = "Time Left: 6d 22h
-"
-label_settings = SubResource("LabelSettings_j5vk8")
-horizontal_alignment = 1
-
-[connection signal="pressed" from="Toolbar/ChooseTrain/ChooseTrainButton" to="." method="_on_choose_train_button_pressed"]
-[connection signal="pressed" from="Toolbar/DurationButtons/CheapestRoute/CheapestRouteButton" to="." method="_on_cheapest_route_button_pressed"]
-[connection signal="pressed" from="Toolbar/DurationButtons/FastestRoute/FastestRouteButton" to="." method="_on_fastest_route_button_pressed"]
+position = Vector2(97, 46)
+sprite_frames = SubResource("SpriteFrames_vvnmq")
+animation = &"Bullet"

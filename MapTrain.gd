@@ -12,6 +12,9 @@ var hoveringOverTrain = false
 var trainType
 var trainCompany
 var linkedContract
+var previousPosition
+var distanceLeft
+var taxLeft
 
 var speeds = {
 	Steam = 3,
@@ -23,12 +26,13 @@ var speeds = {
 func _ready():
 	self_modulate = trainColour
 	MapTrainManager.activeTrains.append(self)
+	previousPosition = global_position
 
 func _physics_process(delta):
 	if trainPath == null: return
 	move_to_next_station(nextNodeInPath, delta)
 	if Input.is_action_just_pressed("Escape"): if trainUI.visible: trainUI.visible = false
-	calc_time_remaining()
+	calc_distance_remaining()
 
 func find_next_node_in_path():
 	if trainPath.size() == 0: 
@@ -41,18 +45,13 @@ func find_next_node_in_path():
 	trainPath.erase(trainPath[0])
 	$Sprite2D.look_at(nextNodeInPath.global_position)
 
-func calc_time_remaining():
+func calc_distance_remaining():
 	if linkedContract == null: return
-	if trainPath == null or trainPath.size() == 0:
-		return "Journey Complete"
-		
-	var remainingDistance = 0.0
-	for i in range(trainPath.size() - 1):
-		remainingDistance += trainPath[i].global_position.distance_to(trainPath[i + 1].global_position)
-	#remainingDistance -= global_position.distance_to(trainPath[0].global_position)
-	var timeSpeed = calender.timeSpeed[calender.currentSpeed]
-	var secondsRemaining = (remainingDistance / (speeds[trainType] * speed)) * 60.0 / timeSpeed
-	linkedContract.format_time_remaining(secondsRemaining)
+	if distanceLeft == null: distanceLeft = linkedContract.find_route_stats(trainPath)[1]
+	var distanceDifference = global_position.distance_to(previousPosition)
+	previousPosition = global_position
+	distanceLeft -= distanceDifference
+	linkedContract.distanceLeft = int(distanceLeft)
 
 
 func set_ui_stats(origin, trainOwner):
@@ -82,3 +81,8 @@ func _on_area_2d_mouse_entered():
 
 func _on_area_2d_mouse_exited():
 	hoveringOverTrain = false
+
+func charge_station_tax(tax):
+	if linkedContract == null: return
+	get_tree().get_first_node_in_group("Player").wealth -= tax
+	linkedContract.remainingTax -= tax
