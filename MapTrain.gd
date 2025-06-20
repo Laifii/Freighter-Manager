@@ -15,7 +15,7 @@ var linkedContract
 var previousPosition
 var distanceLeft
 var taxLeft
-var maintenanceCost
+var previousDistanceLeft
 
 var speeds = {
 	Steam = 3,
@@ -28,7 +28,6 @@ func _ready():
 	self_modulate = trainColour
 	MapTrainManager.activeTrains.append(self)
 	previousPosition = global_position
-	maintenanceCost = speed
 
 func _physics_process(delta):
 	if trainPath == null: return
@@ -50,11 +49,16 @@ func find_next_node_in_path():
 
 func calc_distance_remaining():
 	if linkedContract == null: return
-	if distanceLeft == null: distanceLeft = linkedContract.find_route_stats(trainPath)[1]
+	if distanceLeft == null: 
+		distanceLeft = linkedContract.find_route_stats(trainPath)[1]
+		previousDistanceLeft = int(distanceLeft)
 	var distanceDifference = global_position.distance_to(previousPosition)
 	previousPosition = global_position
 	distanceLeft -= distanceDifference
 	linkedContract.distanceLeft = int(distanceLeft)
+	if previousDistanceLeft > linkedContract.distanceLeft: 
+		linkedContract.player.wealth -= speed
+		previousDistanceLeft = int(distanceLeft)
 
 
 func set_ui_stats(origin, trainOwner):

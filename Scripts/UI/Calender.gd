@@ -15,11 +15,12 @@ var displayNames = {
 }
 var minuteFiller = "0"
 var hourFiller = "0"
-var currentSpeed = 1
+var currentSpeed = 0
+var speedBeforePause = 1
 var timeSpeed = [0, 60, 360, 1200]
 
 var daysInMonth = [31,28,31,30,31,30,31,31,30,31,30,31]
-var floatMinutes = 0
+var floatMinutes = 59
 var savedTime
 var previousPayday = 0
 var isPayday = false
@@ -28,6 +29,12 @@ func _ready():
 	display_date()
 
 func _physics_process(delta):
+	if Input.is_action_just_pressed("Pause"): 
+		if currentSpeed == 0:
+			currentSpeed = speedBeforePause
+		else: 
+			speedBeforePause = currentSpeed
+			currentSpeed = 0
 	floatMinutes += delta * timeSpeed[currentSpeed]
 	time.minute = floor(floatMinutes)
 	display_time()
@@ -89,3 +96,7 @@ func _on_speed_button_2_pressed():
 
 func _on_speed_button_3_pressed():
 	currentSpeed = 3
+
+
+func _on_pause_button_pressed():
+	currentSpeed = 0

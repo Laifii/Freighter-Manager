@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dv5u1u046276g"]
+[gd_scene load_steps=18 format=3 uid="uid://dv5u1u046276g"]
 
 [ext_resource type="Script" uid="uid://ddud6ts7hxa43" path="res://Scripts/Toolbar.gd" id="1_cb3is"]
 [ext_resource type="Texture2D" uid="uid://cmp32tme8xayw" path="res://Assets/UI/Clipboard Small.png" id="2_0gaa0"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://b84ufh5cqxt0q" path="res://Assets/UI/Graph Icon.png" id="8_5liad"]
 [ext_resource type="Script" uid="uid://ci8kuq61pfm4r" path="res://Objects/UI/ContractsScreen.gd" id="9_t74ta"]
 [ext_resource type="Texture2D" uid="uid://brafxe7gxktt0" path="res://Assets/UI/Refresh icon.png" id="10_73vpv"]
+[ext_resource type="Script" uid="uid://dp6y503081m2u" path="res://Objects/UI/AuctionHouseScreen.gd" id="11_0h8um"]
+[ext_resource type="PackedScene" uid="uid://ttav4lxxh4xd" path="res://Objects/Train Label.tscn" id="11_t74ta"]
+[ext_resource type="PackedScene" uid="uid://dovr8skkiyjqu" path="res://Objects/Station Label.tscn" id="12_73vpv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ll5fu"]
 font = ExtResource("3_mymyo")
@@ -33,6 +36,8 @@ font_color = Color(0, 0, 0, 1)
 z_index = 3000
 layout_mode = 3
 anchors_preset = 0
+offset_left = 9.0
+offset_right = 9.0
 size_flags_horizontal = 0
 size_flags_vertical = 4
 script = ExtResource("1_cb3is")
@@ -40,9 +45,9 @@ script = ExtResource("1_cb3is")
 [node name="Toolbar" type="ColorRect" parent="."]
 z_index = 1000
 layout_mode = 0
-offset_left = -204.0
+offset_left = -213.0
 offset_top = 437.0
-offset_right = 203.0
+offset_right = 194.0
 offset_bottom = 528.0
 
 [node name="Outline" type="ColorRect" parent="Toolbar"]
@@ -205,13 +210,6 @@ offset_right = 77.0
 offset_bottom = 85.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
-[node name="AuctionHouseButton" type="TextureButton" parent="Toolbar/AuctionHouse"]
-layout_mode = 0
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 78.0
-offset_bottom = 86.0
-
 [node name="Label" type="Label" parent="Toolbar/AuctionHouse"]
 layout_mode = 0
 offset_left = 8.0
@@ -241,6 +239,13 @@ offset_right = 3.75
 offset_bottom = -7.0
 rotation = 0.244346
 texture = ExtResource("7_f0ocy")
+
+[node name="AuctionHouseButton" type="TextureButton" parent="Toolbar/AuctionHouse"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 78.0
+offset_bottom = 86.0
 
 [node name="Companies" type="ColorRect" parent="Toolbar"]
 z_index = 1000
@@ -287,14 +292,19 @@ offset_bottom = 8.0
 scale = Vector2(4, 4)
 texture = ExtResource("8_5liad")
 
-[node name="ContractsScreen" type="Control" parent="."]
+[node name="Screens" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ContractsScreen" type="Control" parent="Screens"]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("9_t74ta")
 
-[node name="Backboard" type="ColorRect" parent="ContractsScreen"]
+[node name="Backboard" type="ColorRect" parent="Screens/ContractsScreen"]
 z_index = 1000
 layout_mode = 0
 offset_left = -412.0
@@ -302,7 +312,7 @@ offset_top = -372.0
 offset_right = 394.0
 offset_bottom = 292.0
 
-[node name="Outline" type="ColorRect" parent="ContractsScreen/Backboard"]
+[node name="Outline" type="ColorRect" parent="Screens/ContractsScreen/Backboard"]
 z_index = -1
 layout_mode = 0
 offset_left = -2.0
@@ -311,13 +321,13 @@ offset_right = 808.0
 offset_bottom = 667.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
-[node name="RefreshIcon" type="Sprite2D" parent="ContractsScreen/Backboard"]
+[node name="RefreshIcon" type="Sprite2D" parent="Screens/ContractsScreen/Backboard"]
 self_modulate = Color(0.556863, 0.556863, 0.556863, 1)
 z_index = 10
 position = Vector2(784, 23)
 texture = ExtResource("10_73vpv")
 
-[node name="TextureButton" type="TextureButton" parent="ContractsScreen/Backboard/RefreshIcon"]
+[node name="TextureButton" type="TextureButton" parent="Screens/ContractsScreen/Backboard/RefreshIcon"]
 z_index = -1
 anchors_preset = -1
 anchor_left = -0.25
@@ -331,7 +341,7 @@ offset_bottom = 27.0
 texture_hover = SubResource("GradientTexture2D_73vpv")
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="ContractsScreen/Backboard"]
+[node name="Label" type="Label" parent="Screens/ContractsScreen/Backboard"]
 layout_mode = 0
 offset_top = 11.0
 offset_right = 806.0
@@ -341,7 +351,7 @@ label_settings = SubResource("LabelSettings_t74ta")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="ContractsScreen"]
+[node name="GridContainer" type="GridContainer" parent="Screens/ContractsScreen"]
 layout_mode = 0
 offset_left = -414.0
 offset_top = -325.0
@@ -349,5 +359,93 @@ offset_right = 385.0
 offset_bottom = 224.0
 columns = 2
 
+[node name="AuctionHouseScreen" type="Control" parent="Screens"]
+anchors_preset = 0
+offset_top = 137.0
+offset_right = 40.0
+offset_bottom = 177.0
+script = ExtResource("11_0h8um")
+
+[node name="Backboard" type="ColorRect" parent="Screens/AuctionHouseScreen"]
+z_index = 1000
+layout_mode = 0
+offset_left = -412.0
+offset_top = -372.0
+offset_right = 394.0
+offset_bottom = 69.0
+
+[node name="Outline" type="ColorRect" parent="Screens/AuctionHouseScreen/Backboard"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -3.0
+offset_right = 808.0
+offset_bottom = 444.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="Label" type="Label" parent="Screens/AuctionHouseScreen/Backboard"]
+layout_mode = 0
+offset_top = 11.0
+offset_right = 806.0
+offset_bottom = 34.0
+text = "Auction House"
+label_settings = SubResource("LabelSettings_t74ta")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TrainsLabel" type="Label" parent="Screens/AuctionHouseScreen/Backboard"]
+layout_mode = 0
+offset_left = 411.0
+offset_top = 47.0
+offset_right = 806.0
+offset_bottom = 70.0
+text = "Trains:"
+label_settings = SubResource("LabelSettings_t74ta")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TrainsLabel2" type="Label" parent="Screens/AuctionHouseScreen/Backboard"]
+layout_mode = 0
+offset_top = 51.0
+offset_right = 411.0
+offset_bottom = 74.0
+text = "Station Deals:"
+label_settings = SubResource("LabelSettings_t74ta")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Screens/AuctionHouseScreen"]
+layout_mode = 0
+offset_left = -13.0
+offset_top = -302.0
+offset_right = 394.0
+offset_bottom = 62.0
+
+[node name="TrainLabel" parent="Screens/AuctionHouseScreen/GridContainer" instance=ExtResource("11_t74ta")]
+layout_mode = 2
+trainType = 0
+
+[node name="TrainLabel2" parent="Screens/AuctionHouseScreen/GridContainer" instance=ExtResource("11_t74ta")]
+layout_mode = 2
+trainType = 1
+
+[node name="TrainLabel3" parent="Screens/AuctionHouseScreen/GridContainer" instance=ExtResource("11_t74ta")]
+layout_mode = 2
+
+[node name="TrainLabel4" parent="Screens/AuctionHouseScreen/GridContainer" instance=ExtResource("11_t74ta")]
+layout_mode = 2
+trainType = 3
+
+[node name="StationDeals" type="GridContainer" parent="Screens/AuctionHouseScreen"]
+layout_mode = 0
+offset_left = -414.0
+offset_top = -302.0
+offset_right = -7.0
+offset_bottom = 62.0
+
+[node name="StationLabel" parent="Screens/AuctionHouseScreen/StationDeals" instance=ExtResource("12_73vpv")]
+layout_mode = 2
+
 [connection signal="pressed" from="Toolbar/Contracts/ContractButton" to="." method="_on_contract_button_pressed"]
-[connection signal="pressed" from="ContractsScreen/Backboard/RefreshIcon/TextureButton" to="ContractsScreen" method="_on_refresh_button_pressed"]
+[connection signal="pressed" from="Toolbar/AuctionHouse/AuctionHouseButton" to="." method="_on_auction_house_button_pressed"]
+[connection signal="pressed" from="Screens/ContractsScreen/Backboard/RefreshIcon/TextureButton" to="Screens/ContractsScreen" method="_on_refresh_button_pressed"]

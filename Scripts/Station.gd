@@ -9,11 +9,12 @@ extends Node2D
 @onready var stationUI = $StationUI
 @onready var player = get_tree().get_first_node_in_group("Player")
 
-var stationedTrain
+var stationedTrains = []
 var priceToUpgrade = [500000, 1000000, 3000000, 6000000]
 var stationValue 
 var weeklyIncome
 var notInContract = true
+var notInDeal = true
 var holdingItem = false
 var seethroughText = false
 var hoveringOverStation = false
@@ -31,6 +32,8 @@ var sizeList = ["Local", "Connector", "Large", "Hub", "Capital"]
 var stationTax 
 var companyList = ["Player", "None", "ScottishRail", "UnitedRail", "CelticCargo", "BirminghamExpress", "LondonFreighters"]
 var visualOwnerList = ["You", "Unowned", "Scottish\nRail", "United\nRail", "Celtic\nCargo", "Birmingham\nExpress", "London\nFreighters"]
+var trainSelectMode = false
+var highlightAppearing = true
 
 var contract = {
 	available = false,
@@ -72,7 +75,7 @@ func set_station_stats():
 	$StationUI/Size.text = sizeList[stationSize]
 	$StationUI/Owner.text = visualOwnerList[stationOwner]
 	stationValue = int(500000 * (float(connections.size()) / 4) * (float(stationOwner) + 1.0 / 2.0) * (float(stationSize) + 1.0 / 4.0))
-	weeklyIncome = 10000 * connections.size() * int((float(stationSize + 1) * 1.5))
+	weeklyIncome = 10000 * (connections.size() / 2) * int((float(stationSize + 1) * 1.5)) if connections.size() > 1 else 5000 * int((float(stationSize + 1) * 1.5))
 	stationTax = 100 * int((float(stationSize) * 3) * stationOwner) if stationSize > 0 else 250 * (stationOwner / 2)
 	$StationUI/Income.text = str("Income:\n", weeklyIncome, " / Week")
 	$StationUI/UnownedStation/ValueRect/Value.text = str("£", stationValue)
@@ -121,12 +124,20 @@ func _physics_process(delta):
 	elif not seethroughText and nameplate.modulate[3] < 95:
 		nameplate.modulate[3] = lerp(nameplate.modulate[3], 0.95, 0.2)
 	if Input.is_action_just_pressed("Escape"): if $StationUI.visible: $StationUI.visible = false
+	if stationOwner > 0: return
+	if trainSelectMode:
+		flash_highlight()
+	else:
+		$SelectHighlight.self_modulate[3] = 0.0
 
 func _unhandled_input(event):
 	if not hoveringOverStation: return
 	if event is not InputEventMouseButton: return
 	if not event.is_pressed(): return
 	if event.button_index != 1: return
+	if trainSelectMode and stationOwner == 0:
+		assign_train_to_station()
+		return
 	var selfState = $StationUI.visible
 	for station in StationManager.stations:
 		if station.stationUI.visible: station.stationUI.visible = false
@@ -139,16 +150,21 @@ func _on_station_button_mouse_exited():
 	hoveringOverStation = false
 
 func _on_purchase_button_pressed():
-	purchase_station()
-
-func purchase_station():
 	if player.wealth < stationValue: return
-	player.wealth -= stationValue
+	purchase_station(stationValue)
+
+func purchase_station(price):
+	player.wealth -= price
+	if stationOwner != 1: Companies.companies[companyList[stationOwner]].stations.erase(self)
 	stationOwner = 0
 	player.ownedStations.append(self)
+	Companies.companies.Player.stations.append(stationName)
+	
 	$StationUI/UnownedStation.visible = false
 	$StationUI/OwnedStation.visible = true
 	set_station_stats()
+	player.check_total_station_count()
+	player.camera.display_assets()
 
 func upgrade_station():
 	if player.wealth < priceToUpgrade[stationSize]: return
@@ -164,6 +180,25 @@ func generate_passive_income():
 func _on_upgrade_button_pressed():
 	upgrade_station()
 
+func flash_highlight():
+	if highlightAppearing:
+		$SelectHighlight.self_modulate[3] += 0.02
+	else:
+		$SelectHighlight.self_modulate[3] -= 0.02
+	if $SelectHighlight.self_modulate[3] > 0.75:
+		highlightAppearing = false
+	elif $SelectHighlight.self_modulate[3] < 0.1:
+		highlightAppearing = true
+
+func assign_train_to_station():
+	player.pendingTrain.homeStation = stationName
+	player.pendingTrain.homeStationNode = self
+	stationedTrains.append(player.pendingTrain)
+	Companies.companies.Player.trains.append(player.pendingTrain)
+	player.camera.display_assets()
+	trainSelectMode = false
+	player.wealth -= player.pendingTrain.salePrice
+	player.pendingTrain = null
 
 func _on_train_identifier_body_entered(body):
 	body.find_next_node_in_path()

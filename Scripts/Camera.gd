@@ -50,3 +50,6 @@ func _physics_process(delta):
 		zoom = lerp(zoom, camZoom.target, 0.2)
 		ui.scale.x = 1 / zoom.x
 		ui.scale.y = 1 / zoom.y
+
+func display_assets():
+	$UI/PlayerStats/Nameplate.text = str("Stations: ", Companies.companies.Player.stations.size(), " Trains: ", Companies.companies.Player.trains.size())

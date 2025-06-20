@@ -10,6 +10,7 @@ func _ready():
 	if $Backboard/RefreshIcon/TextureButton.disabled: $Backboard/RefreshIcon/TextureButton.disabled = false
 
 func _physics_process(delta):
+	if Input.is_action_just_pressed("Escape"): visible = false
 	if StationManager.contractReadyStations.size() < 2: return
 	if $GridContainer.get_children().size() < maxContracts:
 		add_new_contract()

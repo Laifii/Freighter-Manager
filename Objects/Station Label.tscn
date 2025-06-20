@@ -1,53 +1,62 @@
-[gd_scene load_steps=9 format=3 uid="uid://ttav4lxxh4xd"]
+[gd_scene load_steps=10 format=3 uid="uid://dovr8skkiyjqu"]
 
-[ext_resource type="Texture2D" uid="uid://bsgqg2ns3ttuw" path="res://Assets/Trains/Early Bullet Train.png" id="1_lk6x5"]
-[ext_resource type="Script" uid="uid://dftgdhyrra1rh" path="res://Objects/TrainLabel.gd" id="1_neln4"]
-[ext_resource type="Texture2D" uid="uid://13g231nt2co3" path="res://Assets/Trains/Early Electric Train.png" id="2_neln4"]
-[ext_resource type="Texture2D" uid="uid://dradec3mofs6g" path="res://Assets/Trains/Late Electric Train.png" id="3_3rh8n"]
-[ext_resource type="Texture2D" uid="uid://b6d53etdd34xx" path="res://Assets/Trains/SteamEngineSilhouette.png" id="4_tie31"]
-[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="5_hovki"]
+[ext_resource type="Script" uid="uid://b4urtryavegtv" path="res://Objects/StationLabel.gd" id="1_b2hvm"]
+[ext_resource type="Texture2D" uid="uid://b14rjssw0cs58" path="res://Assets/UI/Stations/Capital.png" id="2_oq2vt"]
+[ext_resource type="Texture2D" uid="uid://bb1fp7rbxage8" path="res://Assets/UI/Stations/Connector.png" id="3_gv4kx"]
+[ext_resource type="Texture2D" uid="uid://bgcwpiq2l1dhj" path="res://Assets/UI/Stations/Hub.png" id="4_16yoe"]
+[ext_resource type="Texture2D" uid="uid://b3004qu2cq4eh" path="res://Assets/UI/Stations/Large.png" id="5_h6rsg"]
+[ext_resource type="Texture2D" uid="uid://brmlr6kjgkewg" path="res://Assets/UI/Stations/Local.png" id="6_kwtoa"]
+[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="7_m2umt"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_2t7w4"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_sbkul"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_lk6x5")
+"texture": ExtResource("2_oq2vt")
 }],
 "loop": true,
-"name": &"Bullet",
+"name": &"Capital",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_neln4")
+"texture": ExtResource("3_gv4kx")
 }],
 "loop": true,
-"name": &"Early Electric",
+"name": &"Connector",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_3rh8n")
+"texture": ExtResource("4_16yoe")
 }],
 "loop": true,
-"name": &"Electric",
+"name": &"Hub",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_tie31")
+"texture": ExtResource("5_h6rsg")
 }],
 "loop": true,
-"name": &"Steam",
+"name": &"Large",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_kwtoa")
+}],
+"loop": true,
+"name": &"Local",
 "speed": 5.0
 }]
 
-[sub_resource type="LabelSettings" id="LabelSettings_1l2i6"]
-font = ExtResource("5_hovki")
+[sub_resource type="LabelSettings" id="LabelSettings_neqdo"]
+font = ExtResource("7_m2umt")
 font_size = 8
 font_color = Color(0, 0, 0, 1)
 
-[node name="TrainLabel" type="Control"]
+[node name="StationLabel" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,8 +65,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_neln4")
-trainType = 2
+script = ExtResource("1_b2hvm")
 
 [node name="Toolbar" type="ColorRect" parent="."]
 z_index = 1000
@@ -76,7 +84,7 @@ offset_right = 405.0
 offset_bottom = 94.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
-[node name="Train" type="ColorRect" parent="Toolbar"]
+[node name="Station" type="ColorRect" parent="Toolbar"]
 z_index = 1000
 layout_mode = 0
 offset_left = 5.0
@@ -84,7 +92,7 @@ offset_top = 4.0
 offset_right = 199.0
 offset_bottom = 88.0
 
-[node name="Outline" type="ColorRect" parent="Toolbar/Train"]
+[node name="Outline" type="ColorRect" parent="Toolbar/Station"]
 z_index = -1
 layout_mode = 0
 offset_left = -2.0
@@ -93,29 +101,19 @@ offset_right = 196.0
 offset_bottom = 86.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
-[node name="TrainSprite" type="AnimatedSprite2D" parent="Toolbar/Train"]
-position = Vector2(97, 38)
-sprite_frames = SubResource("SpriteFrames_2t7w4")
-animation = &"Early Electric"
+[node name="StationSprite" type="AnimatedSprite2D" parent="Toolbar/Station"]
+position = Vector2(97, 49)
+sprite_frames = SubResource("SpriteFrames_sbkul")
+animation = &"Local"
 
-[node name="Label" type="Label" parent="Toolbar/Train"]
+[node name="Label" type="Label" parent="Toolbar/Station"]
 layout_mode = 0
 offset_left = 1.0
 offset_top = -5.0
 offset_right = 195.0
 offset_bottom = 21.0
-text = "Electric Train"
-label_settings = SubResource("LabelSettings_1l2i6")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Maintenance" type="Label" parent="Toolbar/Train"]
-layout_mode = 0
-offset_top = 60.0
-offset_right = 194.0
-offset_bottom = 86.0
-text = "Maintenance Cost: £9/km"
-label_settings = SubResource("LabelSettings_1l2i6")
+text = "Station Name"
+label_settings = SubResource("LabelSettings_neqdo")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -141,8 +139,27 @@ layout_mode = 0
 offset_right = 194.0
 offset_bottom = 84.0
 text = "Purchase:
-£1000000"
-label_settings = SubResource("LabelSettings_1l2i6")
+£1000000
+£800000"
+label_settings = SubResource("LabelSettings_neqdo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Toolbar/InAuctionHouse/Label"]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 41.0
+offset_right = 141.0
+offset_bottom = 43.0
+color = Color(0, 0, 0, 1)
+
+[node name="Income" type="Label" parent="Toolbar/InAuctionHouse"]
+layout_mode = 0
+offset_top = 63.0
+offset_right = 194.0
+offset_bottom = 89.0
+text = "Income :£10000"
+label_settings = SubResource("LabelSettings_neqdo")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -178,7 +195,7 @@ offset_right = 194.0
 offset_bottom = 84.0
 text = "Purchase:
 £1000000"
-label_settings = SubResource("LabelSettings_1l2i6")
+label_settings = SubResource("LabelSettings_neqdo")
 horizontal_alignment = 1
 vertical_alignment = 1
 

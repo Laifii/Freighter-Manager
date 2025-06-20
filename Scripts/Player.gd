@@ -7,12 +7,16 @@ var ownedStations = []
 var contractRangeSizes = [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(2.2, 2.2), Vector2(8, 8)]
 var currentContractRange = Vector2(1, 1)
 var currentRangeMultiplier = 1
+var pendingTrain: Train
 
 func _ready():
 	add_to_group("Player")
 	await get_tree().create_timer(0.1).timeout
 	check_total_station_count()
 	Companies.companies.Player.trains.append(Train.new("Steam", "Dundee"))
+	for station in StationManager.stations: if station.stationName == "Dundee": 
+		station.stationedTrains.append(Companies.companies.Player.trains[0])
+		Companies.companies.Player.stations.append(station)
 
 func _physics_process(delta):
 	

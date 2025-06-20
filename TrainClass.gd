@@ -4,11 +4,12 @@ var trainType: String
 var homeStation: String
 var assignedToContract = false
 var homeStationNode
+var salePrice: int
 
-func _init(trainType: String, homeStation: String):
+func _init(trainType: String, homeStation: String, salePrice: int = 0):
 	self.trainType = trainType
 	self.homeStation = homeStation
-	Companies.companies.Player.trains.append(self)
+	self.salePrice = salePrice
 	homeStationNode = identify_home_station_node()
 
 func identify_home_station_node():

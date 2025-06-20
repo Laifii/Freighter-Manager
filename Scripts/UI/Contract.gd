@@ -98,5 +98,5 @@ func init_train_en_route_screen():
 
 func _physics_process(delta):
 	if not $Toolbar/TrainEnRoute.visible: return
-	$Toolbar/TrainEnRoute/TimeLeft.text = str("Distance Remaining: ", distanceLeft)
+	$Toolbar/TrainEnRoute/TimeLeft.text = str("Distance Left: ", distanceLeft, " km")
 	$Toolbar/TrainEnRoute/TaxLeft.text = str("Remaining Tax: £", remainingTax)

@@ -1,5 +1,6 @@
 extends Node
 
+# It may not seem like it but this is one of the most important scripts in the game
 var stations = []
 var stationsInContractRange = []
 var contractReadyStations = []
