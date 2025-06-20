@@ -6,6 +6,7 @@ func _on_contract_button_pressed():
 	for screen in $Screens.get_children():
 		if screen.visible: screen.visible = false
 	$Screens/ContractsScreen.visible = !visibleState
+	$Screens/ContractsScreen.pendingFinishedContracts = 0
 
 
 func _on_auction_house_button_pressed():
@@ -13,3 +14,8 @@ func _on_auction_house_button_pressed():
 	for screen in $Screens.get_children():
 		if screen.visible: screen.visible = false
 	$Screens/AuctionHouseScreen.visible = !visibleState
+
+func _physics_process(delta):
+	$Toolbar/Contracts/Label2.text = str($Screens/ContractsScreen.pendingFinishedContracts)
+	if $Screens/ContractsScreen.pendingFinishedContracts == 0: $Toolbar/Contracts/Label2.visible = false
+	else: $Toolbar/Contracts/Label2.visible = true

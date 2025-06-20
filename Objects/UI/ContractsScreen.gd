@@ -2,6 +2,7 @@ extends Control
 
 var maxContracts = 12
 var contractScene = preload("res://Objects/UI/Contract.tscn")
+var pendingFinishedContracts = 0
 
 func _ready():
 	await get_tree().create_timer(0.2).timeout
@@ -14,6 +15,7 @@ func _physics_process(delta):
 	if StationManager.contractReadyStations.size() < 2: return
 	if $GridContainer.get_children().size() < maxContracts:
 		add_new_contract()
+	
 
 func add_new_contract():
 	var contract = contractScene.instantiate()

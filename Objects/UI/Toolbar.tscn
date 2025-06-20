@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dv5u1u046276g"]
+[gd_scene load_steps=22 format=3 uid="uid://dv5u1u046276g"]
 
 [ext_resource type="Script" uid="uid://ddud6ts7hxa43" path="res://Scripts/Toolbar.gd" id="1_cb3is"]
 [ext_resource type="Texture2D" uid="uid://cmp32tme8xayw" path="res://Assets/UI/Clipboard Small.png" id="2_0gaa0"]
@@ -18,6 +18,10 @@
 font = ExtResource("3_mymyo")
 font_size = 8
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_f0ocy"]
+font = ExtResource("3_mymyo")
+font_color = Color(1, 0, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_t74ta"]
 offsets = PackedFloat32Array(1)
@@ -113,6 +117,16 @@ offset_top = -3.0
 offset_right = 78.0
 offset_bottom = 86.0
 action_mode = 0
+
+[node name="Label2" type="Label" parent="Toolbar/Contracts"]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 63.0
+offset_right = 76.0
+offset_bottom = 86.0
+label_settings = SubResource("LabelSettings_f0ocy")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StationManagement" type="ColorRect" parent="Toolbar"]
 z_index = 1000
@@ -310,6 +324,7 @@ offset_right = 49.0
 offset_bottom = 40.0
 
 [node name="ContractsScreen" type="Control" parent="Screens"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

@@ -54,6 +54,8 @@ func arrived_at_destination():
 	targetTwo.notInContract = true
 	StationManager.refresh_contract_ready_stations()
 	player.wealth += int(reward)
+	if not get_parent().get_parent().visible:
+		get_parent().get_parent().pendingFinishedContracts += 1
 	queue_free()
 
 func select_train():

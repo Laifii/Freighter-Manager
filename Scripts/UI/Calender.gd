@@ -52,6 +52,7 @@ func update_day():
 func update_month():
 	time.month += 1
 	time.day = 1
+	get_parent().get_parent().get_parent().refreshAuctionHouse = true # this is a silly line, it refers to the player
 	if time.month != 13: display_date()
 	if time.month > 12: update_year()
 func update_year():
@@ -65,8 +66,6 @@ func update_payday():
 		previousPayday = time.day
 		for station in StationManager.stations:
 			station.generate_passive_income()
-		get_parent().get_parent().get_parent().refreshAuctionHouse = true # this is a silly line, it refers to the player
-	
 
 func display_time():
 	minuteFiller = "0" if time.minute < 10 else ""
