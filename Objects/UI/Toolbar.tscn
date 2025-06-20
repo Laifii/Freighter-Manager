@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dv5u1u046276g"]
+[gd_scene load_steps=15 format=3 uid="uid://dv5u1u046276g"]
 
 [ext_resource type="Script" uid="uid://ddud6ts7hxa43" path="res://Scripts/Toolbar.gd" id="1_cb3is"]
 [ext_resource type="Texture2D" uid="uid://cmp32tme8xayw" path="res://Assets/UI/Clipboard Small.png" id="2_0gaa0"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://h0v8gh6hlole" path="res://Assets/UI/AuctionHouseGavelPuck.png" id="6_0h8um"]
 [ext_resource type="Texture2D" uid="uid://b1t1df8lh74s0" path="res://Assets/UI/Auction House Gavel.png" id="7_f0ocy"]
 [ext_resource type="Texture2D" uid="uid://b84ufh5cqxt0q" path="res://Assets/UI/Graph Icon.png" id="8_5liad"]
-[ext_resource type="PackedScene" uid="uid://buyep3ncgfqxp" path="res://Objects/UI/Contract.tscn" id="9_0gaa0"]
 [ext_resource type="Script" uid="uid://ci8kuq61pfm4r" path="res://Objects/UI/ContractsScreen.gd" id="9_t74ta"]
 [ext_resource type="Texture2D" uid="uid://brafxe7gxktt0" path="res://Assets/UI/Refresh icon.png" id="10_73vpv"]
 
@@ -289,6 +288,7 @@ scale = Vector2(4, 4)
 texture = ExtResource("8_5liad")
 
 [node name="ContractsScreen" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -346,37 +346,8 @@ layout_mode = 0
 offset_left = -414.0
 offset_top = -325.0
 offset_right = 385.0
-offset_bottom = 142.0
+offset_bottom = 224.0
 columns = 2
 
-[node name="Contract" parent="ContractsScreen/GridContainer" instance=ExtResource("9_0gaa0")]
-layout_mode = 2
-
-[node name="Contract2" parent="ContractsScreen/GridContainer" instance=ExtResource("9_0gaa0")]
-layout_mode = 2
-
-[node name="Contract3" parent="ContractsScreen/GridContainer" instance=ExtResource("9_0gaa0")]
-layout_mode = 2
-
-[node name="Contract4" parent="ContractsScreen/GridContainer" instance=ExtResource("9_0gaa0")]
-layout_mode = 2
-
-[node name="Contract5" parent="ContractsScreen/GridContainer" instance=ExtResource("9_0gaa0")]
-layout_mode = 2
-
-[node name="Contract6" parent="ContractsScreen/GridContainer" instance=ExtResource("9_0gaa0")]
-layout_mode = 2
-
-[node name="Contract7" parent="ContractsScreen/GridContainer" instance=ExtResource("9_0gaa0")]
-layout_mode = 2
-
-[node name="Contract8" parent="ContractsScreen/GridContainer" instance=ExtResource("9_0gaa0")]
-layout_mode = 2
-
-[node name="Contract9" parent="ContractsScreen/GridContainer" instance=ExtResource("9_0gaa0")]
-layout_mode = 2
-
-[node name="Contract10" parent="ContractsScreen/GridContainer" instance=ExtResource("9_0gaa0")]
-layout_mode = 2
-
 [connection signal="pressed" from="Toolbar/Contracts/ContractButton" to="." method="_on_contract_button_pressed"]
+[connection signal="pressed" from="ContractsScreen/Backboard/RefreshIcon/TextureButton" to="ContractsScreen" method="_on_refresh_button_pressed"]

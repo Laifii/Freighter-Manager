@@ -81,7 +81,6 @@ collision_mask = 4
 shape = SubResource("CircleShape2D_qutln")
 
 [node name="StationUI" type="ColorRect" parent="."]
-visible = false
 z_index = 1000
 offset_left = -61.0
 offset_top = -96.0

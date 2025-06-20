@@ -1,7 +1,7 @@
 extends Node
 
 var companies = {
-	Player = {stations = [], trains = [], activeTrains = []},
+	Player = {stations = [], trains = [], activeTrains = [], trainStorage = []},
 	ScottishRail = {stations = [], trains = [{trainType = "Steam"}, {trainType = "Steam"}, {trainType = "EarlyElectric"}, {trainType = "Electric"}], activeTrains = []},
 	UnitedRail = {stations = [], trains = [{trainType = "Steam"}, {trainType = "EarlyElectric"}, {trainType = "Electric"}, {trainType = "Electric"}, {trainType = "Electric"}], activeTrains = []},
 	CelticCargo = {stations = [], trains = [{trainType = "Steam"}, {trainType = "EarlyElectric"}, {trainType = "Electric"}, {trainType = "Electric"}, {trainType = "Electric"}], activeTrains = []},

@@ -1,0 +1,181 @@
+[gd_scene load_steps=9 format=3 uid="uid://ttav4lxxh4xd"]
+
+[ext_resource type="Texture2D" uid="uid://bsgqg2ns3ttuw" path="res://Assets/Trains/Early Bullet Train.png" id="1_lk6x5"]
+[ext_resource type="Script" uid="uid://dftgdhyrra1rh" path="res://Objects/TrainLabel.gd" id="1_neln4"]
+[ext_resource type="Texture2D" uid="uid://13g231nt2co3" path="res://Assets/Trains/Early Electric Train.png" id="2_neln4"]
+[ext_resource type="Texture2D" uid="uid://dradec3mofs6g" path="res://Assets/Trains/Late Electric Train.png" id="3_3rh8n"]
+[ext_resource type="Texture2D" uid="uid://b6d53etdd34xx" path="res://Assets/Trains/SteamEngineSilhouette.png" id="4_tie31"]
+[ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="5_hovki"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2t7w4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_lk6x5")
+}],
+"loop": true,
+"name": &"Bullet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_neln4")
+}],
+"loop": true,
+"name": &"EarlyElectric",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3rh8n")
+}],
+"loop": true,
+"name": &"Electric",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_tie31")
+}],
+"loop": true,
+"name": &"Steam",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1l2i6"]
+font = ExtResource("5_hovki")
+font_size = 8
+font_color = Color(0, 0, 0, 1)
+
+[node name="TrainLabel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_neln4")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 407.0
+offset_bottom = 96.0
+
+[node name="Toolbar" type="ColorRect" parent="."]
+z_index = 1000
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 405.0
+offset_bottom = 94.0
+
+[node name="Outline" type="ColorRect" parent="Toolbar"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 405.0
+offset_bottom = 94.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="Train" type="ColorRect" parent="Toolbar"]
+z_index = 1000
+layout_mode = 0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 199.0
+offset_bottom = 88.0
+
+[node name="Outline" type="ColorRect" parent="Toolbar/Train"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 196.0
+offset_bottom = 86.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="TrainSprite" type="AnimatedSprite2D" parent="Toolbar/Train"]
+position = Vector2(97, 51)
+sprite_frames = SubResource("SpriteFrames_2t7w4")
+animation = &"Electric"
+
+[node name="Label" type="Label" parent="Toolbar/Train"]
+layout_mode = 0
+offset_right = 194.0
+offset_bottom = 26.0
+text = "Electric Train"
+label_settings = SubResource("LabelSettings_1l2i6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InAuctionHouse" type="ColorRect" parent="Toolbar"]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 205.0
+offset_top = 4.0
+offset_right = 399.0
+offset_bottom = 88.0
+
+[node name="Outline" type="ColorRect" parent="Toolbar/InAuctionHouse"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 196.0
+offset_bottom = 86.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="ChooseTrainButton" type="TextureButton" parent="Toolbar/InAuctionHouse"]
+z_index = 1
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 197.0
+offset_bottom = 87.0
+
+[node name="Label" type="Label" parent="Toolbar/InAuctionHouse"]
+layout_mode = 0
+offset_right = 194.0
+offset_bottom = 84.0
+text = "Purchase:
+£1000000"
+label_settings = SubResource("LabelSettings_1l2i6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SelectStation" type="ColorRect" parent="Toolbar"]
+z_index = 1
+layout_mode = 0
+offset_left = 205.0
+offset_top = 4.0
+offset_right = 399.0
+offset_bottom = 88.0
+
+[node name="Outline" type="ColorRect" parent="Toolbar/SelectStation"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 196.0
+offset_bottom = 86.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="ChooseTrainButton" type="TextureButton" parent="Toolbar/SelectStation"]
+z_index = 1
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 197.0
+offset_bottom = 87.0
+
+[node name="Label" type="Label" parent="Toolbar/SelectStation"]
+layout_mode = 0
+offset_right = 194.0
+offset_bottom = 84.0
+text = "Purchase:
+£1000000"
+label_settings = SubResource("LabelSettings_1l2i6")
+horizontal_alignment = 1
+vertical_alignment = 1

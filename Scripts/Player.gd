@@ -10,14 +10,12 @@ var currentRangeMultiplier = 1
 
 func _ready():
 	add_to_group("Player")
-	await get_process_delta_time()
+	await get_tree().create_timer(0.1).timeout
 	check_total_station_count()
-	currentContractRange = contractRangeSizes[3]
-	change_contract_reach()
+	Companies.companies.Player.trains.append(Train.new("Steam", "Dundee"))
 
 func _physics_process(delta):
-	if StationManager.stations.size() > 0 and Companies.companies.Player.trains.size() == 0:
-		Companies.companies.Player.trains.append(Train.new("Steam", "Dundee"))
+	
 	$Camera/UI/PlayerStats/Wealth.text = str("Wealth: £", wealth)
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT): wealth += 100000

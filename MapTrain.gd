@@ -15,6 +15,7 @@ var linkedContract
 var previousPosition
 var distanceLeft
 var taxLeft
+var maintenanceCost
 
 var speeds = {
 	Steam = 3,
@@ -27,6 +28,7 @@ func _ready():
 	self_modulate = trainColour
 	MapTrainManager.activeTrains.append(self)
 	previousPosition = global_position
+	maintenanceCost = speed
 
 func _physics_process(delta):
 	if trainPath == null: return
@@ -38,6 +40,7 @@ func find_next_node_in_path():
 	if trainPath.size() == 0: 
 		MapTrainManager.activeTrains.erase(self)
 		Companies.companies[trainCompany].activeTrains.erase(self)
+		if linkedContract != null: linkedContract.arrived_at_destination()
 		queue_free()
 		return
 	if nextNodeInPath != null: global_position = nextNodeInPath.global_position
