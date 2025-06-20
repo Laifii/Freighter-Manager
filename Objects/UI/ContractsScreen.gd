@@ -33,3 +33,7 @@ func _on_refresh_button_pressed():
 	$Backboard/RefreshIcon/TextureButton.disabled = true
 	await get_tree().create_timer(600).timeout
 	$Backboard/RefreshIcon/TextureButton.disabled = false
+
+
+func _on_cancel_button_pressed():
+	visible = false

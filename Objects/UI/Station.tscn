@@ -60,6 +60,10 @@ texture = ExtResource("3_qutln")
 z_index = -1
 texture = ExtResource("4_xawpj")
 
+[node name="SelectHighlight" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+texture = ExtResource("4_xawpj")
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -79,10 +83,6 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrainIdentifier"]
 shape = SubResource("CircleShape2D_qutln")
-
-[node name="SelectHighlight" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-texture = ExtResource("4_xawpj")
 
 [node name="StationUI" type="ColorRect" parent="."]
 visible = false

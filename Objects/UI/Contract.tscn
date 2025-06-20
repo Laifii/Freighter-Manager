@@ -24,15 +24,15 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_ubjbv")
+"texture": ExtResource("6_igsx7")
 }],
 "loop": true,
-"name": &"EarlyElectric",
+"name": &"Diesel",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_igsx7")
+"texture": ExtResource("4_ubjbv")
 }],
 "loop": true,
 "name": &"Electric",
@@ -161,7 +161,7 @@ color = Color(0.443137, 0.443137, 0.443137, 1)
 layout_mode = 0
 offset_right = 194.0
 offset_bottom = 84.0
-text = "Select Train"
+text = "Select Contract"
 label_settings = SubResource("LabelSettings_j5vk8")
 horizontal_alignment = 1
 vertical_alignment = 1

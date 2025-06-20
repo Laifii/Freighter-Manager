@@ -2,7 +2,7 @@ extends Node
 
 var activeTrains = []
 
-var trainTypeList = ["Steam", "Early Electric", "Electric", "Bullet"]
+var trainTypeList = ["Steam", "Electric", "Diesel", "Bullet"]
 
 func spawn_trains():
 	for company in Companies.companies:

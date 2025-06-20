@@ -19,15 +19,15 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_neln4")
+"texture": ExtResource("3_3rh8n")
 }],
 "loop": true,
-"name": &"Early Electric",
+"name": &"Diesel",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_3rh8n")
+"texture": ExtResource("2_neln4")
 }],
 "loop": true,
 "name": &"Electric",
@@ -96,7 +96,7 @@ color = Color(0.443137, 0.443137, 0.443137, 1)
 [node name="TrainSprite" type="AnimatedSprite2D" parent="Toolbar/Train"]
 position = Vector2(97, 38)
 sprite_frames = SubResource("SpriteFrames_2t7w4")
-animation = &"Early Electric"
+animation = &"Electric"
 
 [node name="Label" type="Label" parent="Toolbar/Train"]
 layout_mode = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dv5u1u046276g"]
+[gd_scene load_steps=21 format=3 uid="uid://dv5u1u046276g"]
 
 [ext_resource type="Script" uid="uid://ddud6ts7hxa43" path="res://Scripts/Toolbar.gd" id="1_cb3is"]
 [ext_resource type="Texture2D" uid="uid://cmp32tme8xayw" path="res://Assets/UI/Clipboard Small.png" id="2_0gaa0"]
@@ -32,12 +32,23 @@ height = 40
 font = ExtResource("3_mymyo")
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_0h8um"]
+font = ExtResource("3_mymyo")
+font_color = Color(0.556953, 0.556953, 0.556953, 1)
+
+[sub_resource type="Gradient" id="Gradient_541sx"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.77084, 0.770839, 0.770839, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f0ocy"]
+gradient = SubResource("Gradient_541sx")
+width = 22
+height = 22
+
 [node name="Toolbar" type="Control"]
 z_index = 3000
 layout_mode = 3
 anchors_preset = 0
-offset_left = 9.0
-offset_right = 9.0
 size_flags_horizontal = 0
 size_flags_vertical = 4
 script = ExtResource("1_cb3is")
@@ -45,9 +56,9 @@ script = ExtResource("1_cb3is")
 [node name="Toolbar" type="ColorRect" parent="."]
 z_index = 1000
 layout_mode = 0
-offset_left = -213.0
+offset_left = -204.0
 offset_top = 437.0
-offset_right = 194.0
+offset_right = 203.0
 offset_bottom = 528.0
 
 [node name="Outline" type="ColorRect" parent="Toolbar"]
@@ -294,11 +305,11 @@ texture = ExtResource("8_5liad")
 
 [node name="Screens" type="Control" parent="."]
 anchors_preset = 0
-offset_right = 40.0
+offset_left = 9.0
+offset_right = 49.0
 offset_bottom = 40.0
 
 [node name="ContractsScreen" type="Control" parent="Screens"]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -324,7 +335,8 @@ color = Color(0.443137, 0.443137, 0.443137, 1)
 [node name="RefreshIcon" type="Sprite2D" parent="Screens/ContractsScreen/Backboard"]
 self_modulate = Color(0.556863, 0.556863, 0.556863, 1)
 z_index = 10
-position = Vector2(784, 23)
+position = Vector2(21.5, 21)
+scale = Vector2(1.03125, 1)
 texture = ExtResource("10_73vpv")
 
 [node name="TextureButton" type="TextureButton" parent="Screens/ContractsScreen/Backboard/RefreshIcon"]
@@ -359,7 +371,29 @@ offset_right = 385.0
 offset_bottom = 224.0
 columns = 2
 
+[node name="Cancel" type="Label" parent="Screens/ContractsScreen"]
+z_index = 4096
+layout_mode = 0
+offset_left = 373.0
+offset_top = -368.0
+offset_right = 389.0
+offset_bottom = -354.0
+text = "x"
+label_settings = SubResource("LabelSettings_0h8um")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CancelButton" type="TextureButton" parent="Screens/ContractsScreen/Cancel"]
+z_index = -1
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 19.0
+offset_bottom = 19.0
+texture_hover = SubResource("GradientTexture2D_f0ocy")
+
 [node name="AuctionHouseScreen" type="Control" parent="Screens"]
+visible = false
 anchors_preset = 0
 offset_top = 137.0
 offset_right = 40.0
@@ -446,6 +480,29 @@ offset_bottom = 62.0
 [node name="StationLabel" parent="Screens/AuctionHouseScreen/StationDeals" instance=ExtResource("12_73vpv")]
 layout_mode = 2
 
+[node name="Cancel" type="Label" parent="Screens/AuctionHouseScreen"]
+z_index = 4096
+layout_mode = 0
+offset_left = 373.0
+offset_top = -368.0
+offset_right = 389.0
+offset_bottom = -354.0
+text = "x"
+label_settings = SubResource("LabelSettings_0h8um")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CancelButton" type="TextureButton" parent="Screens/AuctionHouseScreen/Cancel"]
+z_index = -1
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 19.0
+offset_bottom = 19.0
+texture_hover = SubResource("GradientTexture2D_f0ocy")
+
 [connection signal="pressed" from="Toolbar/Contracts/ContractButton" to="." method="_on_contract_button_pressed"]
 [connection signal="pressed" from="Toolbar/AuctionHouse/AuctionHouseButton" to="." method="_on_auction_house_button_pressed"]
 [connection signal="pressed" from="Screens/ContractsScreen/Backboard/RefreshIcon/TextureButton" to="Screens/ContractsScreen" method="_on_refresh_button_pressed"]
+[connection signal="pressed" from="Screens/ContractsScreen/Cancel/CancelButton" to="Screens/ContractsScreen" method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="Screens/AuctionHouseScreen/Cancel/CancelButton" to="Screens/AuctionHouseScreen" method="_on_cancel_button_pressed"]

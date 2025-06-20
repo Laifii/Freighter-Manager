@@ -5,8 +5,8 @@ var inAuctionHouse = true
 @onready var player = get_tree().get_first_node_in_group("Player")
 var activeDiscounts = 1
 var baseTrainValue = 250000
-@export_enum("Steam", "EarlyElectric", "Electric", "Bullet") var trainType
-var trainTypes = ["Steam", "Early Electric", "Electric", "Bullet"]
+@export_enum("Steam", "Electric", "Diesel", "Bullet") var trainType
+var trainTypes = ["Steam", "Electric", "Diesel", "Bullet"]
 var trainSpeeds = [3, 6, 9, 12]
 
 func _ready():
@@ -19,8 +19,8 @@ func _ready():
 
 func _on_purchase_button_pressed():
 	if player.wealth < marketPrice: return
-	print("test")
 	for station in StationManager.stations:
 		if station.stationOwner == 0:
 			station.trainSelectMode = true
+			get_parent().get_parent().visible = false
 	player.pendingTrain = Train.new(trainTypes[trainType], "", marketPrice)

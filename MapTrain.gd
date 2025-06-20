@@ -19,8 +19,8 @@ var previousDistanceLeft
 
 var speeds = {
 	Steam = 3,
-	EarlyElectric = 6,
-	Electric  = 9,
+	Electric = 6,
+	Diesel  = 9,
 	Bullet = 12,
 }
 

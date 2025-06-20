@@ -8,6 +8,7 @@ var contractRangeSizes = [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(2.2, 2.2), V
 var currentContractRange = Vector2(1, 1)
 var currentRangeMultiplier = 1
 var pendingTrain: Train
+var refreshAuctionHouse = false
 
 func _ready():
 	add_to_group("Player")

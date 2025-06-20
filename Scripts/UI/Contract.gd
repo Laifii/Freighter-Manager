@@ -33,12 +33,9 @@ func _ready():
 	$Toolbar/Reward/Label.text = str("Total\n£", int(reward + upfront), "\nUpfront\n£", int(upfront))
 
 func _on_choose_train_button_pressed(): # TODO TODO NEEDS REWORK TO LIST AVAILABLE TRAINS
-	var availableTrains = []
-	for train in Companies.companies.Player.trains:
-		if not train.assignedToContract:
-			availableTrains.append(train)
-	if availableTrains.size() == 0: return
-	assignedTrain = availableTrains[0]
+	var train = select_train()
+	if train.size() == 0: return
+	assignedTrain = train[0]
 	assignedTrain.assignedToContract = true
 	$Toolbar/ChooseTrain.visible = false
 	$Toolbar/DurationButtons.visible = true
@@ -59,6 +56,21 @@ func arrived_at_destination():
 	player.wealth += int(reward)
 	queue_free()
 
+func select_train():
+	var availableTrains = []
+	for train in Companies.companies.Player.trains:
+		if not train.assignedToContract:
+			availableTrains.append(train)
+	if availableTrains.size() == 0: return
+	for train in availableTrains:
+		if train.trainType == "Bullet": return [train]
+	for train in availableTrains:
+		if train.trainType == "Diesel": return [train]
+	for train in availableTrains:
+		if train.trainType == "Electric": return [train]
+	for train in availableTrains:
+		if train.trainType == "Steam": return [train]
+	return []
 
 func _on_cheapest_route_button_pressed():
 	assignedTrain.homeStationNode.spawn_train(cheapestRoute, assignedTrain.trainType, self)

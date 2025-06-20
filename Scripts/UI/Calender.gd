@@ -60,11 +60,12 @@ func update_year():
 	display_date()
 
 func update_payday():
-	if time.day == 1 or time.day == previousPayday + 7:
+	if time.day == 1 or time.day == previousPayday + 7: 
 		isPayday = true
 		previousPayday = time.day
 		for station in StationManager.stations:
 			station.generate_passive_income()
+		get_parent().get_parent().get_parent().refreshAuctionHouse = true # this is a silly line, it refers to the player
 	
 
 func display_time():
