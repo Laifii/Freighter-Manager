@@ -24,3 +24,4 @@ func _on_purchase_button_pressed():
 			station.trainSelectMode = true
 			get_parent().get_parent().visible = false
 	player.pendingTrain = Train.new(trainTypes[trainType], "", marketPrice)
+	player.newTrainLabel.visible = true

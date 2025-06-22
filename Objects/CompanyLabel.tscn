@@ -1,0 +1,144 @@
+[gd_scene load_steps=3 format=3 uid="uid://yfwx463k4753"]
+
+[ext_resource type="Script" uid="uid://ldulvfeutd7g" path="res://CompanyLabel.gd" id="1_75ted"]
+[ext_resource type="LabelSettings" uid="uid://c0swkbub35sdm" path="res://Assets/Fonts/CompaniesListLabel.tres" id="2_hxpdc"]
+
+[node name="CompanyLabel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_75ted")
+
+[node name="Toolbar" type="ColorRect" parent="."]
+z_index = 1000
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 801.0
+offset_bottom = 94.0
+
+[node name="Outline" type="ColorRect" parent="Toolbar"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 801.0
+offset_bottom = 94.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="Name" type="ColorRect" parent="Toolbar"]
+z_index = 1000
+layout_mode = 0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 99.0
+offset_bottom = 88.0
+
+[node name="Outline" type="ColorRect" parent="Toolbar/Name"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 96.0
+offset_bottom = 86.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="Label" type="Label" parent="Toolbar/Name"]
+layout_mode = 0
+offset_right = 94.0
+offset_bottom = 84.0
+text = "Company
+Name"
+label_settings = ExtResource("2_hxpdc")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Trains" type="ColorRect" parent="Toolbar"]
+z_index = 1000
+layout_mode = 0
+offset_left = 105.0
+offset_top = 4.0
+offset_right = 199.0
+offset_bottom = 88.0
+
+[node name="Outline" type="ColorRect" parent="Toolbar/Trains"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 96.0
+offset_bottom = 86.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="Label" type="Label" parent="Toolbar/Trains"]
+layout_mode = 0
+offset_right = 94.0
+offset_bottom = 84.0
+text = "Train
+Count
+5"
+label_settings = ExtResource("2_hxpdc")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Stations" type="ColorRect" parent="Toolbar"]
+z_index = 1
+layout_mode = 0
+offset_left = 205.0
+offset_top = 4.0
+offset_right = 641.0
+offset_bottom = 88.0
+
+[node name="Outline" type="ColorRect" parent="Toolbar/Stations"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 439.0
+offset_bottom = 86.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="Label" type="Label" parent="Toolbar/Stations"]
+layout_mode = 0
+offset_right = 436.0
+offset_bottom = 84.0
+text = "Stations:"
+label_settings = ExtResource("2_hxpdc")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AcquisitionValue" type="ColorRect" parent="Toolbar"]
+z_index = 1
+layout_mode = 0
+offset_left = 648.0
+offset_top = 4.0
+offset_right = 795.0
+offset_bottom = 88.0
+
+[node name="Outline" type="ColorRect" parent="Toolbar/AcquisitionValue"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 149.0
+offset_bottom = 86.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="Label" type="Label" parent="Toolbar/AcquisitionValue"]
+layout_mode = 0
+offset_right = 149.0
+offset_bottom = 84.0
+text = "Acquisition Value:
+£150000 / Week"
+label_settings = ExtResource("2_hxpdc")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

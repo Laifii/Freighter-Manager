@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dbndd8umjeoiq"]
+[gd_scene load_steps=16 format=3 uid="uid://dbndd8umjeoiq"]
 
 [ext_resource type="Script" uid="uid://bcyvbwsej2e2f" path="res://Scripts/Camera.gd" id="1_xdxat"]
 [ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="2_rv08e"]
@@ -51,6 +51,11 @@ font_color = Color(0, 0, 0, 1)
 gradient = SubResource("Gradient_i0ulm")
 width = 46
 height = 16
+
+[sub_resource type="LabelSettings" id="LabelSettings_i0ulm"]
+font = ExtResource("2_rv08e")
+font_size = 8
+font_color = Color(0.266575, 0.266575, 0.266575, 1)
 
 [node name="Camera" type="Camera2D"]
 position = Vector2(30, 7)
@@ -360,6 +365,40 @@ offset_left = -30.0
 offset_top = 2.0
 offset_right = -30.0
 offset_bottom = 2.0
+
+[node name="NewTrainLabel" type="ColorRect" parent="UI"]
+visible = false
+z_index = 1000
+layout_mode = 0
+offset_left = -177.0
+offset_top = -532.0
+offset_right = -29.5
+offset_bottom = -502.0
+scale = Vector2(2, 2)
+
+[node name="ColorRect" type="ColorRect" parent="UI/NewTrainLabel"]
+z_index = -1
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 148.5
+offset_bottom = 31.0
+color = Color(0.442911, 0.442911, 0.442911, 1)
+
+[node name="Owner" type="Label" parent="UI/NewTrainLabel"]
+z_index = 100
+layout_mode = 0
+offset_left = 0.5
+offset_top = 1.0
+offset_right = 153.0
+offset_bottom = 28.0
+text = "Select one of your stations to place your new train"
+label_settings = SubResource("LabelSettings_i0ulm")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+autowrap_trim_flags = 0
+uppercase = true
 
 [connection signal="pressed" from="UI/Calender/ColorRect/SpeedButton1/SpeedButton1" to="UI/Calender" method="_on_speed_button_1_pressed"]
 [connection signal="pressed" from="UI/Calender/ColorRect/SpeedButton2/SpeedButton2" to="UI/Calender" method="_on_speed_button_2_pressed"]

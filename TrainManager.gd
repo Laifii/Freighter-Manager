@@ -6,6 +6,7 @@ var trainTypeList = ["Steam", "Electric", "Diesel", "Bullet"]
 
 func spawn_trains():
 	for company in Companies.companies:
+		if Companies.companies[company].stations == []: continue
 		if Companies.companies[company] == Companies.companies.Player: continue
 		var listOfTrainTypes = []
 		var listOfActiveTrainTypes = []

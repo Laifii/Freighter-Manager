@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://cf0x0dhn772y3"]
+[gd_scene load_steps=21 format=3 uid="uid://cf0x0dhn772y3"]
 
 [ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="1_57egv"]
 [ext_resource type="Script" uid="uid://uhf46lwdh734" path="res://Objects/Scenes/MainMenu.gd" id="1_x5ra7"]
 [ext_resource type="Script" uid="uid://c0frvuw5vekvv" path="res://Objects/Scenes/NewGameScreen.gd" id="2_0cncr"]
+[ext_resource type="VideoStream" uid="uid://bbaq7trc71qpp" path="res://Assets/MainMenu Video/Screen-Recording-2025-06-22-173902.ogv" id="4_541sx"]
 
 [sub_resource type="Gradient" id="Gradient_57egv"]
 offsets = PackedFloat32Array(0.972222)
@@ -85,14 +86,30 @@ script = ExtResource("1_x5ra7")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(4, 1)
 
-[node name="MainButtons" type="Control" parent="."]
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_left = -1465.0
+offset_top = -586.0
+offset_right = -1425.0
+offset_bottom = -546.0
+scale = Vector2(1.4, 1.4)
+stream = ExtResource("4_541sx")
+autoplay = true
+
+[node name="Menu" type="Control" parent="."]
+z_index = 4096
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MainButtons" type="Control" parent="Menu"]
 anchors_preset = 0
 offset_left = 6.0
 offset_top = 125.0
 offset_right = 46.0
 offset_bottom = 165.0
 
-[node name="ColorRect" type="ColorRect" parent="MainButtons"]
+[node name="ColorRect" type="ColorRect" parent="Menu/MainButtons"]
 layout_mode = 0
 offset_left = -129.0
 offset_top = -246.0
@@ -100,14 +117,14 @@ offset_right = 117.0
 offset_bottom = -4.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
-[node name="ColorRect" type="ColorRect" parent="MainButtons/ColorRect"]
+[node name="ColorRect" type="ColorRect" parent="Menu/MainButtons/ColorRect"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 244.0
 offset_bottom = 240.0
 
-[node name="NewGame" type="ColorRect" parent="MainButtons"]
+[node name="NewGame" type="ColorRect" parent="Menu/MainButtons"]
 layout_mode = 0
 offset_left = -125.0
 offset_top = -182.0
@@ -115,14 +132,14 @@ offset_right = 113.0
 offset_bottom = -128.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
-[node name="ColorRect" type="ColorRect" parent="MainButtons/NewGame"]
+[node name="ColorRect" type="ColorRect" parent="Menu/MainButtons/NewGame"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 236.0
 offset_bottom = 51.0
 
-[node name="NewGameButton" type="TextureButton" parent="MainButtons/NewGame"]
+[node name="NewGameButton" type="TextureButton" parent="Menu/MainButtons/NewGame"]
 layout_mode = 0
 offset_right = 238.0
 offset_bottom = 54.0
@@ -130,7 +147,7 @@ action_mode = 0
 texture_hover = SubResource("GradientTexture2D_0cncr")
 texture_disabled = SubResource("GradientTexture2D_0cncr")
 
-[node name="Text" type="Label" parent="MainButtons/NewGame/NewGameButton"]
+[node name="Text" type="Label" parent="Menu/MainButtons/NewGame/NewGameButton"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
@@ -141,7 +158,7 @@ label_settings = SubResource("LabelSettings_0cncr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Continue" type="ColorRect" parent="MainButtons"]
+[node name="Continue" type="ColorRect" parent="Menu/MainButtons"]
 layout_mode = 0
 offset_left = -125.0
 offset_top = -242.0
@@ -150,21 +167,22 @@ offset_bottom = -188.0
 pivot_offset = Vector2(114, 46)
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
-[node name="ColorRect" type="ColorRect" parent="MainButtons/Continue"]
+[node name="ColorRect" type="ColorRect" parent="Menu/MainButtons/Continue"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 236.0
 offset_bottom = 51.0
 
-[node name="ContinueButton" type="TextureButton" parent="MainButtons/Continue"]
+[node name="ContinueButton" type="TextureButton" parent="Menu/MainButtons/Continue"]
 layout_mode = 0
 offset_right = 238.0
 offset_bottom = 54.0
+tooltip_text = "Saving is not currently a feature in this game"
 texture_hover = SubResource("GradientTexture2D_x5ra7")
 texture_disabled = SubResource("GradientTexture2D_x5ra7")
 
-[node name="Text" type="Label" parent="MainButtons/Continue/ContinueButton"]
+[node name="Text" type="Label" parent="Menu/MainButtons/Continue/ContinueButton"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
@@ -175,7 +193,7 @@ label_settings = SubResource("LabelSettings_0cncr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Settings" type="ColorRect" parent="MainButtons"]
+[node name="Settings" type="ColorRect" parent="Menu/MainButtons"]
 layout_mode = 0
 offset_left = -125.0
 offset_top = -122.0
@@ -184,20 +202,20 @@ offset_bottom = -68.0
 pivot_offset = Vector2(114, 46)
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
-[node name="ColorRect" type="ColorRect" parent="MainButtons/Settings"]
+[node name="ColorRect" type="ColorRect" parent="Menu/MainButtons/Settings"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 236.0
 offset_bottom = 51.0
 
-[node name="SettingsButton" type="TextureButton" parent="MainButtons/Settings"]
+[node name="SettingsButton" type="TextureButton" parent="Menu/MainButtons/Settings"]
 layout_mode = 0
 offset_right = 238.0
 offset_bottom = 54.0
 texture_hover = SubResource("GradientTexture2D_0cncr")
 
-[node name="Text" type="Label" parent="MainButtons/Settings/SettingsButton"]
+[node name="Text" type="Label" parent="Menu/MainButtons/Settings/SettingsButton"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
@@ -208,7 +226,7 @@ label_settings = SubResource("LabelSettings_0cncr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Exit" type="ColorRect" parent="MainButtons"]
+[node name="Exit" type="ColorRect" parent="Menu/MainButtons"]
 layout_mode = 0
 offset_left = -125.0
 offset_top = -62.0
@@ -217,20 +235,20 @@ offset_bottom = -8.0
 pivot_offset = Vector2(114, 46)
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
-[node name="ColorRect" type="ColorRect" parent="MainButtons/Exit"]
+[node name="ColorRect" type="ColorRect" parent="Menu/MainButtons/Exit"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 236.0
 offset_bottom = 51.0
 
-[node name="ExitButton" type="TextureButton" parent="MainButtons/Exit"]
+[node name="ExitButton" type="TextureButton" parent="Menu/MainButtons/Exit"]
 layout_mode = 0
 offset_right = 238.0
 offset_bottom = 54.0
 texture_hover = SubResource("GradientTexture2D_0cncr")
 
-[node name="Text" type="Label" parent="MainButtons/Exit/ExitButton"]
+[node name="Text" type="Label" parent="Menu/MainButtons/Exit/ExitButton"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
@@ -241,13 +259,14 @@ label_settings = SubResource("LabelSettings_0cncr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NewGameScreen" type="Control" parent="."]
+[node name="NewGameScreen" type="Control" parent="Menu"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_0cncr")
 
-[node name="ColorRect" type="ColorRect" parent="NewGameScreen"]
+[node name="ColorRect" type="ColorRect" parent="Menu/NewGameScreen"]
 layout_mode = 0
 offset_left = -194.0
 offset_top = -168.0
@@ -255,20 +274,20 @@ offset_right = 196.0
 offset_bottom = 156.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
-[node name="ColorRect" type="ColorRect" parent="NewGameScreen/ColorRect"]
+[node name="ColorRect" type="ColorRect" parent="Menu/NewGameScreen/ColorRect"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 388.0
 offset_bottom = 322.0
 
-[node name="PlayerColour" type="Control" parent="NewGameScreen"]
+[node name="PlayerColour" type="Control" parent="Menu/NewGameScreen"]
 anchors_preset = 0
 offset_top = 111.0
 offset_right = 40.0
 offset_bottom = 151.0
 
-[node name="RedSlider" type="HSlider" parent="NewGameScreen/PlayerColour"]
+[node name="RedSlider" type="HSlider" parent="Menu/NewGameScreen/PlayerColour"]
 layout_mode = 0
 offset_left = -128.0
 offset_top = -107.0
@@ -277,7 +296,7 @@ offset_bottom = -91.0
 max_value = 255.0
 rounded = true
 
-[node name="GreenSlider" type="HSlider" parent="NewGameScreen/PlayerColour"]
+[node name="GreenSlider" type="HSlider" parent="Menu/NewGameScreen/PlayerColour"]
 layout_mode = 0
 offset_left = -128.0
 offset_top = -90.0
@@ -286,7 +305,7 @@ offset_bottom = -74.0
 max_value = 255.0
 rounded = true
 
-[node name="BlueSlider" type="HSlider" parent="NewGameScreen/PlayerColour"]
+[node name="BlueSlider" type="HSlider" parent="Menu/NewGameScreen/PlayerColour"]
 layout_mode = 0
 offset_left = -128.0
 offset_top = -71.0
@@ -296,7 +315,7 @@ max_value = 255.0
 rounded = true
 tick_count = 1
 
-[node name="PrimaryColour" type="ColorRect" parent="NewGameScreen/PlayerColour"]
+[node name="PrimaryColour" type="ColorRect" parent="Menu/NewGameScreen/PlayerColour"]
 z_index = 10
 layout_mode = 0
 offset_left = -90.0
@@ -305,7 +324,7 @@ offset_right = -50.0
 offset_bottom = -119.0
 color = Color(0, 0, 0, 1)
 
-[node name="TextureButton" type="TextureButton" parent="NewGameScreen/PlayerColour/PrimaryColour"]
+[node name="TextureButton" type="TextureButton" parent="Menu/NewGameScreen/PlayerColour/PrimaryColour"]
 z_index = -1
 layout_mode = 0
 offset_left = -2.0
@@ -320,7 +339,7 @@ texture_normal = SubResource("GradientTexture2D_541sx")
 texture_pressed = SubResource("GradientTexture2D_ttsg8")
 texture_hover = SubResource("GradientTexture2D_tstma")
 
-[node name="Label" type="Label" parent="NewGameScreen/PlayerColour/PrimaryColour"]
+[node name="Label" type="Label" parent="Menu/NewGameScreen/PlayerColour/PrimaryColour"]
 layout_mode = 0
 offset_top = -40.0
 offset_right = 40.0
@@ -331,7 +350,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="SecondaryColour" type="ColorRect" parent="NewGameScreen/PlayerColour"]
+[node name="SecondaryColour" type="ColorRect" parent="Menu/NewGameScreen/PlayerColour"]
 z_index = 10
 layout_mode = 0
 offset_left = 50.0
@@ -340,7 +359,7 @@ offset_right = 90.0
 offset_bottom = -119.0
 color = Color(0, 0, 0, 1)
 
-[node name="TextureButton" type="TextureButton" parent="NewGameScreen/PlayerColour/SecondaryColour"]
+[node name="TextureButton" type="TextureButton" parent="Menu/NewGameScreen/PlayerColour/SecondaryColour"]
 z_index = -1
 layout_mode = 0
 offset_left = -2.0
@@ -354,7 +373,7 @@ texture_normal = SubResource("GradientTexture2D_541sx")
 texture_pressed = SubResource("GradientTexture2D_ttsg8")
 texture_hover = SubResource("GradientTexture2D_tstma")
 
-[node name="Label" type="Label" parent="NewGameScreen/PlayerColour/SecondaryColour"]
+[node name="Label" type="Label" parent="Menu/NewGameScreen/PlayerColour/SecondaryColour"]
 layout_mode = 0
 offset_top = -40.0
 offset_right = 40.0
@@ -365,7 +384,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="NewGameScreen"]
+[node name="LineEdit" type="LineEdit" parent="Menu/NewGameScreen"]
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_left = -186.0
@@ -373,14 +392,13 @@ offset_top = -140.0
 offset_right = 186.0
 offset_bottom = -109.0
 theme = SubResource("Theme_0cncr")
-text = "testing name"
 placeholder_text = "Your Company's Name"
 alignment = 1
 max_length = 20
 expand_to_text_length = true
 flat = true
 
-[node name="Confirm" type="ColorRect" parent="NewGameScreen"]
+[node name="Confirm" type="ColorRect" parent="Menu/NewGameScreen"]
 layout_mode = 0
 offset_left = -119.0
 offset_top = 77.0
@@ -388,14 +406,14 @@ offset_right = 119.0
 offset_bottom = 131.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
-[node name="ColorRect" type="ColorRect" parent="NewGameScreen/Confirm"]
+[node name="ColorRect" type="ColorRect" parent="Menu/NewGameScreen/Confirm"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 236.0
 offset_bottom = 52.0
 
-[node name="Label" type="Label" parent="NewGameScreen/Confirm"]
+[node name="Label" type="Label" parent="Menu/NewGameScreen/Confirm"]
 layout_mode = 0
 offset_top = 1.0
 offset_right = 236.0
@@ -405,14 +423,14 @@ label_settings = SubResource("LabelSettings_x5ra7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureButton" type="TextureButton" parent="NewGameScreen/Confirm"]
+[node name="TextureButton" type="TextureButton" parent="Menu/NewGameScreen/Confirm"]
 layout_mode = 0
 offset_right = 238.0
 offset_bottom = 54.0
 tooltip_text = "Enter a name before confirming"
 texture_hover = SubResource("GradientTexture2D_0cncr")
 
-[node name="Cancel" type="Label" parent="NewGameScreen"]
+[node name="Cancel" type="Label" parent="Menu/NewGameScreen"]
 z_index = 10
 layout_mode = 0
 offset_left = 173.0
@@ -424,7 +442,7 @@ label_settings = SubResource("LabelSettings_541sx")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CancelButton" type="TextureButton" parent="NewGameScreen/Cancel"]
+[node name="CancelButton" type="TextureButton" parent="Menu/NewGameScreen/Cancel"]
 z_index = -1
 layout_mode = 0
 offset_left = -3.0
@@ -433,11 +451,11 @@ offset_right = 19.0
 offset_bottom = 19.0
 texture_hover = SubResource("GradientTexture2D_f2itx")
 
-[connection signal="pressed" from="MainButtons/NewGame/NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="MainButtons/Continue/ContinueButton" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="MainButtons/Settings/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="MainButtons/Exit/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="NewGameScreen/PlayerColour/PrimaryColour/TextureButton" to="NewGameScreen" method="_on_primary_colour_button_pressed"]
-[connection signal="pressed" from="NewGameScreen/PlayerColour/SecondaryColour/TextureButton" to="NewGameScreen" method="_on_secondary_colour_button_pressed"]
-[connection signal="pressed" from="NewGameScreen/Confirm/TextureButton" to="." method="_on_confirm_new_game_button_pressed"]
-[connection signal="pressed" from="NewGameScreen/Cancel/CancelButton" to="NewGameScreen" method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="Menu/MainButtons/NewGame/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="Menu/MainButtons/Continue/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Menu/MainButtons/Settings/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Menu/MainButtons/Exit/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Menu/NewGameScreen/PlayerColour/PrimaryColour/TextureButton" to="Menu/NewGameScreen" method="_on_primary_colour_button_pressed"]
+[connection signal="pressed" from="Menu/NewGameScreen/PlayerColour/SecondaryColour/TextureButton" to="Menu/NewGameScreen" method="_on_secondary_colour_button_pressed"]
+[connection signal="pressed" from="Menu/NewGameScreen/Confirm/TextureButton" to="." method="_on_confirm_new_game_button_pressed"]
+[connection signal="pressed" from="Menu/NewGameScreen/Cancel/CancelButton" to="Menu/NewGameScreen" method="_on_cancel_button_pressed"]

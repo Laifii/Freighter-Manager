@@ -23,7 +23,7 @@ var companyColours = {
 	None = {inner = Color(0.8, 0.8, 0.8), outer = Color(0.355, 0.355, 0.355)},
 	ScottishRail = {inner = Color(1, 1, 1), outer = Color(0.0, 0.369, 0.722)},
 	CelticCargo = {inner = Color(0.0, 0.694, 0.251), outer = Color(1.0, 0.898, 0.0)},
-	UnitedRail = {inner = Color(0.784, 0.063, 0.18), outer = Color(0.004, 0.129, 0.412)},
+	UnitedRail = {inner = Color(0.784, 0.063, 0.18), outer = Color(0.004, 0.029, 0.212)},
 	BirminghamExpress = {inner = Color(1.0, 0.898, 0.0), outer = Color(0.863, 0.1, 0.05)},
 	LondonFreighters = {inner = Color(1, 0, 0), outer = Color(1, 1, 1)}
 }
@@ -55,6 +55,7 @@ func initialise_station():
 	if stationOwner == 0: 
 		$StationUI/UnownedStation.visible = false
 		$StationUI/OwnedStation.visible = true
+	if player == null: return
 	player.camera.calender.display_weekly_income()
 
 func initialise_tracks():
@@ -75,7 +76,7 @@ func set_station_stats():
 	$StationUI/Size.text = sizeList[stationSize]
 	$StationUI/Owner.text = visualOwnerList[stationOwner]
 	stationValue = int(500000 * (float(connections.size()) / 4) * (float(stationOwner) + 1.0 / 2.0) * (float(stationSize) + 1.0 / 4.0))
-	weeklyIncome = 10000 * (connections.size() / 2) * int((float(stationSize + 1) * 1.5)) if connections.size() > 1 else 5000 * int((float(stationSize + 1) * 1.5))
+	weeklyIncome = 5000 * (connections.size() / 2) * int((float(stationSize + 1) * 1.5)) if connections.size() > 1 else 3500 * int((float(stationSize + 1) * 1.5))
 	stationTax = 100 * int((float(stationSize) * 3) * stationOwner) if stationSize > 0 else 250 * (stationOwner / 2)
 	$StationUI/Income.text = str("Income:\n", weeklyIncome, " / Week")
 	$StationUI/UnownedStation/ValueRect/Value.text = str("£", stationValue)
@@ -87,11 +88,12 @@ func set_station_stats():
 	$StationColourInner.self_modulate = companyColours[companyList[stationOwner]]["inner"]
 	$StationColourInner/StationColourOuter.self_modulate = companyColours[companyList[stationOwner]]["outer"]
 	$StationColourInner.scale = Vector2(stationSize + 1, stationSize + 1)
-	player.camera.calender.display_weekly_income() 
 	if stationOwner > 1:
 		Companies.companies[companyList[stationOwner]].stations.append(self)
 	await get_tree().process_frame
 	MapTrainManager.spawn_trains()
+	if player == null: return
+	player.camera.calender.display_weekly_income() 
 
 var trainNode = preload("res://Objects/UI/MapTrain.tscn")
 func spawn_train(path, trainType, linkedContract = null): # Temp for train testing, delete later
@@ -125,7 +127,7 @@ func _physics_process(delta):
 		nameplate.modulate[3] = lerp(nameplate.modulate[3], 0.95, 0.2)
 	if Input.is_action_just_pressed("Escape"): if $StationUI.visible: $StationUI.visible = false
 	if stationOwner > 0: return
-	if trainSelectMode:
+	if trainSelectMode and player.pendingTrain != null:
 		flash_highlight()
 	else:
 		$SelectHighlight.self_modulate[3] = 0.0
@@ -137,6 +139,7 @@ func _unhandled_input(event):
 	if event.button_index != 1: return
 	if trainSelectMode and stationOwner == 0:
 		assign_train_to_station()
+		player.newTrainLabel.visible = false
 		return
 	var selfState = $StationUI.visible
 	for station in StationManager.stations:
@@ -191,6 +194,9 @@ func flash_highlight():
 		highlightAppearing = true
 
 func assign_train_to_station():
+	if player.pendingTrain == null: 
+		trainSelectMode = false
+		return
 	player.pendingTrain.homeStation = stationName
 	player.pendingTrain.homeStationNode = self
 	stationedTrains.append(player.pendingTrain)

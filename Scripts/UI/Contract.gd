@@ -17,22 +17,18 @@ var cheapestCost
 var cheapestDistance
 var fastestCost
 var fastestDistance
+@export var isSpecialContract = false
 
 func _ready():
-	StationManager.refresh_contract_ready_stations()
-	targetOne = StationManager.contractReadyStations[randi_range(0, StationManager.contractReadyStations.size() - 1)]
-	targetOne.notInContract = false
-	StationManager.refresh_contract_ready_stations()
-	targetTwo = StationManager.contractReadyStations[randi_range(0, StationManager.contractReadyStations.size() - 1)]
-	targetTwo.notInContract = false
-	StationManager.refresh_contract_ready_stations()
+	targetOne = StationManager.stationsInContractRange[randi_range(0, StationManager.stationsInContractRange.size() - 1)]
+	targetTwo = StationManager.stationsInContractRange[randi_range(0, StationManager.stationsInContractRange.size() - 1)]
 	$Toolbar/Locations/Label.text = str(targetOne.stationName, "\n-\n", targetTwo.stationName)
-	reward = int(randi_range(5000, 20000) * player.currentRangeMultiplier * float(estimate_route_distance()) / 500.0)
+	reward = int(randi_range(5000, 20000) * player.currentRangeMultiplier * float(estimate_route_distance()) / 500.0) if targetOne != targetTwo else 5000
 	upfront = float(reward) * randf_range(0.05, 0.4)
 	reward -= upfront
 	$Toolbar/Reward/Label.text = str("Total\n£", int(reward + upfront), "\nUpfront\n£", int(upfront))
 
-func _on_choose_train_button_pressed(): # TODO TODO NEEDS REWORK TO LIST AVAILABLE TRAINS
+func _on_choose_train_button_pressed(): 
 	var train = select_train()
 	if train.size() == 0: return
 	assignedTrain = train[0]
@@ -49,6 +45,7 @@ func _on_choose_train_button_pressed(): # TODO TODO NEEDS REWORK TO LIST AVAILAB
 	$Toolbar/DurationButtons/FastestRoute/Label.text = str("Distance: ", fastestDistance, "\nStation Tax: £", fastestCost)
 
 func arrived_at_destination():
+	#if isSpecialContract: assignedTrain.homeStationNode.spawn_train(cheapestRoute, assignedTrain.trainType, self)
 	assignedTrain.assignedToContract = false 
 	targetOne.notInContract = true
 	targetTwo.notInContract = true

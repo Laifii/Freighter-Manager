@@ -24,6 +24,7 @@ var floatMinutes = 59
 var savedTime
 var previousPayday = 0
 var isPayday = false
+var additionalIncome = 0
 
 func _ready():
 	display_date()
@@ -66,6 +67,7 @@ func update_payday():
 		previousPayday = time.day
 		for station in StationManager.stations:
 			station.generate_passive_income()
+		get_parent().get_parent().get_parent().wealth += additionalIncome # this refers to player
 
 func display_time():
 	minuteFiller = "0" if time.minute < 10 else ""
@@ -84,7 +86,7 @@ func display_weekly_income():
 	var totalWeeklyIncome = 0
 	for station in StationManager.stations:
 		if station.stationOwner == 0: totalWeeklyIncome += station.weeklyIncome
-	$DateStats/WeeklyIncome.text = str("Weekly Income: £", totalWeeklyIncome)
+	$DateStats/WeeklyIncome.text = str("Weekly Income: £", totalWeeklyIncome + additionalIncome)
 
 func _on_speed_button_1_pressed():
 	currentSpeed = 1

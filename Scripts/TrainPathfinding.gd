@@ -4,7 +4,7 @@ var unvisitedNodes := []
 var distances := {}
 var previousNodes := {}
 
-func find_route(method: String, origin: Node, target: Node, secondTarget: Node = null, playerTrain = false) -> Array:
+func find_route(method: String, origin: Node, target: Node, secondTarget: Node = null, playerTrain = false):
 	var pathToFirstTarget = _find_target(origin, target, method, playerTrain)
 	var pathBack = _find_target(target, origin, method, playerTrain)
 	if secondTarget != null: 
@@ -59,7 +59,7 @@ func _update_neighbours_cost(node: Node, playerTrain):
 			distances[neighborNode] = totalCost
 			previousNodes[neighborNode] = node
 
-func _get_cheapest_node(playerTrain) -> Node:
+func _get_cheapest_node(playerTrain):
 	var lowestCost = INF
 	var lowestNode = null
 	
@@ -70,7 +70,7 @@ func _get_cheapest_node(playerTrain) -> Node:
 			
 	return lowestNode
 
-func _get_closest_node() -> Node:
+func _get_closest_node():
 	var lowestDistance = INF
 	var lowestNode = null
 	
@@ -81,7 +81,7 @@ func _get_closest_node() -> Node:
 			
 	return lowestNode
 
-func _find_path(endNode: Node) -> Array:
+func _find_path(endNode: Node):
 	var path = []
 	var currentNode = endNode
 	

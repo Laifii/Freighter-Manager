@@ -3,8 +3,6 @@
 [ext_resource type="Script" uid="uid://ddud6ts7hxa43" path="res://Scripts/Toolbar.gd" id="1_cb3is"]
 [ext_resource type="Texture2D" uid="uid://cmp32tme8xayw" path="res://Assets/UI/Clipboard Small.png" id="2_0gaa0"]
 [ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="3_mymyo"]
-[ext_resource type="Texture2D" uid="uid://df6401r5s32f1" path="res://Assets/UI/Train Station Icon.png" id="4_t74ta"]
-[ext_resource type="Texture2D" uid="uid://c2bs6v3wcvwc7" path="res://Assets/UI/Trains Icon.png" id="5_73vpv"]
 [ext_resource type="Texture2D" uid="uid://h0v8gh6hlole" path="res://Assets/UI/AuctionHouseGavelPuck.png" id="6_0h8um"]
 [ext_resource type="Texture2D" uid="uid://b1t1df8lh74s0" path="res://Assets/UI/Auction House Gavel.png" id="7_f0ocy"]
 [ext_resource type="Texture2D" uid="uid://b84ufh5cqxt0q" path="res://Assets/UI/Graph Icon.png" id="8_5liad"]
@@ -12,7 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://brafxe7gxktt0" path="res://Assets/UI/Refresh icon.png" id="10_73vpv"]
 [ext_resource type="Script" uid="uid://dp6y503081m2u" path="res://Objects/UI/AuctionHouseScreen.gd" id="11_0h8um"]
 [ext_resource type="PackedScene" uid="uid://ttav4lxxh4xd" path="res://Objects/Train Label.tscn" id="11_t74ta"]
+[ext_resource type="PackedScene" uid="uid://yfwx463k4753" path="res://Objects/CompanyLabel.tscn" id="12_0h8um"]
 [ext_resource type="PackedScene" uid="uid://dovr8skkiyjqu" path="res://Objects/Station Label.tscn" id="12_73vpv"]
+[ext_resource type="Script" uid="uid://w1dlsdlowav4" path="res://Objects/UI/Companies Screen.gd" id="12_f0ocy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ll5fu"]
 font = ExtResource("3_mymyo")
@@ -53,6 +53,8 @@ height = 22
 z_index = 3000
 layout_mode = 3
 anchors_preset = 0
+offset_left = -14.0
+offset_right = -14.0
 size_flags_horizontal = 0
 size_flags_vertical = 4
 script = ExtResource("1_cb3is")
@@ -60,26 +62,26 @@ script = ExtResource("1_cb3is")
 [node name="Toolbar" type="ColorRect" parent="."]
 z_index = 1000
 layout_mode = 0
-offset_left = -204.0
-offset_top = 437.0
-offset_right = 203.0
-offset_bottom = 528.0
+offset_left = -109.0
+offset_top = 439.0
+offset_right = 136.0
+offset_bottom = 530.0
 
 [node name="Outline" type="ColorRect" parent="Toolbar"]
 z_index = -1
 layout_mode = 0
 offset_left = -2.0
 offset_top = -2.0
-offset_right = 409.0
+offset_right = 247.0
 offset_bottom = 93.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
 [node name="Contracts" type="ColorRect" parent="Toolbar"]
 z_index = 1000
 layout_mode = 0
-offset_left = 328.0
+offset_left = 166.0
 offset_top = 4.0
-offset_right = 403.0
+offset_right = 241.0
 offset_bottom = 87.0
 
 [node name="Outline" type="ColorRect" parent="Toolbar/Contracts"]
@@ -110,14 +112,6 @@ label_settings = SubResource("LabelSettings_ll5fu")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ContractButton" type="TextureButton" parent="Toolbar/Contracts"]
-layout_mode = 0
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 78.0
-offset_bottom = 86.0
-action_mode = 0
-
 [node name="Label2" type="Label" parent="Toolbar/Contracts"]
 layout_mode = 0
 offset_left = 57.0
@@ -128,95 +122,13 @@ label_settings = SubResource("LabelSettings_f0ocy")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StationManagement" type="ColorRect" parent="Toolbar"]
-z_index = 1000
-layout_mode = 0
-offset_left = 166.0
-offset_top = 4.0
-offset_right = 241.0
-offset_bottom = 87.0
-
-[node name="Outline" type="ColorRect" parent="Toolbar/StationManagement"]
-z_index = -1
-layout_mode = 0
-offset_left = -2.0
-offset_top = -2.0
-offset_right = 77.0
-offset_bottom = 85.0
-color = Color(0.443137, 0.443137, 0.443137, 1)
-
-[node name="StationManagementButton" type="TextureButton" parent="Toolbar/StationManagement"]
+[node name="ContractButton" type="TextureButton" parent="Toolbar/Contracts"]
 layout_mode = 0
 offset_left = -3.0
 offset_top = -3.0
 offset_right = 78.0
 offset_bottom = 86.0
-
-[node name="Label" type="Label" parent="Toolbar/StationManagement"]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 2.0
-offset_right = 46.0
-offset_bottom = 25.0
-text = "Your
-Stations"
-label_settings = SubResource("LabelSettings_ll5fu")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Sprite2D" type="TextureRect" parent="Toolbar/StationManagement"]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 15.0
-offset_right = 6.0
-offset_bottom = 15.0
-scale = Vector2(4, 4)
-texture = ExtResource("4_t74ta")
-
-[node name="Trains" type="ColorRect" parent="Toolbar"]
-z_index = 1000
-layout_mode = 0
-offset_left = 247.0
-offset_top = 4.0
-offset_right = 322.0
-offset_bottom = 87.0
-
-[node name="Outline" type="ColorRect" parent="Toolbar/Trains"]
-z_index = -1
-layout_mode = 0
-offset_left = -2.0
-offset_top = -2.0
-offset_right = 77.0
-offset_bottom = 85.0
-color = Color(0.443137, 0.443137, 0.443137, 1)
-
-[node name="TrainsButton" type="TextureButton" parent="Toolbar/Trains"]
-layout_mode = 0
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 78.0
-offset_bottom = 86.0
-
-[node name="Label" type="Label" parent="Toolbar/Trains"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 2.0
-offset_right = 53.0
-offset_bottom = 25.0
-text = "Your
-Trains"
-label_settings = SubResource("LabelSettings_ll5fu")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Sprite2D" type="TextureRect" parent="Toolbar/Trains"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 11.0
-offset_right = 4.0
-offset_bottom = 11.0
-scale = Vector2(4, 4)
-texture = ExtResource("5_73vpv")
+action_mode = 0
 
 [node name="AuctionHouse" type="ColorRect" parent="Toolbar"]
 z_index = 1000
@@ -247,21 +159,32 @@ label_settings = SubResource("LabelSettings_ll5fu")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Label2" type="Label" parent="Toolbar/AuctionHouse"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 63.0
+offset_right = 86.0
+offset_bottom = 86.0
+text = "!"
+label_settings = SubResource("LabelSettings_f0ocy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Sprite2D" type="TextureRect" parent="Toolbar/AuctionHouse"]
 layout_mode = 0
-offset_left = 8.0
-offset_top = 63.0
-offset_right = 8.0
-offset_bottom = 63.0
+offset_left = 5.0
+offset_top = 67.0
+offset_right = 5.0
+offset_bottom = 67.0
 scale = Vector2(4, 4)
 texture = ExtResource("6_0h8um")
 
 [node name="Sprite2D" type="TextureRect" parent="Toolbar/AuctionHouse/Sprite2D"]
 layout_mode = 0
-offset_left = 3.75
-offset_top = -7.0
-offset_right = 3.75
-offset_bottom = -7.0
+offset_left = 4.25
+offset_top = -7.75
+offset_right = 4.25
+offset_bottom = -7.75
 rotation = 0.244346
 texture = ExtResource("7_f0ocy")
 
@@ -289,13 +212,6 @@ offset_right = 77.0
 offset_bottom = 85.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
-[node name="CompaniesButton" type="TextureButton" parent="Toolbar/Companies"]
-layout_mode = 0
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 78.0
-offset_bottom = 86.0
-
 [node name="Label" type="Label" parent="Toolbar/Companies"]
 layout_mode = 0
 offset_left = 8.0
@@ -317,6 +233,13 @@ offset_bottom = 8.0
 scale = Vector2(4, 4)
 texture = ExtResource("8_5liad")
 
+[node name="CompaniesButton" type="TextureButton" parent="Toolbar/Companies"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 78.0
+offset_bottom = 86.0
+
 [node name="Screens" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 9.0
@@ -335,7 +258,7 @@ z_index = 1000
 layout_mode = 0
 offset_left = -412.0
 offset_top = -372.0
-offset_right = 394.0
+offset_right = 423.0
 offset_bottom = 292.0
 
 [node name="Outline" type="ColorRect" parent="Screens/ContractsScreen/Backboard"]
@@ -343,7 +266,7 @@ z_index = -1
 layout_mode = 0
 offset_left = -2.0
 offset_top = -2.0
-offset_right = 808.0
+offset_right = 837.0
 offset_bottom = 667.0
 color = Color(0.443137, 0.443137, 0.443137, 1)
 
@@ -371,7 +294,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Label" type="Label" parent="Screens/ContractsScreen/Backboard"]
 layout_mode = 0
 offset_top = 11.0
-offset_right = 806.0
+offset_right = 835.0
 offset_bottom = 34.0
 text = "Contracts List"
 label_settings = SubResource("LabelSettings_t74ta")
@@ -380,18 +303,18 @@ vertical_alignment = 1
 
 [node name="GridContainer" type="GridContainer" parent="Screens/ContractsScreen"]
 layout_mode = 0
-offset_left = -414.0
+offset_left = -408.0
 offset_top = -325.0
-offset_right = 385.0
-offset_bottom = 224.0
+offset_right = 428.0
+offset_bottom = 292.0
 columns = 2
 
 [node name="Cancel" type="Label" parent="Screens/ContractsScreen"]
 z_index = 4096
 layout_mode = 0
-offset_left = 373.0
+offset_left = 403.0
 offset_top = -368.0
-offset_right = 389.0
+offset_right = 419.0
 offset_bottom = -354.0
 text = "x"
 label_settings = SubResource("LabelSettings_0h8um")
@@ -516,8 +439,102 @@ offset_right = 19.0
 offset_bottom = 19.0
 texture_hover = SubResource("GradientTexture2D_f0ocy")
 
+[node name="CompaniesScreen" type="Control" parent="Screens"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("12_f0ocy")
+
+[node name="Backboard" type="ColorRect" parent="Screens/CompaniesScreen"]
+z_index = 800
+layout_mode = 0
+offset_left = -398.0
+offset_top = -372.0
+offset_right = 409.0
+offset_bottom = 273.0
+
+[node name="Outline" type="ColorRect" parent="Screens/CompaniesScreen/Backboard"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 809.0
+offset_bottom = 647.0
+color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="Label" type="Label" parent="Screens/CompaniesScreen/Backboard"]
+layout_mode = 0
+offset_top = 11.0
+offset_right = 800.0
+offset_bottom = 34.0
+text = "Companies List"
+label_settings = SubResource("LabelSettings_t74ta")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Screens/CompaniesScreen"]
+layout_mode = 0
+offset_left = -396.0
+offset_top = -326.0
+offset_right = 406.0
+offset_bottom = 291.0
+
+[node name="CompanyLabel" parent="Screens/CompaniesScreen/GridContainer" instance=ExtResource("12_0h8um")]
+layout_mode = 2
+companyName = "Scottish Rail"
+internalName = "ScottishRail"
+weeklyValue = 150000
+
+[node name="CompanyLabel2" parent="Screens/CompaniesScreen/GridContainer" instance=ExtResource("12_0h8um")]
+layout_mode = 2
+companyName = "United Rail"
+internalName = "UnitedRail"
+weeklyValue = 300000
+
+[node name="CompanyLabel3" parent="Screens/CompaniesScreen/GridContainer" instance=ExtResource("12_0h8um")]
+layout_mode = 2
+companyName = "Celtic Cargo"
+internalName = "CelticCargo"
+weeklyValue = 450000
+
+[node name="CompanyLabel4" parent="Screens/CompaniesScreen/GridContainer" instance=ExtResource("12_0h8um")]
+layout_mode = 2
+companyName = "Birmingham Express"
+internalName = "BirminghamExpress"
+weeklyValue = 800000
+
+[node name="CompanyLabel5" parent="Screens/CompaniesScreen/GridContainer" instance=ExtResource("12_0h8um")]
+layout_mode = 2
+companyName = "London Freighters"
+internalName = "LondonFreighters"
+weeklyValue = 1000000
+
+[node name="Cancel" type="Label" parent="Screens/CompaniesScreen"]
+z_index = 4096
+layout_mode = 0
+offset_left = 385.0
+offset_top = -368.0
+offset_right = 401.0
+offset_bottom = -354.0
+text = "x"
+label_settings = SubResource("LabelSettings_0h8um")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CancelButton" type="TextureButton" parent="Screens/CompaniesScreen/Cancel"]
+z_index = -1
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 19.0
+offset_bottom = 19.0
+texture_hover = SubResource("GradientTexture2D_f0ocy")
+
 [connection signal="pressed" from="Toolbar/Contracts/ContractButton" to="." method="_on_contract_button_pressed"]
 [connection signal="pressed" from="Toolbar/AuctionHouse/AuctionHouseButton" to="." method="_on_auction_house_button_pressed"]
+[connection signal="pressed" from="Toolbar/Companies/CompaniesButton" to="." method="_on_companies_button_pressed"]
 [connection signal="pressed" from="Screens/ContractsScreen/Backboard/RefreshIcon/TextureButton" to="Screens/ContractsScreen" method="_on_refresh_button_pressed"]
 [connection signal="pressed" from="Screens/ContractsScreen/Cancel/CancelButton" to="Screens/ContractsScreen" method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="Screens/AuctionHouseScreen/Cancel/CancelButton" to="Screens/AuctionHouseScreen" method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="Screens/CompaniesScreen/Cancel/CancelButton" to="Screens/CompaniesScreen" method="_on_cancel_button_pressed"]

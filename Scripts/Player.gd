@@ -7,11 +7,15 @@ var ownedStations = []
 var contractRangeSizes = [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(2.2, 2.2), Vector2(8, 8)]
 var currentContractRange = Vector2(1, 1)
 var currentRangeMultiplier = 1
+var currentContractLimit = 4
 var pendingTrain: Train
 var refreshAuctionHouse = false
+@onready var newTrainLabel = $Camera/UI/NewTrainLabel
+@export var isMainMenuBackground: bool = false
 
 func _ready():
-	add_to_group("Player")
+	if isMainMenuBackground: $Camera.enabled = false
+	else: add_to_group("Player")
 	await get_tree().create_timer(0.1).timeout
 	check_total_station_count()
 	Companies.companies.Player.trains.append(Train.new("Steam", "Dundee"))
@@ -20,10 +24,7 @@ func _ready():
 		Companies.companies.Player.stations.append(station)
 
 func _physics_process(delta):
-	
 	$Camera/UI/PlayerStats/Wealth.text = str("Wealth: £", wealth)
-	
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT): wealth += 100000
 
 func check_total_station_count():
 	match ownedStations.size():
@@ -31,14 +32,17 @@ func check_total_station_count():
 			currentContractRange = contractRangeSizes[1]
 			currentRangeMultiplier = 2.5
 			change_contract_reach()
+			currentContractLimit = 6
 		12:
 			currentContractRange = contractRangeSizes[2]
 			currentRangeMultiplier = 4
 			change_contract_reach()
+			currentContractLimit = 8
 		20:
 			currentContractRange = contractRangeSizes[3]
 			currentRangeMultiplier = 7
 			change_contract_reach()
+			currentContractLimit = 10
 		
 
 func change_contract_reach():
