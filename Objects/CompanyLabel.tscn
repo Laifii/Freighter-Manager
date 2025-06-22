@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://yfwx463k4753"]
 
-[ext_resource type="Script" uid="uid://ldulvfeutd7g" path="res://CompanyLabel.gd" id="1_75ted"]
+[ext_resource type="Script" uid="uid://ldulvfeutd7g" path="res://Scripts/UI/CompanyLabel.gd" id="1_75ted"]
 [ext_resource type="LabelSettings" uid="uid://c0swkbub35sdm" path="res://Assets/Fonts/CompaniesListLabel.tres" id="2_hxpdc"]
 
 [node name="CompanyLabel" type="Control"]

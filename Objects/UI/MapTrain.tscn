@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cuqys1kvob1l6"]
 
-[ext_resource type="Script" uid="uid://cvlseb7ojjt7n" path="res://MapTrain.gd" id="1_2wwbu"]
+[ext_resource type="Script" uid="uid://cvlseb7ojjt7n" path="res://Scripts/Map Scripts/MapTrain.gd" id="1_2wwbu"]
 [ext_resource type="Texture2D" uid="uid://bc77d2m88ie7k" path="res://Assets/Map Assets/StationInner.png" id="2_ptykf"]
 [ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="3_3xerr"]
 

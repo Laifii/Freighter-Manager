@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://leryr8at0xnj"]
 
-[ext_resource type="Script" uid="uid://voiwnou7b78g" path="res://Scripts/UI/Contract.gd" id="1_6h27d"]
+[ext_resource type="Script" uid="uid://voiwnou7b78g" path="res://Scripts/UI/ContractLabel.gd" id="1_6h27d"]
 [ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="2_y6lpx"]
 [ext_resource type="Texture2D" uid="uid://bsgqg2ns3ttuw" path="res://Assets/Trains/Early Bullet Train.png" id="3_4pmtn"]
 [ext_resource type="Texture2D" uid="uid://13g231nt2co3" path="res://Assets/Trains/Early Electric Train.png" id="4_nf4ja"]

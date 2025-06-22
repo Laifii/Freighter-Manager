@@ -17,12 +17,11 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-StationManager="*res://Scripts/StationManager.gd"
-Settings="*res://Scripts/UI/GameSettings.gd"
-Dijkstra="*res://Scripts/TrainPathfinding.gd"
-MapTrainManager="*res://TrainManager.gd"
-Companies="*res://CompanyStats.gd"
-ContractManager="*res://ContractManager.gd"
+StationManager="*res://Scripts/Globals/StationManager.gd"
+Settings="*res://Scripts/Globals/GameSettings.gd"
+Dijkstra="*res://Scripts/Globals/TrainPathfinding.gd"
+MapTrainManager="*res://Scripts/Globals/TrainManager.gd"
+Companies="*res://Scripts/Globals/CompanyStats.gd"
 
 [display]
 

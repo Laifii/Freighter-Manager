@@ -1,18 +1,18 @@
 [gd_scene load_steps=22 format=3 uid="uid://dv5u1u046276g"]
 
-[ext_resource type="Script" uid="uid://ddud6ts7hxa43" path="res://Scripts/Toolbar.gd" id="1_cb3is"]
+[ext_resource type="Script" uid="uid://ddud6ts7hxa43" path="res://Scripts/UI/Toolbar.gd" id="1_cb3is"]
 [ext_resource type="Texture2D" uid="uid://cmp32tme8xayw" path="res://Assets/UI/Clipboard Small.png" id="2_0gaa0"]
 [ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="3_mymyo"]
 [ext_resource type="Texture2D" uid="uid://h0v8gh6hlole" path="res://Assets/UI/AuctionHouseGavelPuck.png" id="6_0h8um"]
 [ext_resource type="Texture2D" uid="uid://b1t1df8lh74s0" path="res://Assets/UI/Auction House Gavel.png" id="7_f0ocy"]
 [ext_resource type="Texture2D" uid="uid://b84ufh5cqxt0q" path="res://Assets/UI/Graph Icon.png" id="8_5liad"]
-[ext_resource type="Script" uid="uid://ci8kuq61pfm4r" path="res://Objects/UI/ContractsScreen.gd" id="9_t74ta"]
+[ext_resource type="Script" uid="uid://ci8kuq61pfm4r" path="res://Scripts/UI/ContractsScreen.gd" id="9_t74ta"]
 [ext_resource type="Texture2D" uid="uid://brafxe7gxktt0" path="res://Assets/UI/Refresh icon.png" id="10_73vpv"]
-[ext_resource type="Script" uid="uid://dp6y503081m2u" path="res://Objects/UI/AuctionHouseScreen.gd" id="11_0h8um"]
+[ext_resource type="Script" uid="uid://dp6y503081m2u" path="res://Scripts/UI/AuctionHouseScreen.gd" id="11_0h8um"]
 [ext_resource type="PackedScene" uid="uid://ttav4lxxh4xd" path="res://Objects/Train Label.tscn" id="11_t74ta"]
 [ext_resource type="PackedScene" uid="uid://yfwx463k4753" path="res://Objects/CompanyLabel.tscn" id="12_0h8um"]
 [ext_resource type="PackedScene" uid="uid://dovr8skkiyjqu" path="res://Objects/Station Label.tscn" id="12_73vpv"]
-[ext_resource type="Script" uid="uid://w1dlsdlowav4" path="res://Objects/UI/Companies Screen.gd" id="12_f0ocy"]
+[ext_resource type="Script" uid="uid://w1dlsdlowav4" path="res://Scripts/UI/Companies Screen.gd" id="12_f0ocy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ll5fu"]
 font = ExtResource("3_mymyo")

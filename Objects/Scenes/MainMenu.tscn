@@ -1,8 +1,8 @@
 [gd_scene load_steps=21 format=3 uid="uid://cf0x0dhn772y3"]
 
 [ext_resource type="FontFile" uid="uid://c3kpo7ovh8rqi" path="res://Assets/Fonts/dogicabold.ttf" id="1_57egv"]
-[ext_resource type="Script" uid="uid://uhf46lwdh734" path="res://Objects/Scenes/MainMenu.gd" id="1_x5ra7"]
-[ext_resource type="Script" uid="uid://c0frvuw5vekvv" path="res://Objects/Scenes/NewGameScreen.gd" id="2_0cncr"]
+[ext_resource type="Script" uid="uid://uhf46lwdh734" path="res://Scripts/UI/MainMenu.gd" id="1_x5ra7"]
+[ext_resource type="Script" uid="uid://c0frvuw5vekvv" path="res://Scripts/UI/NewGameScreen.gd" id="2_0cncr"]
 [ext_resource type="VideoStream" uid="uid://bbaq7trc71qpp" path="res://Assets/MainMenu Video/Screen-Recording-2025-06-22-173902.ogv" id="4_541sx"]
 
 [sub_resource type="Gradient" id="Gradient_57egv"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://ttav4lxxh4xd"]
 
 [ext_resource type="Texture2D" uid="uid://bsgqg2ns3ttuw" path="res://Assets/Trains/Early Bullet Train.png" id="1_lk6x5"]
-[ext_resource type="Script" uid="uid://dftgdhyrra1rh" path="res://Objects/TrainLabel.gd" id="1_neln4"]
+[ext_resource type="Script" uid="uid://dftgdhyrra1rh" path="res://Scripts/UI/TrainLabel.gd" id="1_neln4"]
 [ext_resource type="Texture2D" uid="uid://13g231nt2co3" path="res://Assets/Trains/Early Electric Train.png" id="2_neln4"]
 [ext_resource type="Texture2D" uid="uid://dradec3mofs6g" path="res://Assets/Trains/Late Electric Train.png" id="3_3rh8n"]
 [ext_resource type="Texture2D" uid="uid://b6d53etdd34xx" path="res://Assets/Trains/SteamEngineSilhouette.png" id="4_tie31"]
